@@ -27,7 +27,7 @@
                             '<div class="popup round-corners {{cssclass}}" on-click="@this.fire(\'popup_click\', event)">'+
                                 '<div class="titlebar round-corners">'+
                                     '<div class="title">{{#if toplink}}<a href="{{toplink}}" target="_blank">{{title}}</a>{{else}}{{title}}{{/if}}</div>'+
-                                    '{{#if enableclose}}<span class="b-close round-corners" on-click="@this.fire(\'close\', event, enableclose)">x</span>{{/if}}'+
+                                    '{{#if enableclose}}<span class="b-close" on-click="@this.fire(\'close\', event, enableclose)"></span>{{/if}}'+
                                 '</div>'+
                                 '<div class="content">{{yield}}</div>'+
                             '</div>'+
@@ -36,7 +36,8 @@
         css:    '.popup {background-color: #fff; color: #333333; display: none; min-width: 110px; -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);}'+
                 '.popup .titlebar {padding:15px; color: #333; overflow: auto; border-bottom: 1px solid #e5e5e5;}'+
                 '.popup .titlebar .title {margin-top:2px; display: inline-block; font-size:15px; font-weight: bold;}'+
-                '.popup .titlebar .b-close {cursor: pointer; font-size: 18px; padding:0px 0px 2px 3px; margin-top: -2px; margin-right: -2px; color:#ccc;}'+
+                '.popup .titlebar .b-close {font-size: 14px; float: right; font-weight: bold; cursor: pointer; font-size: 18px; padding:0px 0px 2px 3px; margin-top: -2px; margin-right: -2px; color:#ccc;}'+
+                '.popup .titlebar .b-close::after {content: "\002715";}'+
                 '.popup .titlebar .b-close:hover {color:#6f6f6f; background-color: #fff;}'+
                 '.popup .content {padding:15px 15px 15px 15px;}'+
                 '.popup .content .full-hr {border: 0; border-top: 1px solid #e0e0e0; margin-top:15px; margin-bottom:15px; margin-left:-14px; margin-right:-14px;}'+
