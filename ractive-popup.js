@@ -46,7 +46,7 @@
                 '.popup-wrapper.cursor-pointer {cursor: pointer;}'+
                 '.popup-wrapper .popup {position: relative; float: left; top:30px; left: 50%; transform: translate(-50%,0); cursor: default; display: block;}'+
                 '@keyframes popup-fade-in {0% {opacity: 0;} 100% {opacity: 1;}}'+
-                '.popup-fade-in {display:block; animation-name: popup-fade-in; animation-duration: .25s; animation-fill-mode: both;}'+
+                '.popup-fade-in {display:block !important; animation-name: popup-fade-in; animation-duration: .25s; animation-fill-mode: both;}'+
                 '@keyframes popup-fade-out {0% {opacity: 1;} 100% {opacity: 0;}}'+
                 '.popup-fade-out {animation-name: popup-fade-out; animation-duration: .25s; animation-fill-mode: both;}',
         data: function(){
