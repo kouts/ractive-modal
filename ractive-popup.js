@@ -24,7 +24,7 @@
         isolated: false,
         template:   '{{#if showpopup}}'+
                         '<div class="popup-wrapper {{popup_id}} {{enableclose ? \'cursor-pointer\' : \'\'}}" on-click="@this.fire(\'close\', event, enableclose)" on-animend="@this.fire(\'anim_end\', event)">'+
-                            '<div class="popup pg round-corners {{cssclass}}" on-click="@this.fire(\'popup_click\', event)">'+
+                            '<div class="popup round-corners {{cssclass}}" on-click="@this.fire(\'popup_click\', event)">'+
                                 '<div class="titlebar round-corners">'+
                                     '<div class="title">{{#if toplink}}<a href="{{toplink}}" target="_blank">{{title}}</a>{{else}}{{title}}{{/if}}</div>'+
                                     '{{#if enableclose}}<i class="fa fa-times pull-right b-close round-corners" on-click="@this.fire(\'close\', event, enableclose)"></i>{{/if}}'+
@@ -33,7 +33,17 @@
                             '</div>'+
                         '</div>'+
                     '{{/if}}',
-        css:    '.popup-wrapper {position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 1050; overflow: auto; display:none; opacity:0; background-color: rgba(0, 0, 0, 0.5);}'+
+        css:    
+                '.popup {background-color: #fff; color: #333333; display: none; min-width: 110px; -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);}'+
+                '.popup .titlebar {padding:15px; color: #333; overflow: auto; border-bottom: 1px solid #e5e5e5;}'+
+                '.popup .titlebar .title {margin-top:2px; display: inline-block; font-size:15px; font-weight: bold;}'+
+                '.popup .titlebar .b-close {cursor: pointer; font-size: 14px; padding:0px 0px 2px 3px; margin-top: -2px; margin-right: -2px; color:#ccc;}'+
+                '.popup .titlebar .b-close:hover {color:#6f6f6f; background-color: #fff;}'+
+                '.popup .content {padding:15px 15px 15px 15px;}'+
+                '.popup .content .full-hr {border: 0; border-top: 1px solid #e0e0e0; margin-top:15px; margin-bottom:15px; margin-left:-14px; margin-right:-14px;}'+
+                '.popup.round-corners {-webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px;}'+
+                '.popup .popup-buttons-top {margin-top:-5px;}'+
+                '.popup-wrapper {position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 1050; overflow: auto; display:none; opacity:0; background-color: rgba(0, 0, 0, 0.5);}'+
                 '.popup-wrapper.cursor-pointer {cursor: pointer;}'+
                 '.popup-wrapper .popup {position: relative; float: left; top:30px; left: 50%; transform: translate(-50%,0); cursor: default; display: block;}'+
                 '@keyframes popup-fade-in {0% {opacity: 0;} 100% {opacity: 1;}}'+
