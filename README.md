@@ -10,4 +10,4 @@ Features
 - Enable or disable closing by clicking on the upper right "x", the overlay and the esc key
 
 Check here for a demo
-http://jsfiddle.net/euvd0qLu/17/
+http://jsfiddle.net/euvd0qLu/18/
