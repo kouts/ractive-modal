@@ -33,8 +33,7 @@
                             '</div>'+
                         '</div>'+
                     '{{/if}}',
-        css:    
-                '.popup {background-color: #fff; color: #333333; display: none; min-width: 110px; -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);}'+
+        css:    '.popup {background-color: #fff; color: #333333; display: none; min-width: 110px; -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);}'+
                 '.popup .titlebar {padding:15px; color: #333; overflow: auto; border-bottom: 1px solid #e5e5e5;}'+
                 '.popup .titlebar .title {margin-top:2px; display: inline-block; font-size:15px; font-weight: bold;}'+
                 '.popup .titlebar .b-close {cursor: pointer; font-size: 14px; padding:0px 0px 2px 3px; margin-top: -2px; margin-right: -2px; color:#ccc;}'+
