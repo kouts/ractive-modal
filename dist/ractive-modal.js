@@ -131,7 +131,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.fire('beforeOpen');
                 var lastZindex = this.getTopZindex();
                 var zindex = (lastZindex == 0) ? this.get('base_zindex') : lastZindex+1;
-                this.insert( this.get('appendto') ? document.querySelector(this.get('appendto')) : this.root.el);
+                this.insert(this.get('appendto') ? document.querySelector(this.get('appendto')) : this.root.el);
                 if(!live){
                     this.set('showpopup', true);
                 }

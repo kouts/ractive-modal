@@ -11,31 +11,42 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
-    <!-- Custom styles for this template -->
+    <!-- Custom styles -->
     <style>
 	    body {
-		  padding-top: 5rem;
-		}
-		.starter-template {
-		  padding: 3rem 1.5rem;
-		  text-align: center;
-		}
-    .navbar-nav-svg {
-        display: inline-block;
-        width: 1.5rem;
-        height: 1.5rem;
-        vertical-align: text-top;
-    }
-    .highlight {
-      background-color: #f7f7f9;
-    }
+		    padding-top: 5rem;
+		  }
+  		.jumbotron {
+  		  padding: 3rem 1.5rem;
+  		  text-align: center;
+  		}
+      .navbar-nav-svg {
+          display: inline-block;
+          width: 1.5rem;
+          height: 1.5rem;
+          vertical-align: text-top;
+      }
+      .highlight {
+        background-color: #f7f7f9;
+      }
+      .live-modal {
+        border-radius: 6px;
+        background: rgba(255,255,255,1);
+        background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+        background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
+        background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+        background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+        background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+        background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
+      }
     </style>
   </head>
 
   <body>
 
   	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  		<a class="navbar-brand" href="#">ractive-modal</a>
+  		<a class="navbar-brand" href="javascript:;">ractive-modal</a>
   		<div class="collapse navbar-collapse">
   			<ul class="navbar-nav mr-auto">
   				<!--
@@ -46,9 +57,9 @@
   			</ul>
   			<form class="form-inline">
           <a class="nav-link" style="color:#fff;" href="https://github.com/kouts/ractive-modal" target="_blank" rel="noopener" aria-label="ractive-modal GitHub">
-            <svg class="navbar-nav-svg" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 499.36" focusable="false"><title>GitHub</title><path d="M256 0C114.64 0 0 114.61 0 256c0 113.09 73.34 209 175.08 242.9 12.8 2.35 17.47-5.56 17.47-12.34 0-6.08-.22-22.18-.35-43.54-71.2 15.49-86.2-34.34-86.2-34.34-11.64-29.57-28.42-37.45-28.42-37.45-23.27-15.84 1.73-15.55 1.73-15.55 25.69 1.81 39.21 26.38 39.21 26.38 22.84 39.12 59.92 27.82 74.5 21.27 2.33-16.54 8.94-27.82 16.25-34.22-56.84-6.43-116.6-28.43-116.6-126.49 0-27.95 10-50.8 26.35-68.69-2.63-6.48-11.42-32.5 2.51-67.75 0 0 21.49-6.88 70.4 26.24a242.65 242.65 0 0 1 128.18 0c48.87-33.13 70.33-26.24 70.33-26.24 14 35.25 5.18 61.27 2.55 67.75 16.41 17.9 26.31 40.75 26.31 68.69 0 98.35-59.85 120-116.88 126.32 9.19 7.9 17.38 23.53 17.38 47.41 0 34.22-.31 61.83-.31 70.23 0 6.85 4.61 14.81 17.6 12.31C438.72 464.97 512 369.08 512 256.02 512 114.62 397.37 0 256 0z" fill="currentColor" fill-rule="evenodd"/></svg>
+            <svg class="navbar-nav-svg" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 499.36" focusable="false"><title>ractive-modal at GitHub</title><path d="M256 0C114.64 0 0 114.61 0 256c0 113.09 73.34 209 175.08 242.9 12.8 2.35 17.47-5.56 17.47-12.34 0-6.08-.22-22.18-.35-43.54-71.2 15.49-86.2-34.34-86.2-34.34-11.64-29.57-28.42-37.45-28.42-37.45-23.27-15.84 1.73-15.55 1.73-15.55 25.69 1.81 39.21 26.38 39.21 26.38 22.84 39.12 59.92 27.82 74.5 21.27 2.33-16.54 8.94-27.82 16.25-34.22-56.84-6.43-116.6-28.43-116.6-126.49 0-27.95 10-50.8 26.35-68.69-2.63-6.48-11.42-32.5 2.51-67.75 0 0 21.49-6.88 70.4 26.24a242.65 242.65 0 0 1 128.18 0c48.87-33.13 70.33-26.24 70.33-26.24 14 35.25 5.18 61.27 2.55 67.75 16.41 17.9 26.31 40.75 26.31 68.69 0 98.35-59.85 120-116.88 126.32 9.19 7.9 17.38 23.53 17.38 47.41 0 34.22-.31 61.83-.31 70.23 0 6.85 4.61 14.81 17.6 12.31C438.72 464.97 512 369.08 512 256.02 512 114.62 397.37 0 256 0z" fill="currentColor" fill-rule="evenodd"/></svg>
           </a>
-  				<button type="button" class="btn btn-outline-success">Download</button>
+  				<a href="" class="btn btn-outline-success">Download</a>
   			</form>
   		</div>
   	</nav>
@@ -57,7 +68,7 @@
 
     <script type="text/template" id="app-template">
 
-      <div class="starter-template">
+      <div class="jumbotron">
         <h1>ractive-modal</h1>
         <p class="lead">This page displays the basic fetaures of the ractive-modal popup component</p>
       </div>
@@ -66,8 +77,8 @@
         <div class="col-sm-12">
           <h2 class="pb-2">Quick demo</h2>
           <p>
-            <button type="button" class="btn btn-primary" on-click="@this.set('uind.popmd_1_show', true)">Open first popup</button>
-            <button type="button" class="btn btn-secondary" on-click="@this.set({'uind.popmd_4_show': true, 'uind.popmd_3_show': true, 'uind.popmd_2_show': true, 'uind.popmd_1_show': true})">Open all popups!</button>
+            <button type="button" class="btn btn-primary" on-click="@this.set('uind.popmd_1_show', true)">Open first modal</button>
+            <button type="button" class="btn btn-secondary" on-click="@this.set({'uind.popmd_4_show': true, 'uind.popmd_3_show': true, 'uind.popmd_2_show': true, 'uind.popmd_1_show': true})">Open all modals!</button>
           </p>
         </div>
       </div>
@@ -89,11 +100,18 @@
         </div>
         <div class="row">
           <div class="col col-sm-12">
+            <div class="alert alert-primary" role="alert">
+              You can set a field to take focus when the popup opens by setting the <strong>autofocus</strong> property on the appropriate element.
+              Otherwise the focus goes to the popup element itself.
+            </div>
             <div class="alert alert-info" role="alert">
-              You can set a field to take focus when the popup opens by setting the autofocus property on the appropriate element.
+              Also notice that the tab key stays trapped inside the modal window
             </div>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a lorem suscipit orci vehicula aliquam. Sed varius urna nec nisl placerat convallis. Nunc pretium porta commodo. Vestibulum sed dui accumsan, rhoncus enim eget, suscipit mi. Sed egestas non arcu at ultricies. Aenean tristique mauris eu ligula feugiat, eu condimentum erat pharetra. Maecenas bibendum ante mi, in mattis nisl fringilla vitae. Duis sollicitudin est id purus venenatis tincidunt. Donec vitae nulla ac lorem tristique varius et in mauris. Aenean molestie dui eu mauris pretium iaculis. Phasellus varius mi in molestie congue. Nullam non ultrices libero.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a lorem suscipit orci vehicula aliquam. Sed varius urna nec nisl placerat convallis. Nunc pretium porta commodo.
+            </p>
+            <p>
+              Vestibulum sed dui accumsan, rhoncus enim eget, suscipit mi. Sed egestas non arcu at ultricies. Aenean tristique mauris eu ligula feugiat, eu condimentum erat pharetra. Maecenas bibendum ante mi, in mattis nisl fringilla vitae. Duis sollicitudin est id purus venenatis tincidunt. Donec vitae nulla ac lorem tristique varius et in mauris. Aenean molestie dui eu mauris pretium iaculis. Phasellus varius mi in molestie congue. Nullam non ultrices libero.
             </p>
           </div>
         </div>
@@ -101,7 +119,7 @@
         <div class="row">
           <div class="col col-sm-12">
             <button type="button" class="btn btn-primary" on-click="@this.set('uind.popmd_2_show', true)">Open second popup</button>
-            <button type="button" class="btn btn btn-danger float-right" on-click="@this.set('uind.popmd_1_show', false)">Cancel</button>        
+            <button type="button" class="btn btn btn-danger float-right" on-click="@this.set('uind.popmd_1_show', false)">Close</button>        
           </div>
         </div>
       </popup>
@@ -111,7 +129,7 @@
           <div class="col col-sm-12">
             <div class="alert alert-info" role="alert">
               This popup cannot be closed by any of the standard ways.<br />
-              Hit the cancel button on the bottom right in order to close this popup
+              Hit the close button on the bottom right in order to close this popup
             </div>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a lorem suscipit orci vehicula aliquam. <button class="btn btn-primary" on-click="@this.set('uind.popmd_3_show', true)">Open a third popup</button> Sed varius urna nec nisl placerat convallis. Nunc pretium porta commodo. Vestibulum sed dui accumsan, rhoncus enim eget, suscipit mi. Sed egestas non arcu at ultricies. Aenean tristique mauris eu ligula feugiat, eu condimentum erat pharetra. Maecenas bibendum ante mi, in mattis nisl fringilla vitae. Duis sollicitudin est id purus venenatis tincidunt. Donec vitae nulla ac lorem tristique varius et in mauris. Aenean molestie dui eu mauris pretium iaculis. Phasellus varius mi in molestie congue. Nullam non ultrices libero.
@@ -121,7 +139,7 @@
         <hr class="full-hr" />
         <div class="row">
           <div class="col col-sm-12">
-            <button type="button" class="btn btn-danger float-right" on-click="@this.set('uind.popmd_2_show', false)">Cancel</button>
+            <button type="button" class="btn btn-danger float-right" on-click="@this.set('uind.popmd_2_show', false)">Close</button>
           </div>
         </div>
       </popup>
@@ -140,7 +158,7 @@
         <hr class="full-hr" />
         <div class="row">
           <div class="col col-sm-12">
-            <button type="button" class="btn btn-danger float-right" on-click="@this.set('uind.popmd_3_show', false)">Cancel</button>
+            <button type="button" class="btn btn-danger float-right" on-click="@this.set('uind.popmd_3_show', false)">Close</button>
           </div>
         </div>
       </popup>
@@ -159,7 +177,7 @@
         <hr class="full-hr" />
         <div class="row">
           <div class="col col-sm-12">
-            <button type="button" class="btn btn-danger float-right" on-click="@this.set('uind.popmd_4_show', false)">Cancel</button>
+            <button type="button" class="btn btn-danger float-right" on-click="@this.set('uind.popmd_4_show', false)">Close</button>
           </div>
         </div>
       </popup>
@@ -168,13 +186,13 @@
         <div class="col-sm-12">
           <h2 class="pb-2">Features at a glance</h2>
           <ul>
-            <li>Lightweight, minified version is &lt; 6kb </li>
+            <li>Lightweight, minified version is &lt; <strong>6kb</strong></li>
             <li>Opens and closes with a data variable</li>
-            <li>Exposes callbacks - beforeOpen, afterOpen, beforeClose, afterClose</li>
+            <li>Exposes Component events - beforeOpen, afterOpen, beforeClose, afterClose</li>
             <li>Scrollable when it exceeds screen height</li>
             <li>Closeable by clicking on the upper right "x", the overlay or the esc key</li>
             <li>Stackable - Multiple modal popups on top of each other</li>
-            <li>Ability to set initial focus on an element when the popup opens</li>
+            <li>Ability to set initial focus on an element when the popup opens, just set the <strong>autofocus</strong> attribute on an element inside the modal</li>
             <li>Trapped keyboard focus inside the dialog</li>
             <li>Ability to have unclosable modal popups</li>
             <li>Includes default styling, but is customisable with user css</li>
@@ -195,8 +213,7 @@
           <strong>or download the repo, extract dist/ractive-modal.min.js and include it in your page</strong>
           <pre class="highlight">
             <code>
-  &lt;script type="text/javascript" src="ractive-modal.min.js"&gt;&lt;/script&gt;
-            </code>
+  &lt;script type="text/javascript" src="ractive-modal.min.js"&gt;&lt;/script&gt;</code>
           </pre>
         </div>
       </div>
@@ -230,6 +247,7 @@
           <h5>In your template</h5>
           <pre class="highlight">
             <code as-code>
+  <button type="button" class="btn btn-primary" on--click="@this.set('open_modal_1', true)">Open modal</button>
   <modal title="My first modal" basedon="\{{open_modal_1}}">
     <p>Hello World!</p>
   </modal>
@@ -237,11 +255,135 @@
           </pre>
 
           <h5>Example</h5>
-          <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_1', true)">Open modal 1</button>
+          <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_1', true)">Open modal</button>
           <popup title="My first modal" basedon="{{open_modal_1}}">
             <p>Hello World!</p>
           </popup>
 
+        </div>
+      </div>
+
+      <div class="row mb-3"></div>
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <h2 class="pb-2">Events</h2>
+          <p>ractive-modal exposes 4 component events - beforeOpen, afterOpen, beforeClose, afterClose</p>
+          <pre class="highlight">
+            <code as-code>
+  <modal title="Events modal" basedon="\{{open_modal}}" on--beforeOpen="@global.alert('beforeOpen event fired')">
+    <p>A modal with "beforeopen" component event attached</p>
+  </modal>
+            </code>
+          </pre>
+          <h5>Example</h5>
+          <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_2', true)">Open modal</button>
+          <callbacks-popup title="Events modal" basedon="{{open_modal_2}}">
+            <p>This is a modal that has all events attached</p>
+          </callbacks-popup>
+        </div>
+      </div>
+
+      <div class="row mb-3"></div>
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <h2 class="pb-2">Options</h2>
+
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Option</th>
+                  <th>Description</th>
+                  <th>Type</th>
+                  <th>Default</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>basedon</td>
+                  <td>Opens and closes the modal popup</td>
+                  <td>Boolean</td>
+                  <td>false</td>
+                </tr>
+                <tr>
+                  <td>live</td>
+                  <td>Controls whether the modal renders dynamically or stays hidden in the DOM<br />
+                    <strong>This option should not be changed at runtime</strong>
+                  </td>
+                  <td>Boolean</td>
+                  <td>false</td>
+                </tr>
+                <tr>
+                  <td>appendto</td>
+                  <td>Element (selector) in which the modal is to be inserted to, e.g 'body'<br />
+                    <strong>This option should not be changed at runtime</strong>
+                  </td>
+                  <td>String</td>
+                  <td>Ractive root instance el</td>
+                </tr>
+                <tr>
+                  <td>class</td>
+                  <td>Extra css classes for the popup</td>
+                  <td>String</td>
+                  <td><em>Empty</em></td>
+                </tr>
+                <tr>
+                  <td>style</td>
+                  <td>Extra css styles for the popup</td>
+                  <td>String</td>
+                  <td><em>Empty</em></td>
+                </tr>
+                <tr>
+                  <td>title</td>
+                  <td>The title of the popup</td>
+                  <td>String</td>
+                  <td><em>Empty</em></td>
+                </tr>
+                <tr>
+                  <td>enableclose</td>
+                  <td>Controls whether the modal popup is closable or not</td>
+                  <td>Boolean</td>
+                  <td>true</td>
+                </tr>
+              </tbody>
+            </table>
+
+          <h5>Example</h5>
+          <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_3', true)">Open modal</button>
+          <popup title="Live modal" basedon="{{open_modal_3}}" live="true" appendto="body" class="live-modal" style="width:650px;" enableclose="{{modal_3_closable}}">
+              <ul>
+                <li>This is a "live" modal that once rendered it gets appended to document body and never gets removed from DOM</li>
+                <li>It also has a custom class "live-modal" and a fixed width of 650px</li>
+                <li>You can enable and disable closing of this modal by clicking on the button below</li>
+              </ul>
+              {{#if modal_3_closable == false}}
+                <div class="alert alert-warning" role="alert">
+                  <strong>Warning!</strong> You now cannot close this modal!
+                </div>
+              {{/if}}
+                <button class="btn btn-secondary" type="button" on-click="@this.toggle('modal_3_closable')">{{#if modal_3_closable}}Disable close{{else}}Enable close{{/if}}</button>
+          </popup>
+        </div>
+      </div>
+
+      <div class="row mb-3"></div>
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <h2 class="pb-2">Changelog</h2>
+
+          <h5>version 0.2</h5>
+          <ul>
+            <li>Added "live" option</li>
+            <li>Added autofocus logic</li>
+            <li>Added trapped keyboard navigation logic</li>
+            <li>Added appendto element logic</li>
+            <li>Removed basedon as String option</li>
+          </ul>
+
+          <h5>version 0.1</h5>
+          <ul>
+            <li>Initial release</li>
+          </ul>
+          
         </div>
       </div>
 
@@ -250,7 +392,6 @@
     <script src="https://cdn.jsdelivr.net/npm/ractive"></script>
     <script src="../dist/ractive-modal.js"></script>
     <script type="text/javascript">
-      Ractive.defaults.stripComments = false;
       Ractive.decorators.code = function(el){
         function esc(string){
           var entityMap = {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': '&quot;', "'": '&#39;', "/": '&#x2F;'};
@@ -259,7 +400,7 @@
           });
         }
         var html = el.innerHTML;
-        el.innerHTML = esc(html);
+        el.innerHTML = esc(html.replace(/on--/g, 'on-'));
         return {
           teardown: function(){
           }
@@ -271,6 +412,9 @@
         template: '#app-template',
         data: {
           open_modal_1: false,
+          open_modal_2: false,
+          open_modal_3: false,
+          modal_3_closable: true,
           uind: {
             popmd_1_show: false,
             popmd_2_show: false,
@@ -279,7 +423,22 @@
           }
         },
         components: {
-          popup: RactiveModal
+          popup: RactiveModal,
+          'callbacks-popup': RactiveModal
+        },
+        on: {
+          'callbacks-popup.beforeOpen': function(){
+            alert('beforeOpen event fired');
+          },
+          'callbacks-popup.afterOpen': function(){
+            alert('afterOpen event fired');
+          },
+          'callbacks-popup.beforeClose': function(){
+            alert('beforeClose event fired');
+          },
+          'callbacks-popup.afterClose': function(){
+            alert('afterClose event fired');
+          }
         }
       });
     </script>
