@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="ractive-modal demo page">
+    <meta name="author" content="kouts">
+
+    <title>ractive-modal demo page</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <style>
+	    body {
+		  padding-top: 5rem;
+		}
+		.starter-template {
+		  padding: 3rem 1.5rem;
+		  text-align: center;
+		}
+    .navbar-nav-svg {
+        display: inline-block;
+        width: 1.5rem;
+        height: 1.5rem;
+        vertical-align: text-top;
+    }
+    .highlight {
+      background-color: #f7f7f9;
+    }
+    </style>
+  </head>
+
+  <body>
+
+  	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  		<a class="navbar-brand" href="#">ractive-modal</a>
+  		<div class="collapse navbar-collapse">
+  			<ul class="navbar-nav mr-auto">
+  				<!--
+          <li class="nav-item active">
+  					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+  				</li>
+          -->
+  			</ul>
+  			<form class="form-inline">
+          <a class="nav-link" style="color:#fff;" href="https://github.com/kouts/ractive-modal" target="_blank" rel="noopener" aria-label="ractive-modal GitHub">
+            <svg class="navbar-nav-svg" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 499.36" focusable="false"><title>GitHub</title><path d="M256 0C114.64 0 0 114.61 0 256c0 113.09 73.34 209 175.08 242.9 12.8 2.35 17.47-5.56 17.47-12.34 0-6.08-.22-22.18-.35-43.54-71.2 15.49-86.2-34.34-86.2-34.34-11.64-29.57-28.42-37.45-28.42-37.45-23.27-15.84 1.73-15.55 1.73-15.55 25.69 1.81 39.21 26.38 39.21 26.38 22.84 39.12 59.92 27.82 74.5 21.27 2.33-16.54 8.94-27.82 16.25-34.22-56.84-6.43-116.6-28.43-116.6-126.49 0-27.95 10-50.8 26.35-68.69-2.63-6.48-11.42-32.5 2.51-67.75 0 0 21.49-6.88 70.4 26.24a242.65 242.65 0 0 1 128.18 0c48.87-33.13 70.33-26.24 70.33-26.24 14 35.25 5.18 61.27 2.55 67.75 16.41 17.9 26.31 40.75 26.31 68.69 0 98.35-59.85 120-116.88 126.32 9.19 7.9 17.38 23.53 17.38 47.41 0 34.22-.31 61.83-.31 70.23 0 6.85 4.61 14.81 17.6 12.31C438.72 464.97 512 369.08 512 256.02 512 114.62 397.37 0 256 0z" fill="currentColor" fill-rule="evenodd"/></svg>
+          </a>
+  				<button type="button" class="btn btn-outline-success">Download</button>
+  			</form>
+  		</div>
+  	</nav>
+
+  	<div class="container" id="app"></div>
+
+    <script type="text/template" id="app-template">
+
+      <div class="starter-template">
+        <h1>ractive-modal</h1>
+        <p class="lead">This page displays the basic fetaures of the ractive-modal popup component</p>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <h2 class="pb-2">Quick demo</h2>
+          <p>
+            <button type="button" class="btn btn-primary" on-click="@this.set('uind.popmd_1_show', true)">Open first popup</button>
+            <button type="button" class="btn btn-secondary" on-click="@this.set({'uind.popmd_4_show': true, 'uind.popmd_3_show': true, 'uind.popmd_2_show': true, 'uind.popmd_1_show': true})">Open all popups!</button>
+          </p>
+        </div>
+      </div>
+
+      <popup title="First popup dialog" class="" style="max-width:700px;" basedon="{{uind.popmd_1_show}}" live="true">
+        <div class="row">
+            <div class="col-md-4 form-group">
+              <label>Field 1</label>
+              <input type="text" value="" class="form-control" autofocus />
+            </div>
+            <div class="col-md-4 form-group">
+              <label>Field 2</label>
+              <input type="text" value="" class="form-control" />
+            </div>
+            <div class="col-md-4 form-group">
+              <label>Field 3</label>
+              <input type="text" value="" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+          <div class="col col-sm-12">
+            <div class="alert alert-info" role="alert">
+              You can set a field to take focus when the popup opens by setting the autofocus property on the appropriate element.
+            </div>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a lorem suscipit orci vehicula aliquam. Sed varius urna nec nisl placerat convallis. Nunc pretium porta commodo. Vestibulum sed dui accumsan, rhoncus enim eget, suscipit mi. Sed egestas non arcu at ultricies. Aenean tristique mauris eu ligula feugiat, eu condimentum erat pharetra. Maecenas bibendum ante mi, in mattis nisl fringilla vitae. Duis sollicitudin est id purus venenatis tincidunt. Donec vitae nulla ac lorem tristique varius et in mauris. Aenean molestie dui eu mauris pretium iaculis. Phasellus varius mi in molestie congue. Nullam non ultrices libero.
+            </p>
+          </div>
+        </div>
+        <hr class="full-hr" />
+        <div class="row">
+          <div class="col col-sm-12">
+            <button type="button" class="btn btn-primary" on-click="@this.set('uind.popmd_2_show', true)">Open second popup</button>
+            <button type="button" class="btn btn btn-danger float-right" on-click="@this.set('uind.popmd_1_show', false)">Cancel</button>        
+          </div>
+        </div>
+      </popup>
+
+      <popup title="Second popup dialog" class="" style="max-width:600px;" basedon="{{uind.popmd_2_show}}" enableclose="false" live="false">
+        <div class="row">
+          <div class="col col-sm-12">
+            <div class="alert alert-info" role="alert">
+              This popup cannot be closed by any of the standard ways.<br />
+              Hit the cancel button on the bottom right in order to close this popup
+            </div>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a lorem suscipit orci vehicula aliquam. <button class="btn btn-primary" on-click="@this.set('uind.popmd_3_show', true)">Open a third popup</button> Sed varius urna nec nisl placerat convallis. Nunc pretium porta commodo. Vestibulum sed dui accumsan, rhoncus enim eget, suscipit mi. Sed egestas non arcu at ultricies. Aenean tristique mauris eu ligula feugiat, eu condimentum erat pharetra. Maecenas bibendum ante mi, in mattis nisl fringilla vitae. Duis sollicitudin est id purus venenatis tincidunt. Donec vitae nulla ac lorem tristique varius et in mauris. Aenean molestie dui eu mauris pretium iaculis. Phasellus varius mi in molestie congue. Nullam non ultrices libero.
+            </p>
+          </div>
+        </div>
+        <hr class="full-hr" />
+        <div class="row">
+          <div class="col col-sm-12">
+            <button type="button" class="btn btn-danger float-right" on-click="@this.set('uind.popmd_2_show', false)">Cancel</button>
+          </div>
+        </div>
+      </popup>
+
+      <popup title="Third popup dialog" class="" style="max-width:500px;" basedon="{{uind.popmd_3_show}}" live="true">
+        <div class="row">
+          <div class="col col-sm-12">
+            <div class="alert alert-info" role="alert">
+              When you close this popup, the previously active element will take focus.
+            </div>
+            <p>
+              <button autofocus class="btn btn-primary" on-click="@this.set('uind.popmd_4_show', true)">Open a fourth popup</button> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a lorem suscipit orci vehicula aliquam. Sed varius urna nec nisl placerat convallis. Nunc pretium porta commodo. Vestibulum sed dui accumsan, rhoncus enim eget, suscipit mi. Sed egestas non arcu at ultricies. Aenean tristique mauris eu ligula feugiat, eu condimentum erat pharetra. Maecenas bibendum ante mi, in mattis nisl fringilla vitae. Duis sollicitudin est id purus venenatis tincidunt. Donec vitae nulla ac lorem tristique varius et in mauris. Aenean molestie dui eu mauris pretium iaculis. Phasellus varius mi in molestie congue. Nullam non ultrices libero.
+            </p>
+          </div>
+        </div>
+        <hr class="full-hr" />
+        <div class="row">
+          <div class="col col-sm-12">
+            <button type="button" class="btn btn-danger float-right" on-click="@this.set('uind.popmd_3_show', false)">Cancel</button>
+          </div>
+        </div>
+      </popup>
+
+      <popup title="Fourth popup dialog" class="" style="max-width:300px;" basedon="{{uind.popmd_4_show}}" live="false">
+        <div class="row">
+          <div class="col col-sm-12">
+            <div class="alert alert-info" role="alert">
+              You can always close the popups with the esc key or by clicking the surrounding overlay
+            </div>
+            <p>
+              This is the last one, I promise!
+            </p>
+          </div>
+        </div>
+        <hr class="full-hr" />
+        <div class="row">
+          <div class="col col-sm-12">
+            <button type="button" class="btn btn-danger float-right" on-click="@this.set('uind.popmd_4_show', false)">Cancel</button>
+          </div>
+        </div>
+      </popup>
+
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <h2 class="pb-2">Features at a glance</h2>
+          <ul>
+            <li>Lightweight, minified version is &lt; 6kb </li>
+            <li>Opens and closes with a data variable</li>
+            <li>Exposes callbacks - beforeOpen, afterOpen, beforeClose, afterClose</li>
+            <li>Scrollable when it exceeds screen height</li>
+            <li>Closeable by clicking on the upper right "x", the overlay or the esc key</li>
+            <li>Stackable - Multiple modal popups on top of each other</li>
+            <li>Ability to set initial focus on an element when the popup opens</li>
+            <li>Trapped keyboard focus inside the dialog</li>
+            <li>Ability to have unclosable modal popups</li>
+            <li>Includes default styling, but is customisable with user css</li>
+            <li>Render on demand or stay always in DOM with "live" mode</li>
+            <li>Ability to append to an element</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <h2 class="pb-2">Install</h2>
+          <pre class="highlight">
+            <code as-code>
+  npm install ractive-modal --save
+            </code>
+          </pre>
+          <strong>or download the repo, extract dist/ractive-modal.min.js and include it in your page</strong>
+          <pre class="highlight">
+            <code>
+  &lt;script type="text/javascript" src="ractive-modal.min.js"&gt;&lt;/script&gt;
+            </code>
+          </pre>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <h2 class="pb-2">Basic usage</h2>
+          <h5>In your javascript globally</h5>
+
+          <pre class="highlight">
+            <code as-code>
+  Ractive.modal = RactiveModal;
+            </code>
+          </pre>
+
+          <h5>or per ractive instance</h5>
+          <pre class="highlight">
+            <code as-code>
+  var ractive = new Ractive({
+    ...
+    components: {
+      modal: RactiveModal
+    },
+    data: {
+      open_modal_1: false
+    }
+  });
+            </code>
+          </pre>
+
+          <h5>In your template</h5>
+          <pre class="highlight">
+            <code as-code>
+  <modal title="My first modal" basedon="\{{open_modal_1}}">
+    <p>Hello World!</p>
+  </modal>
+            </code>
+          </pre>
+
+          <h5>Example</h5>
+          <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_1', true)">Open modal 1</button>
+          <popup title="My first modal" basedon="{{open_modal_1}}">
+            <p>Hello World!</p>
+          </popup>
+
+        </div>
+      </div>
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+    <script src="../dist/ractive-modal.js"></script>
+    <script type="text/javascript">
+      Ractive.defaults.stripComments = false;
+      Ractive.decorators.code = function(el){
+        function esc(string){
+          var entityMap = {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': '&quot;', "'": '&#39;', "/": '&#x2F;'};
+          return String(string).replace(/[&<>"'\/]/g, function(s){
+            return entityMap[s];
+          });
+        }
+        var html = el.innerHTML;
+        el.innerHTML = esc(html);
+        return {
+          teardown: function(){
+          }
+        }        
+      }
+
+      var ractive = new Ractive({
+        target: '#app',
+        template: '#app-template',
+        data: {
+          open_modal_1: false,
+          uind: {
+            popmd_1_show: false,
+            popmd_2_show: false,
+            popmd_3_show: false,
+            popmd_4_show: false
+          }
+        },
+        components: {
+          popup: RactiveModal
+        }
+      });
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "//": "To use type: npm run watch",
+  "name": "ractive-modal",
+  "version": "0.2.0",
+  "description": "A modal popup component for ractive",
+  "main": "dist/ractive-modal.js",
+  "repository": "https://github.com/kouts/ractive-modal",
+  "keywords": [
+    "ractive",
+    "component",
+    "modal",
+    "popup"
+  ],
+  "devDependencies": {
+    "ractive": "*",
+    "ractive-bin-loader": "^1.0.1",
+    "webpack": "^3.3.0",
+    "onchange": "*"
+  },
+  "scripts": {
+    "build": "webpack",
+    "watch": "onchange 'src/*.*' -- npm run build"
+  },
+  "author": "kouts",
+  "license": "ISC",
+  "dependencies": {}
+}
