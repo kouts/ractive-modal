@@ -16,4 +16,4 @@ Features
 - Ability to append to an element
 
 Click here for documentation and examples
-http://jsfiddle.net/euvd0qLu/18/
+https://kouts.github.io/ractive-modal/demo/
