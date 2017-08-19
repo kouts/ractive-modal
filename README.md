@@ -1,13 +1,19 @@
-# ractive-popup
-A modal popup Ractive component
+# ractive-modal
+A modal popup component for Ractive
 
 Features
-- Opens and closes using an Ractive mustache variable or a keypath
-- Callbacks beforeOpen, afterOpen, beforeClose, afterClose
-- Scrollable when it exceeds screen height
-- Closeable by clicking on the upper right "x", the overlay and the esc key
-- Stackable
-- Enable or disable closing by clicking on the upper right "x", the overlay and the esc key
+- Lightweight, minified version is &lt; <strong>6kb</strong>
+- Opens and closes with a data variable
+- Exposes Component events - beforeOpen, afterOpen, beforeClose, afterClose
+- Scrollable when it's contents exceed screen height
+- Closeable by clicking on the upper right "x", the overlay or the esc key
+- Stackable - Multiple modal popups on top of each other
+- Ability to set initial focus on an element when the popup opens, just set the <strong>autofocus</strong> attribute on an element inside the modal
+- Focus management trapps keyboard focus - navigation inside the dialog
+- Ability to have unclosable modal popups
+- Includes default styling, but is customisable with user css
+- Render on demand or stay always in DOM with "live" mode
+- Ability to append to an element
 
-Check here for a demo
+Click here for documentation and examples
 http://jsfiddle.net/euvd0qLu/18/

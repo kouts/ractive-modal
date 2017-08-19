@@ -70,7 +70,8 @@
 
       <div class="jumbotron">
         <h1>ractive-modal</h1>
-        <p class="lead">This page displays the basic fetaures of the ractive-modal popup component</p>
+        <p class="lead">A modal popup component for Ractive</p>
+        <p>This page includes basic documentation and examples for the ractive-modal popup component</p>
       </div>
 
       <div class="row mb-3">
@@ -189,11 +190,11 @@
             <li>Lightweight, minified version is &lt; <strong>6kb</strong></li>
             <li>Opens and closes with a data variable</li>
             <li>Exposes Component events - beforeOpen, afterOpen, beforeClose, afterClose</li>
-            <li>Scrollable when it exceeds screen height</li>
+            <li>Scrollable when it's contents exceed screen height</li>
             <li>Closeable by clicking on the upper right "x", the overlay or the esc key</li>
-            <li>Stackable - Multiple modal popups on top of each other</li>
+            <li><strong>Stackable</strong> - Multiple modal popups on top of each other</li>
             <li>Ability to set initial focus on an element when the popup opens, just set the <strong>autofocus</strong> attribute on an element inside the modal</li>
-            <li>Trapped keyboard focus inside the dialog</li>
+            <li>Focus management trapps keyboard focus - navigation inside the dialog</li>
             <li>Ability to have unclosable modal popups</li>
             <li>Includes default styling, but is customisable with user css</li>
             <li>Render on demand or stay always in DOM with "live" mode</li>
@@ -362,6 +363,19 @@
               {{/if}}
                 <button class="btn btn-secondary" type="button" on-click="@this.toggle('modal_3_closable')">{{#if modal_3_closable}}Disable close{{else}}Enable close{{/if}}</button>
           </popup>
+        </div>
+      </div>
+
+      <div class="row mb-3"></div>
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <h2 class="pb-2">Focus management</h2>
+          <h5>ractive-modal comes with integrated focus management - How it works</h5>
+          <ol>
+            <li>When the modal opens it moves the keyboard focus from the triggering element (link or button) to the modal popup dialog (or an element with an autofocus attribute within it)</li>
+            <li>It keeps the keyboard focus within the modal dialog until the dialog is closed</li>
+            <li>It moves the focus back to the triggering element when the user closes the dialog.</li>
+          </ol>
         </div>
       </div>
 
