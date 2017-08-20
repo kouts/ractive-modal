@@ -8,7 +8,7 @@ Features
 - Scrollable when it's contents exceed screen height
 - Closeable by clicking on the upper right "x", the overlay or the esc key
 - Stackable - Multiple modal popups on top of each other
-- Ability to set initial focus on an element when the popup opens, just set the <strong>autofocus</strong> attribute on an element inside the modal
+- Ability to set initial focus on an element when the modal popup opens, just set the <strong>autofocus</strong> attribute on an element inside the modal
 - Focus management trapps keyboard focus - navigation inside the dialog
 - Ability to have unclosable modal popups
 - Includes default styling, but is customisable with user css

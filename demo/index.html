@@ -193,7 +193,7 @@
             <li>Scrollable when it's contents exceed screen height</li>
             <li>Closeable by clicking on the upper right "x", the overlay or the esc key</li>
             <li><strong>Stackable</strong> - Multiple modal popups on top of each other</li>
-            <li>Ability to set initial focus on an element when the popup opens, just set the <strong>autofocus</strong> attribute on an element inside the modal</li>
+            <li>Ability to set initial focus on an element when the modal popup opens, just set the <strong>autofocus</strong> attribute on an element inside the modal</li>
             <li>Focus management trapps keyboard focus - navigation inside the dialog</li>
             <li>Ability to have unclosable modal popups</li>
             <li>Includes default styling, but is customisable with user css</li>
@@ -225,7 +225,7 @@
       <div class="row mb-3">
         <div class="col-sm-12">
           <h2>Basic usage</h2>
-          <h5>Make ractive-modal vailable to all Ractive instances</h5>
+          <h5>Make ractive-modal available to all Ractive instances</h5>
           <pre class="highlight">
             <code as-code>
   Ractive.components.modal = RactiveModal;
@@ -247,7 +247,7 @@
             </code>
           </pre>
 
-          <h5>Then in your template</h5>
+          <h5>then in your template</h5>
           <pre class="highlight">
             <code as-code>
   <button type="button" class="btn btn-primary" on--click="@this.set('open_modal_1', true)">Open modal</button>
@@ -325,19 +325,19 @@
                 </tr>
                 <tr>
                   <td>class</td>
-                  <td>Extra css classes for the popup</td>
+                  <td>Extra css classes for the modal popup</td>
                   <td>String</td>
                   <td><em>Empty</em></td>
                 </tr>
                 <tr>
                   <td>style</td>
-                  <td>Extra css styles for the popup</td>
+                  <td>Extra css styles for the modal popup</td>
                   <td>String</td>
                   <td><em>Empty</em></td>
                 </tr>
                 <tr>
                   <td>title</td>
-                  <td>The title of the popup</td>
+                  <td>The title of the modal popup</td>
                   <td>String</td>
                   <td><em>Empty</em></td>
                 </tr>
