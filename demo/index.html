@@ -205,13 +205,16 @@
 
       <div class="row mb-3">
         <div class="col-sm-12">
-          <h2 class="pb-2">Install</h2>
+          <h2>Install</h2>
+          <h4 class="pb-2">ractive-modal is a UMD module so you can use it as an ES2015, AMD, CommonJS module or a global (RactiveModal)</h4>
+          <h5>ES2015</h5>
           <pre class="highlight">
             <code as-code>
   npm install ractive-modal --save
+  import RactiveModal from 'ractive-modal';
             </code>
           </pre>
-          <strong>or download the repo, extract dist/ractive-modal.min.js and include it in your page</strong>
+          <h5>Global - download the repo, extract dist/ractive-modal.min.js and include it in your page</h5>
           <pre class="highlight">
             <code>
   &lt;script type="text/javascript" src="ractive-modal.min.js"&gt;&lt;/script&gt;</code>
@@ -221,16 +224,15 @@
 
       <div class="row mb-3">
         <div class="col-sm-12">
-          <h2 class="pb-2">Basic usage</h2>
-          <h5>In your javascript globally</h5>
-
+          <h2>Basic usage</h2>
+          <h5>Make ractive-modal vailable to all Ractive instances</h5>
           <pre class="highlight">
             <code as-code>
-  Ractive.modal = RactiveModal;
+  Ractive.components.modal = RactiveModal;
             </code>
           </pre>
 
-          <h5>or per ractive instance</h5>
+          <h5>or add the ractive-modal to your Ractive instance</h5>
           <pre class="highlight">
             <code as-code>
   var ractive = new Ractive({
@@ -245,7 +247,7 @@
             </code>
           </pre>
 
-          <h5>In your template</h5>
+          <h5>Then in your template</h5>
           <pre class="highlight">
             <code as-code>
   <button type="button" class="btn btn-primary" on--click="@this.set('open_modal_1', true)">Open modal</button>
