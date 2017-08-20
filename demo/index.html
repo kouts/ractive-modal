@@ -452,6 +452,15 @@
           },
           'callbacks-popup.afterClose': function(){
             alert('afterClose event fired');
+          },
+          'popup.beforeOpen callbacks-popup.beforeOpen': function(){
+            document.querySelector('body').style.overflow = 'hidden';
+          },
+          'popup.afterClose callbacks-popup.afterClose': function(ctx){
+            var lastZindex = ctx.ractive.getTopZindex();
+            if(lastZindex == 0){
+              document.querySelector('body').style.overflow = 'auto';
+            }
           }
         }
       });
