@@ -26,12 +26,14 @@ module.exports = {
 	  ]
 	},
 	plugins: [
-		providerPlugin,
+		// providerPlugin,
 		minifyPlugin
 	],
+	/*
 	externals: {
 	  ractive: 'Ractive'
 	},
+	*/
 	target: 'web',
 	entry: {
 		'ractive-modal': './src/ractive-modal.ractive.html',

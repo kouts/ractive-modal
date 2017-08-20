@@ -7,7 +7,7 @@
   .popup-btn-close:hover, .popup-btn-close:focus:hover{color:#6f6f6f; border-color: transparent; background-color: transparent;}
   .popup-btn-close:focus {color:#939393; border-color: transparent; background-color: transparent;}
   .popup-content {padding:15px 15px 15px 15px;}
-  .popup-content .full-hr {border: 0; border-top: 1px solid #e0e0e0; margin-top:15px; margin-bottom:15px; margin-left:-14px; margin-right:-14px;}
+  .popup-content .full-hr {width: auto; border: 0; border-top: 1px solid #e0e0e0; margin-top:15px; margin-bottom:15px; margin-left:-14px; margin-right:-14px;}
 </style>
 
 {{#if showpopup}}
@@ -42,7 +42,10 @@ export default Ractive.extend({
                 this.fire('close', ctx);
             }
             if(e.which === 9){
-                var all = this.findAll('input, select, textarea, button, a');
+                // Get only visible elements
+                var all = this.findAll('input, select, textarea, button, a').filter(function(el){
+                    return !!( el.offsetWidth || el.offsetHeight || el.getClientRects().length );
+                });
                 if(e.shiftKey){
                     if(e.target === all[0] || e.target === this.find('.popup-wrapper')){
                         e.preventDefault();
@@ -74,10 +77,10 @@ export default Ractive.extend({
                 this.fire('beforeOpen');
                 var lastZindex = this.getTopZindex();
                 var zindex = (lastZindex == 0) ? this.get('base_zindex') : lastZindex+1;
-                this.insert(this.get('appendto') ? document.querySelector(this.get('appendto')) : this.root.el);
                 if(!live){
                     this.set('showpopup', true);
                 }
+                this.insert(this.get('appendto') ? document.querySelector(this.get('appendto')) : this.root.el);
                 this.set({'display': 'block', 'zindex': zindex});
                 this.animate('opacity', 1, {duration: 250}).then(function(){
                     this.find('[autofocus]') ? this.find('[autofocus]').focus() : this.find('.popup-wrapper').focus();
