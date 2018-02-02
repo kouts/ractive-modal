@@ -1,6 +1,6 @@
 <style>
-  .popup-wrapper {position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 1050; overflow: auto; display: none; background-color: rgba(0, 0, 0, 0.5);}
-  .popup {position: relative; color: #333333; float: left; background-color: #fff; top:30px; left: 50%; transform: translate(-50%,0); cursor: default; min-width: 110px; max-width: 500px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);}
+  .popup-wrapper {position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 1050; overflow: auto; display: none; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.5);}
+  .popup {position: relative; color: #333333; float: left; background-color: #fff; top:30px; transform: translate(0,0); cursor: default; min-width: 110px; max-width: 500px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);}
   .popup-titlebar {padding:15px; color: #333; overflow: auto; border-bottom: 1px solid #e5e5e5;}
   .popup-title {margin-top:2px; margin-bottom: 0px; display: inline-block; font-size:1.25rem;}
   .popup-btn-close {padding: 0px 4px 0px 4px; cursor: pointer; background: 0 0; border: 0; font-weight:700; float: right; font-size: 1.5rem; line-height: 1; margin-right: -5px; color:#ccc;}
@@ -12,7 +12,7 @@
 
 {{#if showpopup}}
 <div role="dialog" aria-label="{{title}}" tabindex="0" class="popup-wrapper {{popup_id}}" style="opacity: {{opacity}}; display: {{display}}; z-index: {{zindex}}; cursor: {{enableclose ? 'pointer' : 'default'}}" on-click="close" on-keydown="keydown">
-  <div class="popup {{class}}" style="{{style}}" on-click="@event.stopPropagation()">
+  <div class="popup animated {{class}} {{_in_class}} {{_out_class}}" style="{{style}}" on-click="@event.stopPropagation()">
     <div class="popup-titlebar">
       <h3 class="popup-title">{{title}}</h3>
       {{#if enableclose}}<button type="button" class="popup-btn-close" on-click="close">×</button>{{/if}}
@@ -23,11 +23,12 @@
 {{/if}}
 
 <script>
+
 export default Ractive.extend({
     template: $TEMPLATE,
     css: $CSS,
     data: function(){
-        return {showpopup: false, basedon: false, live: false, appendto: '', class: '', style:'', title: '', popup_id: this._guid+'_popup', enableclose: true, base_zindex: 1050, opacity: 0, display: 'none', zindex: 0}
+        return {showpopup: false, basedon: false, live: false, appendto: '', class: '', in_class: '', _in_class: '', out_class: '', _out_class: '', style:'', title: '', popup_id: this._guid+'_popup', enableclose: true, base_zindex: 1050, opacity: 0, display: 'none', zindex: 0}
     },
     on: {
         close: function(ctx){
@@ -65,12 +66,40 @@ export default Ractive.extend({
             this.set('showpopup', true);
         }
     },
+    addAnimClass: function(){
+        var p = new Promise(function(resolve, reject){
+            var handler = function(e) {
+                this.find('.popup').removeEventListener('animationend', handler);
+                this.set('_in_class', '');
+                // alert('hi');
+                resolve();
+            }.bind(this);
+            this.find('.popup').addEventListener('animationend', handler);
+            this.set('opacity', 1);
+            this.set('_in_class', 'fadeInDown');
+        }.bind(this));
+        return p;
+    },
+    removeAnimClass: function(){
+        var p = new Promise(function(resolve, reject){
+            var handler = function(e) {
+                this.find('.popup').removeEventListener('animationend', handler);
+                this.set('_in_class', '');
+                this.set('opacity', 0);
+                // alert('hi');
+                resolve();
+            }.bind(this);
+            this.find('.popup').addEventListener('animationend', handler);
+            this.set('_in_class', 'fadeOutUp');
+        }.bind(this));
+        return p;
+    },    
     onrender: function(){
         var popup_id = this.get('popup_id');
         this.observe_basedon = this.observe('basedon', function(newValue, oldValue, keypath){
             var live = this.get('live');
             if(newValue === true){
-                if(document.querySelector('.'+popup_id) && document.querySelector('.'+popup_id).style.display === 'block'){
+                if(document.querySelector('.'+popup_id) && document.querySelector('.'+popup_id).style.display === 'flex'){
                     return;
                 }
                 this.elToFocus = document.activeElement;
@@ -81,17 +110,17 @@ export default Ractive.extend({
                     this.set('showpopup', true);
                 }
                 this.insert(this.get('appendto') ? document.querySelector(this.get('appendto')) : this.root.el);
-                this.set({'display': 'block', 'zindex': zindex});
-                this.animate('opacity', 1, {duration: 250}).then(function(){
+                this.set({'display': 'flex', 'zindex': zindex});
+                this.addAnimClass().then(function(){
                     this.find('[autofocus]') ? this.find('[autofocus]').focus() : this.find('.popup-wrapper').focus();
                     this.fire('afterOpen');
                 }.bind(this));
             }else{
-                if(!document.querySelector('.'+popup_id) || document.querySelector('.'+popup_id).style.display !== 'block'){
+                if(!document.querySelector('.'+popup_id) || document.querySelector('.'+popup_id).style.display !== 'flex'){
                     return;
                 }
                 this.fire('beforeClose');
-                this.animate('opacity', 0, {duration: 250}).then(function(){
+                this.removeAnimClass().then(function(){
                     this.set({'display': 'none', 'zindex': 0});
                     if(!live){
                         this.set('showpopup', false);
