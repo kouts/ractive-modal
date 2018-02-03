@@ -134,10 +134,11 @@ Ractive._modal_delay = 0;
             }.bind(this);
             this.find('.popup').addEventListener('animationend', handler);
             if(Ractive._modal_animating == true){
-                Ractive._modal_delay += 100;
+                alert('hi');
+                Ractive._modal_delay += 1000;
             }
+            Ractive._modal_animating = true;
             setTimeout(function(){
-                Ractive._modal_animating = true;
                 this.set('opacity', 1);
                 this.set({'anim_class': this.get('in_class'), 'bg_anim_class': this.get('bg_in_class')});
             }.bind(this), Ractive._modal_delay);
@@ -148,11 +149,19 @@ Ractive._modal_delay = 0;
             var handler = function(e) {
                 this.find('.popup').removeEventListener('animationend', handler);
                 this.set({'anim_class': '', 'bg_anim_class': ''});
+                Ractive._modal_animating = false;
+                Ractive._modal_delay = 0;
                 this.set('opacity', 0);
                 resolve();
             }.bind(this);
             this.find('.popup').addEventListener('animationend', handler);
-            this.set({'anim_class': this.get('out_class'), 'bg_anim_class': this.get('bg_out_class')});
+            if(Ractive._modal_animating == true){
+                Ractive._modal_delay += 1000;
+            }
+            Ractive._modal_animating = true;
+            setTimeout(function(){
+                this.set({'anim_class': this.get('out_class'), 'bg_anim_class': this.get('bg_out_class')});
+            }.bind(this), Ractive._modal_delay);
         }.bind(this));
     },    
     onrender: function(){
