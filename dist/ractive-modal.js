@@ -134,8 +134,7 @@ Ractive._modal_delay = 0;
             }.bind(this);
             this.find('.popup').addEventListener('animationend', handler);
             if(Ractive._modal_animating == true){
-                alert('hi');
-                Ractive._modal_delay += 1000;
+                Ractive._modal_delay += 100;
             }
             Ractive._modal_animating = true;
             setTimeout(function(){
@@ -156,7 +155,7 @@ Ractive._modal_delay = 0;
             }.bind(this);
             this.find('.popup').addEventListener('animationend', handler);
             if(Ractive._modal_animating == true){
-                Ractive._modal_delay += 1000;
+                Ractive._modal_delay += 100;
             }
             Ractive._modal_animating = true;
             setTimeout(function(){
