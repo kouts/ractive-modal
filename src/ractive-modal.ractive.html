@@ -1,179 +1,182 @@
 <style>
-  .popup-wrapper {position: fixed; text-align: center; top: 0; right: 0; bottom: 0; left: 0; z-index: 1050; overflow: auto; display: none; background-color: rgba(0, 0, 0, 0.5);}
-  .popup {position: relative; display: inline-block; width:100%; text-align: left; color: #333333; background-color: #fff; top:30px; cursor: default; min-width: 110px; max-width: 500px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);}
-  .popup-titlebar {padding:15px; color: #333; overflow: auto; border-bottom: 1px solid #e5e5e5;}
-  .popup-title {margin-top:2px; margin-bottom: 0px; display: inline-block; font-size:1.25rem;}
-  .popup-btn-close {padding: 0px 4px 0px 4px; cursor: pointer; background: 0 0; border: 0; font-weight:700; float: right; font-size: 1.5rem; line-height: 1; margin-right: -5px; color:#ccc;}
-  .popup-btn-close:hover, .popup-btn-close:focus:hover{color:#6f6f6f; border-color: transparent; background-color: transparent;}
-  .popup-btn-close:focus {color:#939393; border-color: transparent; background-color: transparent;}
-  .popup-content {padding:15px 15px 15px 15px;}
-  .popup-content .full-hr {width: auto; border: 0; border-top: 1px solid #e0e0e0; margin-top:15px; margin-bottom:15px; margin-left:-14px; margin-right:-14px;}
+    .popup-wrapper {position: fixed; text-align: center; top: 0; right: 0; bottom: 0; left: 0; z-index: 1050; overflow: auto; display: none; background-color: rgba(0, 0, 0, 0.5);}
+    .popup {position: relative; display: inline-block; width:100%; text-align: left; color: #333333; background-color: #fff; top:30px; cursor: default; min-width: 110px; max-width: 500px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);}
+    .popup-titlebar {padding:15px; color: #333; overflow: auto; border-bottom: 1px solid #e5e5e5;}
+    .popup-title {margin-top:2px; margin-bottom: 0px; display: inline-block; font-size:1.25rem;}
+    .popup-btn-close {padding: 0px 4px 0px 4px; cursor: pointer; background: 0 0; border: 0; font-weight:700; float: right; font-size: 1.5rem; line-height: 1; margin-right: -5px; color:#ccc;}
+    .popup-btn-close:hover, .popup-btn-close:focus:hover{color:#6f6f6f; border-color: transparent; background-color: transparent;}
+    .popup-btn-close:focus {color:#939393; border-color: transparent; background-color: transparent;}
+    .popup-content {padding:15px 15px 15px 15px;}
+    .popup-content .full-hr {width: auto; border: 0; border-top: 1px solid #e0e0e0; margin-top:15px; margin-bottom:15px; margin-left:-14px; margin-right:-14px;}
+    .popup-fadeIn {-webkit-animation-name: popup-fadeIn; animation-name: popup-fadeIn; -webkit-animation-duration: .25s; animation-duration: .25s; -webkit-animation-fill-mode: both; animation-fill-mode: both;}
+    @-webkit-keyframes popup-fadeIn {0% {opacity: 0} 100% {opacity: 1}}
+    @keyframes popup-fadeIn {0% {opacity: 0} 100% {opacity: 1}}
 </style>
 
 {{#if showpopup}}
-<div role="dialog" aria-label="{{title}}" tabindex="0" class="popup-wrapper animated {{bg_anim_class}} {{popup_id}}" style="opacity: {{opacity}}; display: {{display}}; z-index: {{zindex}}; cursor: {{enableclose ? 'pointer' : 'default'}}" on-click="close" on-keydown="keydown">
-  <div class="popup animated {{class}} {{anim_class}}" style="{{style}}" on-click="@event.stopPropagation()">
-    <div class="popup-titlebar">
-      <h3 class="popup-title">{{title}}</h3>
-      {{#if enableclose}}<button type="button" class="popup-btn-close" on-click="close">×</button>{{/if}}
+    <div role="dialog" aria-label="{{title}}" tabindex="0" class="popup-wrapper {{base_anim_class}} {{bg_anim_class}} {{popup_id}}" style="opacity: {{opacity}}; display: {{display}}; z-index: {{zindex}}; cursor: {{enableclose ? 'pointer' : 'default'}}" on-click="close" on-keydown="keydown">
+      <div class="popup {{base_anim_class}} {{class}} {{anim_class}}" style="{{style}}" on-click="@event.stopPropagation()">
+        <div class="popup-titlebar">
+          <h3 class="popup-title">{{title}}</h3>
+          {{#if enableclose}}<button type="button" class="popup-btn-close" on-click="close">×</button>{{/if}}
+        </div>
+        <div class="popup-content">{{yield}}</div>
+      </div>
     </div>
-    <div class="popup-content">{{yield}}</div>
-  </div>
-</div>
 {{/if}}
 
 <script>
-Ractive._modal_animating = false;
-Ractive._modal_delay = 0;
-export default Ractive.extend({
-    template: $TEMPLATE,
-    css: $CSS,
-    data: function(){
-        return {showpopup: false, basedon: false, live: false, appendto: '', class: '', bg_anim_class: '', bg_in_class: 'fadeIn', bg_out_class: 'fadeOut', anim_class: '', in_class: 'fadeIn', out_class: 'fadeOut', anim_duration: '', style:'', title: '', popup_id: this._guid+'_popup', enableclose: true, base_zindex: 1050, opacity: 0, display: 'none', zindex: 0}
-    },
-    on: {
-        close: function(ctx){
-            ctx.original.preventDefault();
-            if(this.get('enableclose')){
-                this.set('basedon', false);
-            }
+    Ractive._modal_animating = false;
+    Ractive._modal_delay = 0;
+    export default Ractive.extend({
+        template: $TEMPLATE,
+        css: $CSS,
+        data: function(){
+            return {showpopup: false, basedon: false, live: false, appendto: '', class: '', base_anim_class: '', bg_anim_class: '', bg_in_class: 'popup-fadeIn', bg_out_class: 'fadeOut', anim_class: '', in_class: 'popup-fadeIn', out_class: 'fadeOut', anim_duration: '', style:'', title: '', popup_id: this._guid+'_popup', enableclose: true, base_zindex: 1050, opacity: 0, display: 'none', zindex: 0}
         },
-        keydown: function(ctx){
-            var e = ctx.original;
-            if(e.which === 27){
-                this.fire('close', ctx);
-            }
-            if(e.which === 9){
-                // Get only visible elements
-                var all = this.findAll('input, select, textarea, button, a').filter(function(el){
-                    return !!( el.offsetWidth || el.offsetHeight || el.getClientRects().length );
-                });
-                if(e.shiftKey){
-                    if(e.target === all[0] || e.target === this.find('.popup-wrapper')){
-                        e.preventDefault();
-                        all[all.length-1].focus();
-                    }
-                }else{
-                    if(e.target === all[all.length-1]){
-                        e.preventDefault();
-                        all[0].focus();
-                    }
+        on: {
+            close: function(ctx){
+                ctx.original.preventDefault();
+                if(this.get('enableclose')){
+                    this.set('basedon', false);
                 }
-            }
-        }
-    },
-    onconfig: function(){
-        if(this.get('live')){
-            this.set('showpopup', true);
-        }
-    },
-    addAnimClass: function(){
-        return new Promise(function(resolve, reject){
-            var handler = function(e) {
-                this.find('.popup').removeEventListener('animationend', handler);
-                this.set({'anim_class': '', 'bg_anim_class': ''});
-                Ractive._modal_animating = false;
-                Ractive._modal_delay = 0;
-                resolve();
-            }.bind(this);
-            this.find('.popup').addEventListener('animationend', handler);
-            if(Ractive._modal_animating == true){
-                Ractive._modal_delay += 100;
-            }
-            Ractive._modal_animating = true;
-            setTimeout(function(){
-                this.set('opacity', 1);
-                this.set({'anim_class': this.get('in_class'), 'bg_anim_class': this.get('bg_in_class')});
-            }.bind(this), Ractive._modal_delay);
-        }.bind(this));
-    },
-    removeAnimClass: function(){
-        return new Promise(function(resolve, reject){
-            var handler = function(e) {
-                this.find('.popup').removeEventListener('animationend', handler);
-                this.set({'anim_class': '', 'bg_anim_class': ''});
-                Ractive._modal_animating = false;
-                Ractive._modal_delay = 0;
-                this.set('opacity', 0);
-                resolve();
-            }.bind(this);
-            this.find('.popup').addEventListener('animationend', handler);
-            if(Ractive._modal_animating == true){
-                Ractive._modal_delay += 100;
-            }
-            Ractive._modal_animating = true;
-            setTimeout(function(){
-                this.set({'anim_class': this.get('out_class'), 'bg_anim_class': this.get('bg_out_class')});
-            }.bind(this), Ractive._modal_delay);
-        }.bind(this));
-    },    
-    onrender: function(){
-        var popup_id = this.get('popup_id');
-        this.observe_basedon = this.observe('basedon', function(newValue, oldValue, keypath){
-            var live = this.get('live');
-            if(newValue === true){
-                if(document.querySelector('.'+popup_id) && document.querySelector('.'+popup_id).style.display === 'block'){
-                    return;
+            },
+            keydown: function(ctx){
+                var e = ctx.original;
+                if(e.which === 27){
+                    this.fire('close', ctx);
                 }
-                this.elToFocus = document.activeElement;
-                this.fire('beforeOpen');
-                var lastZindex = this.getTopZindex();
-                var zindex = (lastZindex == 0) ? this.get('base_zindex') : lastZindex+1;
-                if(!live){
-                    this.set('showpopup', true);
-                }
-                this.insert(this.get('appendto') ? document.querySelector(this.get('appendto')) : this.root.el);
-                this.set({'display': 'block', 'zindex': zindex});
-                this.addAnimClass().then(function(){
-                    this.find('[autofocus]') ? this.find('[autofocus]').focus() : this.find('.popup-wrapper').focus();
-                    this.fire('afterOpen');
-                }.bind(this));
-            }else{
-                if(!document.querySelector('.'+popup_id) || document.querySelector('.'+popup_id).style.display !== 'block'){
-                    return;
-                }
-                this.fire('beforeClose');
-                this.removeAnimClass().then(function(){
-                    this.set({'display': 'none', 'zindex': 0});
-                    if(!live){
-                        this.set('showpopup', false);
-                    }
-                    this.fire('afterClose');
-                    var lastZindex = this.getTopZindex();
-                    if(lastZindex > 0){
-                        var all = document.querySelectorAll('.popup-wrapper');
-                        for (var i = 0; i < all.length; i++) {
-                            if(all[i].style.zIndex == lastZindex){
-                                var r = Ractive.getContext(all[i]).ractive;
-                                if(r.find('div').contains(this.elToFocus)){
-                                    this.elToFocus.focus();
-                                }else{
-                                    r.find('[autofocus]') ? r.find('[autofocus]').focus() : r.find('.popup-wrapper').focus();
-                                }
-                                break;
-                            }
-                        };
+                if(e.which === 9){
+                    // Get only visible elements
+                    var all = this.findAll('input, select, textarea, button, a').filter(function(el){
+                        return !!( el.offsetWidth || el.offsetHeight || el.getClientRects().length );
+                    });
+                    if(e.shiftKey){
+                        if(e.target === all[0] || e.target === this.find('.popup-wrapper')){
+                            e.preventDefault();
+                            all[all.length-1].focus();
+                        }
                     }else{
-                        if(document.body.contains(this.elToFocus)){
-                            this.elToFocus.focus();
+                        if(e.target === all[all.length-1]){
+                            e.preventDefault();
+                            all[0].focus();
                         }
                     }
-                }.bind(this));
+                }
             }
-        }, {
-            defer: true
-        });
-    },
-    onunrender: function(){
-        this.observe_basedon.cancel();
-    },
-    getTopZindex: function(){
-        var toret = 0;
-        var all = document.querySelectorAll('.popup-wrapper');
-        for (var i = 0; i < all.length; i++) {
-            toret = parseInt(all[i].style.zIndex) > toret ? parseInt(all[i].style.zIndex) : toret;
-        };
-        return toret;
-    }
-});
+        },
+        onconfig: function(){
+            if(this.get('live')){
+                this.set('showpopup', true);
+            }
+        },
+        addAnimClass: function(){
+            return new Promise(function(resolve, reject){
+                var handler = function(e) {
+                    this.find('.popup').removeEventListener('animationend', handler);
+                    this.set({'anim_class': '', 'bg_anim_class': ''});
+                    Ractive._modal_animating = false;
+                    Ractive._modal_delay = 0;
+                    resolve();
+                }.bind(this);
+                this.find('.popup').addEventListener('animationend', handler);
+                if(Ractive._modal_animating == true){
+                    Ractive._modal_delay += 100;
+                }
+                Ractive._modal_animating = true;
+                setTimeout(function(){
+                    this.set('opacity', 1);
+                    this.set({'anim_class': this.get('in_class'), 'bg_anim_class': this.get('bg_in_class')});
+                }.bind(this), Ractive._modal_delay);
+            }.bind(this));
+        },
+        removeAnimClass: function(){
+            return new Promise(function(resolve, reject){
+                var handler = function(e) {
+                    this.find('.popup').removeEventListener('animationend', handler);
+                    this.set({'anim_class': '', 'bg_anim_class': ''});
+                    Ractive._modal_animating = false;
+                    Ractive._modal_delay = 0;
+                    this.set('opacity', 0);
+                    resolve();
+                }.bind(this);
+                this.find('.popup').addEventListener('animationend', handler);
+                if(Ractive._modal_animating == true){
+                    Ractive._modal_delay += 100;
+                }
+                Ractive._modal_animating = true;
+                setTimeout(function(){
+                    this.set({'anim_class': this.get('out_class'), 'bg_anim_class': this.get('bg_out_class')});
+                }.bind(this), Ractive._modal_delay);
+            }.bind(this));
+        },    
+        onrender: function(){
+            var popup_id = this.get('popup_id');
+            this.observe_basedon = this.observe('basedon', function(newValue, oldValue, keypath){
+                var live = this.get('live');
+                if(newValue === true){
+                    if(document.querySelector('.'+popup_id) && document.querySelector('.'+popup_id).style.display === 'block'){
+                        return;
+                    }
+                    this.elToFocus = document.activeElement;
+                    this.fire('beforeOpen');
+                    var lastZindex = this.getTopZindex();
+                    var zindex = (lastZindex == 0) ? this.get('base_zindex') : lastZindex+1;
+                    if(!live){
+                        this.set('showpopup', true);
+                    }
+                    this.insert(this.get('appendto') ? document.querySelector(this.get('appendto')) : this.root.el);
+                    this.set({'display': 'block', 'zindex': zindex});
+                    this.addAnimClass().then(function(){
+                        this.find('[autofocus]') ? this.find('[autofocus]').focus() : this.find('.popup-wrapper').focus();
+                        this.fire('afterOpen');
+                    }.bind(this));
+                }else{
+                    if(!document.querySelector('.'+popup_id) || document.querySelector('.'+popup_id).style.display !== 'block'){
+                        return;
+                    }
+                    this.fire('beforeClose');
+                    this.removeAnimClass().then(function(){
+                        this.set({'display': 'none', 'zindex': 0});
+                        if(!live){
+                            this.set('showpopup', false);
+                        }
+                        this.fire('afterClose');
+                        var lastZindex = this.getTopZindex();
+                        if(lastZindex > 0){
+                            var all = document.querySelectorAll('.popup-wrapper');
+                            for (var i = 0; i < all.length; i++) {
+                                if(all[i].style.zIndex == lastZindex){
+                                    var r = Ractive.getContext(all[i]).ractive;
+                                    if(r.find('div').contains(this.elToFocus)){
+                                        this.elToFocus.focus();
+                                    }else{
+                                        r.find('[autofocus]') ? r.find('[autofocus]').focus() : r.find('.popup-wrapper').focus();
+                                    }
+                                    break;
+                                }
+                            };
+                        }else{
+                            if(document.body.contains(this.elToFocus)){
+                                this.elToFocus.focus();
+                            }
+                        }
+                    }.bind(this));
+                }
+            }, {
+                defer: true
+            });
+        },
+        onunrender: function(){
+            this.observe_basedon.cancel();
+        },
+        getTopZindex: function(){
+            var toret = 0;
+            var all = document.querySelectorAll('.popup-wrapper');
+            for (var i = 0; i < all.length; i++) {
+                toret = parseInt(all[i].style.zIndex) > toret ? parseInt(all[i].style.zIndex) : toret;
+            };
+            return toret;
+        }
+    });
 </script>
