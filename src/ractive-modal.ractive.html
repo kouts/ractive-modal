@@ -11,6 +11,9 @@
     .popup-fadeIn {-webkit-animation-name: popup-fadeIn; animation-name: popup-fadeIn; -webkit-animation-duration: .25s; animation-duration: .25s; -webkit-animation-fill-mode: both; animation-fill-mode: both;}
     @-webkit-keyframes popup-fadeIn {0% {opacity: 0} 100% {opacity: 1}}
     @keyframes popup-fadeIn {0% {opacity: 0} 100% {opacity: 1}}
+    .popup-fadeOut {-webkit-animation-name: popup-fadeOut; animation-name: popup-fadeOut; -webkit-animation-duration: .25s; animation-duration: .25s; -webkit-animation-fill-mode: both; animation-fill-mode: both;}
+    @-webkit-keyframes popup-fadeOut {0% {opacity: 1} 100% {opacity: 0}}
+    @keyframes popup-fadeOut {0% {opacity: 1} 100% {opacity: 0}}
 </style>
 
 {{#if showpopup}}
@@ -32,7 +35,7 @@
         template: $TEMPLATE,
         css: $CSS,
         data: function(){
-            return {showpopup: false, basedon: false, live: false, appendto: '', class: '', base_anim_class: '', bg_anim_class: '', bg_in_class: 'popup-fadeIn', bg_out_class: 'fadeOut', anim_class: '', in_class: 'popup-fadeIn', out_class: 'fadeOut', anim_duration: '', style:'', title: '', popup_id: this._guid+'_popup', enableclose: true, base_zindex: 1050, opacity: 0, display: 'none', zindex: 0}
+            return {showpopup: false, basedon: false, live: false, appendto: '', class: '', base_anim_class: '', bg_anim_class: '', bg_in_class: 'popup-fadeIn', bg_out_class: 'popup-fadeOut', anim_class: '', in_class: 'popup-fadeIn', out_class: 'popup-fadeOut', anim_duration: '', style:'', title: '', popup_id: this._guid+'_popup', enableclose: true, base_zindex: 1050, opacity: 0, display: 'none', zindex: 0}
         },
         on: {
             close: function(ctx){
