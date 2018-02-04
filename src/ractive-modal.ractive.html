@@ -8,12 +8,13 @@
     .popup-btn-close:focus {color:#939393; border-color: transparent; background-color: transparent;}
     .popup-content {padding:15px 15px 15px 15px;}
     .popup-content .full-hr {width: auto; border: 0; border-top: 1px solid #e0e0e0; margin-top:15px; margin-bottom:15px; margin-left:-14px; margin-right:-14px;}
-    .popup-fadeIn {-webkit-animation-name: popup-fadeIn; animation-name: popup-fadeIn; -webkit-animation-duration: .25s; animation-duration: .25s; -webkit-animation-fill-mode: both; animation-fill-mode: both;}
+    .popup-fadeIn {-webkit-animation-name: popup-fadeIn; animation-name: popup-fadeIn;}
     @-webkit-keyframes popup-fadeIn {0% {opacity: 0} 100% {opacity: 1}}
     @keyframes popup-fadeIn {0% {opacity: 0} 100% {opacity: 1}}
-    .popup-fadeOut {-webkit-animation-name: popup-fadeOut; animation-name: popup-fadeOut; -webkit-animation-duration: .25s; animation-duration: .25s; -webkit-animation-fill-mode: both; animation-fill-mode: both;}
+    .popup-fadeOut {-webkit-animation-name: popup-fadeOut; animation-name: popup-fadeOut;}
     @-webkit-keyframes popup-fadeOut {0% {opacity: 1} 100% {opacity: 0}}
     @keyframes popup-fadeOut {0% {opacity: 1} 100% {opacity: 0}}
+    .popup-fadeIn, .popup-fadeOut {-webkit-animation-duration: .25s; animation-duration: .25s; -webkit-animation-fill-mode: both; animation-fill-mode: both;}
 </style>
 
 {{#if showpopup}}
@@ -73,46 +74,6 @@
                 this.set('showpopup', true);
             }
         },
-        addAnimClass: function(){
-            return new Promise(function(resolve, reject){
-                var handler = function(e) {
-                    this.find('.popup').removeEventListener('animationend', handler);
-                    this.set({'anim_class': '', 'bg_anim_class': ''});
-                    Ractive._modal_animating = false;
-                    Ractive._modal_delay = 0;
-                    resolve();
-                }.bind(this);
-                this.find('.popup').addEventListener('animationend', handler);
-                if(Ractive._modal_animating == true){
-                    Ractive._modal_delay += 100;
-                }
-                Ractive._modal_animating = true;
-                setTimeout(function(){
-                    this.set('opacity', 1);
-                    this.set({'anim_class': this.get('in_class'), 'bg_anim_class': this.get('bg_in_class')});
-                }.bind(this), Ractive._modal_delay);
-            }.bind(this));
-        },
-        removeAnimClass: function(){
-            return new Promise(function(resolve, reject){
-                var handler = function(e) {
-                    this.find('.popup').removeEventListener('animationend', handler);
-                    this.set({'anim_class': '', 'bg_anim_class': ''});
-                    Ractive._modal_animating = false;
-                    Ractive._modal_delay = 0;
-                    this.set('opacity', 0);
-                    resolve();
-                }.bind(this);
-                this.find('.popup').addEventListener('animationend', handler);
-                if(Ractive._modal_animating == true){
-                    Ractive._modal_delay += 100;
-                }
-                Ractive._modal_animating = true;
-                setTimeout(function(){
-                    this.set({'anim_class': this.get('out_class'), 'bg_anim_class': this.get('bg_out_class')});
-                }.bind(this), Ractive._modal_delay);
-            }.bind(this));
-        },    
         onrender: function(){
             var popup_id = this.get('popup_id');
             this.observe_basedon = this.observe('basedon', function(newValue, oldValue, keypath){
@@ -130,7 +91,7 @@
                     }
                     this.insert(this.get('appendto') ? document.querySelector(this.get('appendto')) : this.root.el);
                     this.set({'display': 'block', 'zindex': zindex});
-                    this.addAnimClass().then(function(){
+                    this.animate('in').then(function(){
                         this.find('[autofocus]') ? this.find('[autofocus]').focus() : this.find('.popup-wrapper').focus();
                         this.fire('afterOpen');
                     }.bind(this));
@@ -139,7 +100,7 @@
                         return;
                     }
                     this.fire('beforeClose');
-                    this.removeAnimClass().then(function(){
+                    this.animate('out').then(function(){
                         this.set({'display': 'none', 'zindex': 0});
                         if(!live){
                             this.set('showpopup', false);
@@ -173,6 +134,53 @@
         onunrender: function(){
             this.observe_basedon.cancel();
         },
+        animate: function(dir){
+            return new Promise(function(resolve, reject){
+                var handler = function(e) {
+                    this.find('.popup').removeEventListener('animationend', handler);
+                    this.set({'anim_class': '', 'bg_anim_class': ''});
+                    Ractive._modal_animating = false;
+                    Ractive._modal_delay = 0;
+                    if(dir == 'out'){
+                        this.set('opacity', 0);
+                    }
+                    resolve();
+                }.bind(this);
+                this.find('.popup').addEventListener('animationend', handler);
+                if(Ractive._modal_animating == true){
+                    Ractive._modal_delay += 100;
+                }
+                Ractive._modal_animating = true;
+                setTimeout(function(){
+                    if(dir == 'in'){
+                        this.set('opacity', 1);
+                    }
+                    this.set({'anim_class': this.get(dir+'_class'), 'bg_anim_class': this.get('bg_'+dir+'_class')});
+                }.bind(this), Ractive._modal_delay);
+            }.bind(this));
+        },
+        /*
+        removeAnimClass: function(){
+            return new Promise(function(resolve, reject){
+                var handler = function(e) {
+                    this.find('.popup').removeEventListener('animationend', handler);
+                    this.set({'anim_class': '', 'bg_anim_class': ''});
+                    Ractive._modal_animating = false;
+                    Ractive._modal_delay = 0;
+                    this.set('opacity', 0);
+                    resolve();
+                }.bind(this);
+                this.find('.popup').addEventListener('animationend', handler);
+                if(Ractive._modal_animating == true){
+                    Ractive._modal_delay += 100;
+                }
+                Ractive._modal_animating = true;
+                setTimeout(function(){
+                    this.set({'anim_class': this.get('out_class'), 'bg_anim_class': this.get('bg_out_class')});
+                }.bind(this), Ractive._modal_delay);
+            }.bind(this));
+        },
+        */    
         getTopZindex: function(){
             var toret = 0;
             var all = document.querySelectorAll('.popup-wrapper');
