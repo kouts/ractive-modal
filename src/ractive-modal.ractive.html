@@ -18,7 +18,7 @@
 </style>
 
 {{#if showpopup}}
-    <div role="dialog" aria-label="{{title}}" tabindex="0" class="popup-wrapper {{base_anim_class}} {{bg_anim_class}} {{popup_id}}" style="opacity: {{opacity}}; display: {{display}}; z-index: {{zindex}}; cursor: {{enableclose ? 'pointer' : 'default'}}" on-click="close" on-keydown="keydown">
+    <div role="dialog" aria-label="{{title}}" tabindex="0" class="popup-wrapper {{bg_class}} {{base_anim_class}} {{bg_anim_class}} {{popup_id}}" style="opacity: {{opacity}}; display: {{display}}; z-index: {{zindex}}; cursor: {{enableclose ? 'pointer' : 'default'}}" on-click="close" on-keydown="keydown">
       <div class="popup {{base_anim_class}} {{class}} {{anim_class}}" style="{{style}}" on-click="@event.stopPropagation()">
         <div class="popup-titlebar">
           <h3 class="popup-title">{{title}}</h3>
@@ -32,11 +32,15 @@
 <script>
     Ractive._modal_animating = false;
     Ractive._modal_delay = 0;
+    function getAnimationDuration(el){
+        var duration = window.getComputedStyle(el, null)['animation-duration'];
+        return (duration.indexOf('ms') !== -1) ? parseFloat(duration.replace('ms', '')) : parseFloat(duration.replace('s', '')) * 1000;
+    }
     export default Ractive.extend({
         template: $TEMPLATE,
         css: $CSS,
         data: function(){
-            return {showpopup: false, basedon: false, live: false, appendto: '', class: '', base_anim_class: '', bg_anim_class: '', bg_in_class: 'popup-fadeIn', bg_out_class: 'popup-fadeOut', anim_class: '', in_class: 'popup-fadeIn', out_class: 'popup-fadeOut', anim_duration: '', style:'', title: '', popup_id: this._guid+'_popup', enableclose: true, base_zindex: 1050, opacity: 0, display: 'none', zindex: 0}
+            return {showpopup: false, basedon: false, live: false, appendto: '', class: '', bg_class: '', base_anim_class: '', anim_class: '', bg_anim_class: '', bg_in_class: 'popup-fadeIn', bg_out_class: 'popup-fadeOut', in_class: 'popup-fadeIn', out_class: 'popup-fadeOut', anim_duration: '', style:'', title: '', popup_id: this._guid+'_popup', enableclose: true, base_zindex: 1050, opacity: 0, display: 'none', zindex: 0}
         },
         on: {
             close: function(ctx){
@@ -91,7 +95,7 @@
                     }
                     this.insert(this.get('appendto') ? document.querySelector(this.get('appendto')) : this.root.el);
                     this.set({'display': 'block', 'zindex': zindex});
-                    this.animate('in').then(function(){
+                    this.animatePopup('in').then(function(){
                         this.find('[autofocus]') ? this.find('[autofocus]').focus() : this.find('.popup-wrapper').focus();
                         this.fire('afterOpen');
                     }.bind(this));
@@ -100,7 +104,7 @@
                         return;
                     }
                     this.fire('beforeClose');
-                    this.animate('out').then(function(){
+                    this.animatePopup('out').then(function(){
                         this.set({'display': 'none', 'zindex': 0});
                         if(!live){
                             this.set('showpopup', false);
@@ -134,12 +138,12 @@
         onunrender: function(){
             this.observe_basedon.cancel();
         },
-        animate: function(dir){
+        animatePopup: function(dir){
             return new Promise(function(resolve, reject){
                 var handler = function(e) {
                     this.find('.popup').removeEventListener('animationend', handler);
                     this.set({'anim_class': '', 'bg_anim_class': ''});
-                    Ractive._modal_animating = false;
+                    Ractive._modal_animating = undefined;
                     Ractive._modal_delay = 0;
                     if(dir == 'out'){
                         this.set('opacity', 0);
@@ -147,10 +151,10 @@
                     resolve();
                 }.bind(this);
                 this.find('.popup').addEventListener('animationend', handler);
-                if(Ractive._modal_animating == true){
-                    Ractive._modal_delay += 100;
+                if(typeof Ractive._modal_animating === 'object'){
+                    Ractive._modal_delay = Ractive._modal_delay + getAnimationDuration(Ractive._modal_animating.find('.popup')) + 100;
                 }
-                Ractive._modal_animating = true;
+                Ractive._modal_animating = this;
                 setTimeout(function(){
                     if(dir == 'in'){
                         this.set('opacity', 1);

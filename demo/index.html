@@ -44,11 +44,9 @@
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
       }
     </style>
-
   </head>
 
   <body>
-
 
   	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
   		<a class="navbar-brand" href="javascript:;">ractive-modal</a>
@@ -195,6 +193,8 @@
           <ul>
             <li>Lightweight, minified version is &lt; <strong>7kb</strong></li>
             <li>Opens and closes with a data variable</li>
+            <li>Highly customizable via CSS classes and CSS styles</li>
+            <li>Supports CSS animations</li>
             <li>Exposes Component events - beforeOpen, afterOpen, beforeClose, afterClose</li>
             <li>Scrollable when it's contents exceed screen height</li>
             <li>Closeable by clicking on the upper right "x", the overlay or the esc key</li>
@@ -291,8 +291,134 @@
           </callbacks-popup>
         </div>
       </div>
-
       <div class="row mb-3"></div>
+
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <h2 class="pb-2">CSS animations</h2>
+          <p>
+            ractive-modal comes with a fade-in / fade-out animation (250ms duration) for the modal and the overlay by default.<br />
+            It is also designed so that you can put you favorite animations using any CSS animation framework like <a href="https://daneden.github.io/animate.css/" target="_blank">Animate.css</a>, <a href="http://anicollection.github.io" target="_blank">Anicollection</a> etc
+          </p>
+          <p>
+            You can define your base animation class (usually this is the "animated" class) by setting the "base_anim_class" variable.<br />
+            Then define your intro and outro animation classes for the modal, by defining "in_class" and "out_class" variables accordingly.
+          </p>
+          <p>
+            It is also advised that you set the intro and outro animation class for the overlay, by defining "bg_in_class" and "bg_out_class" variables accordingly.<br />
+            Please notice that the modal is placed inside the overlay so you can get some weird results by selecting combinations that don't match the "in_class" or the "out_class".
+          </p>
+
+          <h5>Example using Animate.css</h5>
+          <form class="form-inline mb-2">
+            <label class="mr-1">Modal intro</label>
+            <select class="form-control mr-2" value="{{modal_animated_in_class}}">
+              {{>animation_options}}
+            </select>
+            <label class="mr-1">Modal outro</label>
+            <select class="form-control mr-2" value="{{modal_animated_out_class}}">
+              {{>animation_options}}
+            </select>
+          </form>
+          <form class="form-inline">
+            <label class="mr-1">Overlay intro</label>
+            <select class="form-control mr-2" value="{{overlay_animated_in_class}}">
+              {{>animation_options}}
+            </select>
+            <label class="mr-1">Overlay outro</label>
+            <select class="form-control mr-2" value="{{overlay_animated_out_class}}">
+              {{>animation_options}}
+            </select>
+            <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_animated', true)">Open modal</button>
+          </form>          
+          {{#partial animation_options}}
+            <optgroup label="Attention Seekers">
+              {{#each lovs.attention_seekers}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Bouncing Entrances">
+              {{#each lovs.bouncing_entrances}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Bouncing Exits">
+              {{#each lovs.bouncing_exits}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Fading Entrances">
+              {{#each lovs.fading_entrances}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Fading Exits">
+              {{#each lovs.fading_exits}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Flippers">
+              {{#each lovs.flippers}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Lightspeed">
+              {{#each lovs.lightspeed}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Rotating Entrances">
+              {{#each lovs.rotating_entrances}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Rotating Exits">
+              {{#each lovs.rotating_exits}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Sliding Entrances">
+              {{#each lovs.sliding_entrances}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Sliding Exits">
+              {{#each lovs.sliding_exits}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Zoom Entrances">
+              {{#each lovs.zoom_entrances}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Zoom Exits">
+              {{#each lovs.zoom_exits}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Specials">
+              {{#each lovs.specials}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+          {{/partial}}
+          <popup title="Modal with custom CSS animation" base_anim_class="animated" in_class="{{modal_animated_in_class}}" out_class="{{modal_animated_out_class}}" bg_in_class="{{overlay_animated_in_class}}" bg_out_class="{{overlay_animated_out_class}}" basedon="{{open_modal_animated}}">
+            <p>
+              CSS Animation Libraries help you create stunning animations. Animations give life to the web, the meaningful movement escalates the UX to the next level.
+            </p>
+            <p>
+              CSS animation makes it really easy to animate the web elements on your websites without using any Javascript. As it is pure CSS, it is very easy to master the CSS animation. Yes, there is some new syntax involved in CSS animation, but once you get used to that, you will find it’s easy.
+            </p>
+            <p>
+              CSS animation libraries make life further easier with the pre-made set of styles to animate elements on your website.
+            </p>
+          </popup>
+
+        </div>
+      </div>
+      <div class="row mb-3"></div>
+
       <div class="row mb-3">
         <div class="col-sm-12">
           <h2 class="pb-2">Options</h2>
@@ -442,12 +568,351 @@
           open_modal_1: false,
           open_modal_2: false,
           open_modal_3: false,
+          open_modal_animated: false,
+          modal_animated_in_class: "slideInDown",
+          overlay_animated_in_class: "fadeIn",
+          modal_animated_out_class: "slideOutUp",
+          overlay_animated_out_class: "fadeOut",
           modal_3_closable: true,
           uind: {
             popmd_1_show: false,
             popmd_2_show: false,
             popmd_3_show: false,
             popmd_4_show: false
+          },
+          lovs: {
+            attention_seekers: [
+              {
+                value: "bounce",
+                text: "bounce"
+              },
+              {
+                value: "flash",
+                text: "flash"
+              },
+              {
+                value: "pulse",
+                text: "pulse"
+              },
+              {
+                value: "rubberBand",
+                text: "rubberBand"
+              },
+              {
+                value: "shake",
+                text: "shake"
+              },
+              {
+                value: "swing",
+                text: "swing"
+              },
+              {
+                value: "tada",
+                text: "tada"
+              },
+              {
+                value: "wobble",
+                text: "wobble"
+              },
+              {
+                value: "jello",
+                text: "jello"
+              }
+            ],
+            bouncing_entrances: [
+              {
+                value: "bounceIn",
+                text: "bounceIn"
+              },
+              {
+                value: "bounceInDown",
+                text: "bounceInDown"
+              },
+              {
+                value: "bounceInLeft",
+                text: "bounceInLeft"
+              },
+              {
+                value: "bounceInRight",
+                text: "bounceInRight"
+              },
+              {
+                value: "bounceInUp",
+                text: "bounceInUp"
+              }
+            ],
+            bouncing_exits: [
+              {
+                value: "bounceOut",
+                text: "bounceOut"
+              },
+              {
+                value: "bounceOutDown",
+                text: "bounceOutDown"
+              },
+              {
+                value: "bounceOutLeft",
+                text: "bounceOutLeft"
+              },
+              {
+                value: "bounceOutRight",
+                text: "bounceOutRight"
+              },
+              {
+                value: "bounceOutUp",
+                text: "bounceOutUp"
+              }
+            ],
+            fading_entrances: [
+              {
+                value: "fadeIn",
+                text: "fadeIn"
+              },
+              {
+                value: "fadeInDown",
+                text: "fadeInDown"
+              },
+              {
+                value: "fadeInDownBig",
+                text: "fadeInDownBig"
+              },
+              {
+                value: "fadeInLeft",
+                text: "fadeInLeft"
+              },
+              {
+                value: "fadeInLeftBig",
+                text: "fadeInLeftBig"
+              },
+              {
+                value: "fadeInRight",
+                text: "fadeInRight"
+              },
+              {
+                value: "fadeInRightBig",
+                text: "fadeInRightBig"
+              },
+              {
+                value: "fadeInUp",
+                text: "fadeInUp"
+              },
+              {
+                value: "fadeInUpBig",
+                text: "fadeInUpBig"
+              }
+            ],
+            fading_exits: [
+              {
+                value: "fadeOut",
+                text: "fadeOut"
+              },
+              {
+                value: "fadeOutDown",
+                text: "fadeOutDown"
+              },
+              {
+                value: "fadeOutDownBig",
+                text: "fadeOutDownBig"
+              },
+              {
+                value: "fadeOutLeft",
+                text: "fadeOutLeft"
+              },
+              {
+                value: "fadeOutLeftBig",
+                text: "fadeOutLeftBig"
+              },
+              {
+                value: "fadeOutRight",
+                text: "fadeOutRight"
+              },
+              {
+                value: "fadeOutRightBig",
+                text: "fadeOutRightBig"
+              },
+              {
+                value: "fadeOutUp",
+                text: "fadeOutUp"
+              },
+              {
+                value: "fadeOutUpBig",
+                text: "fadeOutUpBig"
+              }
+            ],
+            flippers: [
+              {
+                value: "flip",
+                text: "flip"
+              },
+              {
+                value: "flipInX",
+                text: "flipInX"
+              },
+              {
+                value: "flipInY",
+                text: "flipInY"
+              },
+              {
+                value: "flipOutX",
+                text: "flipOutX"
+              },
+              {
+                value: "flipOutY",
+                text: "flipOutY"
+              }
+            ],
+            lightspeed: [
+              {
+                value: "lightSpeedIn",
+                text: "lightSpeedIn"
+              },
+              {
+                value: "lightSpeedOut",
+                text: "lightSpeedOut"
+              }
+            ],
+            rotating_entrances: [
+              {
+                value: "rotateIn",
+                text: "rotateIn"
+              },
+              {
+                value: "rotateInDownLeft",
+                text: "rotateInDownLeft"
+              },
+              {
+                value: "rotateInDownRight",
+                text: "rotateInDownRight"
+              },
+              {
+                value: "rotateInUpLeft",
+                text: "rotateInUpLeft"
+              },
+              {
+                value: "rotateInUpRight",
+                text: "rotateInUpRight"
+              }
+            ],
+            rotating_exits: [
+              {
+                value: "rotateOut",
+                text: "rotateOut"
+              },
+              {
+                value: "rotateOutDownLeft",
+                text: "rotateOutDownLeft"
+              },
+              {
+                value: "rotateOutDownRight",
+                text: "rotateOutDownRight"
+              },
+              {
+                value: "rotateOutUpLeft",
+                text: "rotateOutUpLeft"
+              },
+              {
+                value: "rotateOutUpRight",
+                text: "rotateOutUpRight"
+              }
+            ],
+            sliding_entrances: [
+              {
+                value: "slideInUp",
+                text: "slideInUp"
+              },
+              {
+                value: "slideInDown",
+                text: "slideInDown"
+              },
+              {
+                value: "slideInLeft",
+                text: "slideInLeft"
+              },
+              {
+                value: "slideInRight",
+                text: "slideInRight"
+              }
+            ],
+            sliding_exits: [
+              {
+                value: "slideOutUp",
+                text: "slideOutUp"
+              },
+              {
+                value: "slideOutDown",
+                text: "slideOutDown"
+              },
+              {
+                value: "slideOutLeft",
+                text: "slideOutLeft"
+              },
+              {
+                value: "slideOutRight",
+                text: "slideOutRight"
+              }
+            ],
+            zoom_entrances: [
+              {
+                value: "zoomIn",
+                text: "zoomIn"
+              },
+              {
+                value: "zoomInDown",
+                text: "zoomInDown"
+              },
+              {
+                value: "zoomInLeft",
+                text: "zoomInLeft"
+              },
+              {
+                value: "zoomInRight",
+                text: "zoomInRight"
+              },
+              {
+                value: "zoomInUp",
+                text: "zoomInUp"
+              }
+            ],
+            zoom_exits: [
+              {
+                value: "zoomOut",
+                text: "zoomOut"
+              },
+              {
+                value: "zoomOutDown",
+                text: "zoomOutDown"
+              },
+              {
+                value: "zoomOutLeft",
+                text: "zoomOutLeft"
+              },
+              {
+                value: "zoomOutRight",
+                text: "zoomOutRight"
+              },
+              {
+                value: "zoomOutUp",
+                text: "zoomOutUp"
+              }
+            ],
+            specials: [
+              {
+                value: "hinge",
+                text: "hinge"
+              },
+              {
+                value: "jackInTheBox",
+                text: "jackInTheBox"
+              },
+              {
+                value: "rollIn",
+                text: "rollIn"
+              },
+              {
+                value: "rollOut",
+                text: "rollOut"
+              }
+            ]
           }
         },
         components: {
