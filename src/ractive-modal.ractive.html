@@ -43,8 +43,32 @@
     export default Ractive.extend({
         template: $TEMPLATE,
         css: $CSS,
-        data: function(){
-            return {showpopup: false, showbackdrop: false, basedon: false, live: false, appendto: '', class: '', bg_class: '', base_anim_class: '', anim_class: '', bg_anim_class: '', bg_in_class: 'popup-fadeIn', bg_out_class: 'popup-fadeOut', in_class: 'popup-fadeIn', out_class: 'popup-fadeOut', anim_duration: '', style:'', title: '', popup_id: this._guid+'_popup', enableclose: true, base_zindex: 1051, opacity: 0, display: 'none', zindex: 0}
+        data: function() {
+            return {
+                showpopup: false,
+                showbackdrop: false,
+                basedon: false,
+                live: false,
+                appendto: '',
+                class: '',
+                bg_class: '',
+                base_anim_class: '',
+                anim_class: '',
+                bg_anim_class: '',
+                bg_in_class: 'popup-fadeIn',
+                bg_out_class: 'popup-fadeOut',
+                in_class: 'popup-fadeIn',
+                out_class: 'popup-fadeOut',
+                anim_duration: '',
+                style: '',
+                title: '',
+                popup_id: this._guid + '_popup',
+                enableclose: true,
+                base_zindex: 1051,
+                opacity: 0,
+                display: 'none',
+                zindex: 0
+            }
         },
         on: {
             close: function(ctx){
@@ -167,28 +191,6 @@
                 }.bind(this), Ractive._modal_delay);
             }.bind(this));
         },
-        /*
-        removeAnimClass: function(){
-            return new Promise(function(resolve, reject){
-                var handler = function(e) {
-                    this.find('.popup').removeEventListener('animationend', handler);
-                    this.set({'anim_class': '', 'bg_anim_class': ''});
-                    Ractive._modal_animating = false;
-                    Ractive._modal_delay = 0;
-                    this.set('opacity', 0);
-                    resolve();
-                }.bind(this);
-                this.find('.popup').addEventListener('animationend', handler);
-                if(Ractive._modal_animating == true){
-                    Ractive._modal_delay += 100;
-                }
-                Ractive._modal_animating = true;
-                setTimeout(function(){
-                    this.set({'anim_class': this.get('out_class'), 'bg_anim_class': this.get('bg_out_class')});
-                }.bind(this), Ractive._modal_delay);
-            }.bind(this));
-        },
-        */    
         getTopZindex: function(){
             var toret = 0;
             var all = document.querySelectorAll('.popup-wrapper');
