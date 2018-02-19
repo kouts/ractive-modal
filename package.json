@@ -1,7 +1,7 @@
 {
   "//": "To use type: npm run watch",
   "name": "ractive-modal",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "A modal popup component for ractive",
   "main": "dist/ractive-modal.js",
   "repository": "https://github.com/kouts/ractive-modal",
