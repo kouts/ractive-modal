@@ -1,5 +1,6 @@
 <style>
-    .popup-wrapper {position: fixed; text-align: center; top: 0; right: 0; bottom: 0; left: 0; z-index: 1050; overflow: auto; display: none; background-color: rgba(0, 0, 0, 0.5);}
+    .popup-backdrop {position: fixed; top: 0; right: 0; bottom: 0; left: 0; overflow: auto; background-color: rgba(0, 0, 0, 0.5);}
+    .popup-wrapper {position: fixed; text-align: center; top: 0; right: 0; bottom: 0; left: 0; overflow: auto; display: none;}
     .popup {position: relative; display: inline-block; width:100%; text-align: left; color: #333333; background-color: #fff; top:30px; cursor: default; min-width: 110px; max-width: 500px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);}
     .popup-titlebar {padding:15px; color: #333; overflow: auto; border-bottom: 1px solid #e5e5e5;}
     .popup-title {margin-top:2px; margin-bottom: 0px; display: inline-block; font-size:1.25rem;}
@@ -17,15 +18,18 @@
     .popup-fadeIn, .popup-fadeOut {-webkit-animation-duration: .25s; animation-duration: .25s; -webkit-animation-fill-mode: both; animation-fill-mode: both;}
 </style>
 
+{{#if showbackdrop}}
+    <div class="popup-backdrop {{bg_class}} {{base_anim_class}} {{bg_anim_class}} backdrop-{{popup_id}}" style="z-index: {{zindex-1}};"></div>
+{{/if}}
 {{#if showpopup}}
-    <div role="dialog" aria-label="{{title}}" tabindex="0" class="popup-wrapper {{bg_class}} {{base_anim_class}} {{bg_anim_class}} {{popup_id}}" style="opacity: {{opacity}}; display: {{display}}; z-index: {{zindex}}; cursor: {{enableclose ? 'pointer' : 'default'}}" on-click="close" on-keydown="keydown">
-      <div class="popup {{base_anim_class}} {{class}} {{anim_class}}" style="{{style}}" on-click="@event.stopPropagation()">
-        <div class="popup-titlebar">
-          <h3 class="popup-title">{{title}}</h3>
-          {{#if enableclose}}<button type="button" class="popup-btn-close" on-click="close">×</button>{{/if}}
+    <div class="popup-wrapper {{base_anim_class}} {{anim_class}} {{popup_id}}" role="dialog" aria-label="{{title}}" tabindex="0" style="opacity: {{opacity}}; display: {{display}}; z-index: {{zindex}}; cursor: {{enableclose ? 'pointer' : 'default'}}" on-click="close" on-keydown="keydown">
+        <div class="popup {{class}}" style="{{style}}" on-click="@event.stopPropagation()">
+            <div class="popup-titlebar">
+                <h3 class="popup-title">{{title}}</h3>
+                {{#if enableclose}}<button type="button" class="popup-btn-close" on-click="close">×</button>{{/if}}
+            </div>
+            <div class="popup-content">{{yield}}</div>
         </div>
-        <div class="popup-content">{{yield}}</div>
-      </div>
     </div>
 {{/if}}
 
@@ -40,7 +44,7 @@
         template: $TEMPLATE,
         css: $CSS,
         data: function(){
-            return {showpopup: false, basedon: false, live: false, appendto: '', class: '', bg_class: '', base_anim_class: '', anim_class: '', bg_anim_class: '', bg_in_class: 'popup-fadeIn', bg_out_class: 'popup-fadeOut', in_class: 'popup-fadeIn', out_class: 'popup-fadeOut', anim_duration: '', style:'', title: '', popup_id: this._guid+'_popup', enableclose: true, base_zindex: 1050, opacity: 0, display: 'none', zindex: 0}
+            return {showpopup: false, showbackdrop: false, basedon: false, live: false, appendto: '', class: '', bg_class: '', base_anim_class: '', anim_class: '', bg_anim_class: '', bg_in_class: 'popup-fadeIn', bg_out_class: 'popup-fadeOut', in_class: 'popup-fadeIn', out_class: 'popup-fadeOut', anim_duration: '', style:'', title: '', popup_id: this._guid+'_popup', enableclose: true, base_zindex: 1051, opacity: 0, display: 'none', zindex: 0}
         },
         on: {
             close: function(ctx){
@@ -89,7 +93,7 @@
                     this.elToFocus = document.activeElement;
                     this.fire('beforeOpen');
                     var lastZindex = this.getTopZindex();
-                    var zindex = (lastZindex == 0) ? this.get('base_zindex') : lastZindex+1;
+                    var zindex = (lastZindex == 0) ? this.get('base_zindex') : lastZindex+2;
                     if(!live){
                         this.set('showpopup', true);
                     }
@@ -141,23 +145,23 @@
         animatePopup: function(dir){
             return new Promise(function(resolve, reject){
                 var handler = function(e) {
-                    this.find('.popup').removeEventListener('animationend', handler);
+                    this.find('.popup-wrapper').removeEventListener('animationend', handler);
                     this.set({'anim_class': '', 'bg_anim_class': ''});
                     Ractive._modal_animating = undefined;
                     Ractive._modal_delay = 0;
                     if(dir == 'out'){
-                        this.set('opacity', 0);
+                        this.set({showbackdrop: false, opacity: 0});
                     }
                     resolve();
                 }.bind(this);
-                this.find('.popup').addEventListener('animationend', handler);
+                this.find('.popup-wrapper').addEventListener('animationend', handler);
                 if(typeof Ractive._modal_animating === 'object'){
-                    Ractive._modal_delay = Ractive._modal_delay + getAnimationDuration(Ractive._modal_animating.find('.popup')) + 100;
+                    Ractive._modal_delay = Ractive._modal_delay + getAnimationDuration(Ractive._modal_animating.find('.popup-wrapper')) + 100;
                 }
                 Ractive._modal_animating = this;
                 setTimeout(function(){
                     if(dir == 'in'){
-                        this.set('opacity', 1);
+                        this.set({showbackdrop: true, opacity: 1});
                     }
                     this.set({'anim_class': this.get(dir+'_class'), 'bg_anim_class': this.get('bg_'+dir+'_class')});
                 }.bind(this), Ractive._modal_delay);
