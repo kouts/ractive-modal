@@ -73,8 +73,8 @@
 
       <div class="jumbotron">
         <h1>ractive-modal</h1>
-        <p class="lead">A modal popup component for Ractive</p>
-        <p>This page includes basic documentation and examples for the ractive-modal popup component</p>
+        <p class="lead">A modal window component for Ractive</p>
+        <p>This page includes basic documentation and examples for the ractive-modal window component</p>
       </div>
 
       <div class="row mb-3">
@@ -87,7 +87,7 @@
         </div>
       </div>
 
-      <popup title="First modal popup dialog" class="" style="max-width:700px;" basedon="{{uind.popmd_1_show}}" live="true">
+      <modal title="First modal window" class="" style="max-width:700px;" basedon="{{uind.popmd_1_show}}" live="true">
         <div class="row">
             <div class="col-md-4 form-group">
               <label>Field 1</label>
@@ -105,8 +105,8 @@
         <div class="row">
           <div class="col col-sm-12">
             <div class="alert alert-primary" role="alert">
-              You can set a field to take focus when the popup opens by setting the <strong>autofocus</strong> property on the appropriate element.
-              Otherwise the focus goes to the popup element itself.
+              You can set a field to take focus when the modal window opens by setting the <strong>autofocus</strong> property on the appropriate element.
+              Otherwise the focus goes to the modal window element itself.
             </div>
             <div class="alert alert-info" role="alert">
               Also notice that the tab key stays trapped inside the modal window
@@ -122,21 +122,21 @@
         <hr class="full-hr" />
         <div class="row">
           <div class="col col-sm-12">
-            <button type="button" class="btn btn-primary" on-click="@this.set('uind.popmd_2_show', true)">Open second popup</button>
+            <button type="button" class="btn btn-primary" on-click="@this.set('uind.popmd_2_show', true)">Open second modal window</button>
             <button type="button" class="btn btn btn-danger float-right" on-click="@this.set('uind.popmd_1_show', false)">Close</button>        
           </div>
         </div>
-      </popup>
+      </modal>
 
-      <popup title="Second modal popup dialog" class="" style="max-width:600px;" basedon="{{uind.popmd_2_show}}" enableclose="false" live="false">
+      <modal title="Second modal window" class="" style="max-width:600px;" basedon="{{uind.popmd_2_show}}" enableclose="false" live="false">
         <div class="row">
           <div class="col col-sm-12">
             <div class="alert alert-info" role="alert">
-              This popup cannot be closed by any of the standard ways.<br />
-              Hit the close button on the bottom right in order to close this popup
+              This modal window cannot be closed by any of the standard ways.<br />
+              Hit the close button on the bottom right in order to close this modal window
             </div>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a lorem suscipit orci vehicula aliquam. <button class="btn btn-primary" on-click="@this.set('uind.popmd_3_show', true)">Open a third popup</button> Sed varius urna nec nisl placerat convallis. Nunc pretium porta commodo. Vestibulum sed dui accumsan, rhoncus enim eget, suscipit mi. Sed egestas non arcu at ultricies. Aenean tristique mauris eu ligula feugiat, eu condimentum erat pharetra. Maecenas bibendum ante mi, in mattis nisl fringilla vitae. Duis sollicitudin est id purus venenatis tincidunt. Donec vitae nulla ac lorem tristique varius et in mauris. Aenean molestie dui eu mauris pretium iaculis. Phasellus varius mi in molestie congue. Nullam non ultrices libero.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a lorem suscipit orci vehicula aliquam. <button class="btn btn-primary" on-click="@this.set('uind.popmd_3_show', true)">Open a third modal window</button> Sed varius urna nec nisl placerat convallis. Nunc pretium porta commodo. Vestibulum sed dui accumsan, rhoncus enim eget, suscipit mi. Sed egestas non arcu at ultricies. Aenean tristique mauris eu ligula feugiat, eu condimentum erat pharetra. Maecenas bibendum ante mi, in mattis nisl fringilla vitae. Duis sollicitudin est id purus venenatis tincidunt. Donec vitae nulla ac lorem tristique varius et in mauris. Aenean molestie dui eu mauris pretium iaculis. Phasellus varius mi in molestie congue. Nullam non ultrices libero.
             </p>
           </div>
         </div>
@@ -146,16 +146,16 @@
             <button type="button" class="btn btn-danger float-right" on-click="@this.set('uind.popmd_2_show', false)">Close</button>
           </div>
         </div>
-      </popup>
+      </modal>
 
-      <popup title="Third modal popup dialog" class="" style="max-width:500px;" basedon="{{uind.popmd_3_show}}" live="true">
+      <modal title="Third modal window" class="" style="max-width:500px;" basedon="{{uind.popmd_3_show}}" live="true">
         <div class="row">
           <div class="col col-sm-12">
             <div class="alert alert-info" role="alert">
-              When you close this popup, the previously active element will take focus.
+              When you close this modal window, the previously active element will take focus.
             </div>
             <p>
-              <button autofocus class="btn btn-primary" on-click="@this.set('uind.popmd_4_show', true)">Open a fourth popup</button> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a lorem suscipit orci vehicula aliquam. Sed varius urna nec nisl placerat convallis. Nunc pretium porta commodo. Vestibulum sed dui accumsan, rhoncus enim eget, suscipit mi. Sed egestas non arcu at ultricies. Aenean tristique mauris eu ligula feugiat, eu condimentum erat pharetra. Maecenas bibendum ante mi, in mattis nisl fringilla vitae. Duis sollicitudin est id purus venenatis tincidunt. Donec vitae nulla ac lorem tristique varius et in mauris. Aenean molestie dui eu mauris pretium iaculis. Phasellus varius mi in molestie congue. Nullam non ultrices libero.
+              <button autofocus class="btn btn-primary" on-click="@this.set('uind.popmd_4_show', true)">Open a fourth modal window</button> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a lorem suscipit orci vehicula aliquam. Sed varius urna nec nisl placerat convallis. Nunc pretium porta commodo. Vestibulum sed dui accumsan, rhoncus enim eget, suscipit mi. Sed egestas non arcu at ultricies. Aenean tristique mauris eu ligula feugiat, eu condimentum erat pharetra. Maecenas bibendum ante mi, in mattis nisl fringilla vitae. Duis sollicitudin est id purus venenatis tincidunt. Donec vitae nulla ac lorem tristique varius et in mauris. Aenean molestie dui eu mauris pretium iaculis. Phasellus varius mi in molestie congue. Nullam non ultrices libero.
             </p>
           </div>
         </div>
@@ -165,13 +165,13 @@
             <button type="button" class="btn btn-danger float-right" on-click="@this.set('uind.popmd_3_show', false)">Close</button>
           </div>
         </div>
-      </popup>
+      </modal>
 
-      <popup title="Fourth modal popup dialog" class="" style="max-width:300px;" basedon="{{uind.popmd_4_show}}" live="false">
+      <modal title="Fourth modal window" class="" style="max-width:300px;" basedon="{{uind.popmd_4_show}}" live="false">
         <div class="row">
           <div class="col col-sm-12">
             <div class="alert alert-info" role="alert">
-              You can always close the popups with the esc key or by clicking the surrounding overlay
+              You can always close the modal windows with the esc key or by clicking the surrounding overlay
             </div>
             <p>
               This is the last one, I promise!
@@ -185,7 +185,7 @@
             <button type="button" class="btn btn-danger float-right" on-click="@this.set('uind.popmd_4_show', false)">Close</button>
           </div>
         </div>
-      </popup>
+      </modal>
 
       <div class="row mb-3">
         <div class="col-sm-12">
@@ -193,16 +193,15 @@
           <ul>
             <li>Lightweight, minified version is &lt; <strong>8kb</strong></li>
             <li>Opens and closes with a data variable</li>
-            <li>Highly customizable via CSS classes and CSS styles</li>
-            <li>Supports CSS animations</li>
+            <li>Includes default styling but it's also highly customizable via user CSS classes and styles</li>
+            <li>Modal intro and outro effects using CSS animations</li>
             <li>Exposes Component events - beforeOpen, afterOpen, beforeClose, afterClose</li>
             <li>Scrollable when it's contents exceed screen height</li>
             <li>Closeable by clicking on the upper right "x", the overlay or the esc key</li>
-            <li><strong>Stackable</strong> - Multiple modal popups on top of each other</li>
-            <li>Ability to set initial focus on an element when the modal popup opens, just set the <strong>autofocus</strong> attribute on an element inside the modal</li>
-            <li>Focus management trapps keyboard focus - navigation inside the dialog</li>
-            <li>Ability to have unclosable modal popups</li>
-            <li>Includes default styling, but is customizable with user css</li>
+            <li><strong>Stackable</strong> - Multiple modal windows on top of each other</li>
+            <li>Ability to set initial focus on an element when the modal window opens, just set the <strong>autofocus</strong> attribute on an element inside the modal</li>
+            <li>Focus management trapps keyboard focus - navigation inside the modal window</li>
+            <li>Ability to have unclosable modal windows</li>
             <li>Render on demand or stay always in DOM with "live" mode</li>
             <li>Ability to append to an element</li>
           </ul>
@@ -265,9 +264,9 @@
 
           <h5>Example</h5>
           <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_1', true)">Open modal</button>
-          <popup title="My first modal" basedon="{{open_modal_1}}">
+          <modal title="My first modal" basedon="{{open_modal_1}}">
             <p>Hello World!</p>
-          </popup>
+          </modal>
 
         </div>
       </div>
@@ -286,9 +285,9 @@
           </pre>
           <h5>Example</h5>
           <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_2', true)">Open modal</button>
-          <callbacks-popup title="Events modal" basedon="{{open_modal_2}}">
+          <callbacks-modal title="Events modal" basedon="{{open_modal_2}}">
             <p>This is a modal that has all events attached</p>
-          </callbacks-popup>
+          </callbacks-modal>
         </div>
       </div>
       <div class="row mb-3"></div>
@@ -415,7 +414,7 @@
               {{/each}}
             </optgroup>
           {{/partial}}
-          <popup title="Modal with custom CSS animation" base_anim_class="animated" in_class="{{modal_animated_in_class}}" out_class="{{modal_animated_out_class}}" bg_in_class="{{overlay_animated_in_class}}" bg_out_class="{{overlay_animated_out_class}}" basedon="{{open_modal_animated}}">
+          <modal title="Modal with custom CSS animation" base_anim_class="animated" in_class="{{modal_animated_in_class}}" out_class="{{modal_animated_out_class}}" bg_in_class="{{overlay_animated_in_class}}" bg_out_class="{{overlay_animated_out_class}}" basedon="{{open_modal_animated}}">
             <p>
               CSS Animation Libraries help you create stunning animations. Animations give life to the web, the meaningful movement escalates the UX to the next level.
             </p>
@@ -425,7 +424,7 @@
             <p>
               CSS animation libraries make life further easier with the pre-made set of styles to animate elements on your website.
             </p>
-          </popup>
+          </modal>
 
         </div>
       </div>
@@ -447,7 +446,7 @@
               <tbody>
                 <tr>
                   <td>basedon</td>
-                  <td>Opens and closes the modal popup</td>
+                  <td>Opens and closes the modal window</td>
                   <td>Boolean</td>
                   <td>false</td>
                 </tr>
@@ -523,7 +522,7 @@
                 </tr>
                 <tr>
                   <td>enableclose</td>
-                  <td>Controls whether the modal element is closable or not</td>
+                  <td>Controls whether the modal window is closable or not</td>
                   <td>Boolean</td>
                   <td>true</td>
                 </tr>
@@ -533,7 +532,7 @@
 
           <h5>Example</h5>
           <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_3', true)">Open modal</button>
-          <popup title="Live modal" basedon="{{open_modal_3}}" live="true" appendto="body" class="live-modal" style="width:650px;" enableclose="{{modal_3_closable}}">
+          <modal title="Live modal" basedon="{{open_modal_3}}" live="true" appendto="body" class="live-modal" style="width:650px;" enableclose="{{modal_3_closable}}">
               <ul>
                 <li>This is a "live" modal that once rendered it gets appended to document body and never gets removed from DOM</li>
                 <li>It also has a custom class "live-modal" and a fixed width of 650px</li>
@@ -545,7 +544,7 @@
                 </div>
               {{/if}}
                 <button class="btn btn-secondary" type="button" on-click="@this.toggle('modal_3_closable')">{{#if modal_3_closable}}Disable close{{else}}Enable close{{/if}}</button>
-          </popup>
+          </modal>
         </div>
       </div>
 
@@ -555,7 +554,7 @@
           <h2 class="pb-2">Focus management</h2>
           <h5>ractive-modal comes with integrated focus management - How it works</h5>
           <ol>
-            <li>When the modal opens it moves the keyboard focus from the triggering element (link or button) to the modal popup dialog (or an element with an autofocus attribute within it)</li>
+            <li>When the modal opens it moves the keyboard focus from the triggering element (link or button) to the modal window (or an element with an autofocus attribute within it)</li>
             <li>It keeps the keyboard focus within the modal dialog until the dialog is closed</li>
             <li>It moves the focus back to the triggering element when the user closes the dialog.</li>
           </ol>
@@ -569,8 +568,8 @@
 
           <h5>version 0.3</h5>
           <ul>
-            <li>Modal intro and outro is now handled by CSS animation classes for both the modal and modal backdrop elements.</li>
-            <li>Separate the modal and the modal backdrop into separate elements.</li>
+            <li>Modal intro and outro is now handled by CSS animation classes for both the modal window and modal backdrop elements.</li>
+            <li>Separate the modal window and the modal backdrop into different elements.</li>
           </ul>
 
           <h5>version 0.2.1</h5>
@@ -971,26 +970,26 @@
           }
         },
         components: {
-          popup: RactiveModal,
-          'callbacks-popup': RactiveModal
+          modal: RactiveModal,
+          'callbacks-modal': RactiveModal
         },
         on: {
-          'callbacks-popup.beforeOpen': function(){
+          'callbacks-modal.beforeOpen': function(){
             alert('beforeOpen event fired');
           },
-          'callbacks-popup.afterOpen': function(){
+          'callbacks-modal.afterOpen': function(){
             alert('afterOpen event fired');
           },
-          'callbacks-popup.beforeClose': function(){
+          'callbacks-modal.beforeClose': function(){
             alert('beforeClose event fired');
           },
-          'callbacks-popup.afterClose': function(){
+          'callbacks-modal.afterClose': function(){
             alert('afterClose event fired');
           },
-          'popup.beforeOpen callbacks-popup.beforeOpen': function(){
+          'modal.beforeOpen callbacks-modal.beforeOpen': function(){
             document.querySelector('body').style.overflow = 'hidden';
           },
-          'popup.afterClose callbacks-popup.afterClose': function(ctx){
+          'modal.afterClose callbacks-modal.afterClose': function(ctx){
             var lastZindex = ctx.ractive.getTopZindex();
             if(lastZindex == 0){
               document.querySelector('body').style.overflow = 'auto';
