@@ -191,7 +191,7 @@
         <div class="col-sm-12">
           <h2 class="pb-2">Features at a glance</h2>
           <ul>
-            <li>Lightweight, minified version is &lt; <strong>7kb</strong></li>
+            <li>Lightweight, minified version is &lt; <strong>8kb</strong></li>
             <li>Opens and closes with a data variable</li>
             <li>Highly customizable via CSS classes and CSS styles</li>
             <li>Supports CSS animations</li>
@@ -297,7 +297,7 @@
         <div class="col-sm-12">
           <h2 class="pb-2">CSS animations</h2>
           <p>
-            ractive-modal comes with a fade-in / fade-out animation (250ms duration) for the modal and the overlay by default.<br />
+            ractive-modal comes with a fade-in / fade-out animation (250ms duration by default) for the modal and the overlay.<br />
             It is also designed so that you can put you favorite animations using any CSS animation framework like <a href="https://daneden.github.io/animate.css/" target="_blank">Animate.css</a>, <a href="http://anicollection.github.io" target="_blank">Anicollection</a> etc
           </p>
           <p>
@@ -310,27 +310,40 @@
           </p>
 
           <h5>Example using Animate.css</h5>
-          <form class="form-inline mb-2">
-            <label class="mr-1">Modal intro</label>
-            <select class="form-control mr-2" value="{{modal_animated_in_class}}">
-              {{>animation_options}}
-            </select>
-            <label class="mr-1">Modal outro</label>
-            <select class="form-control mr-2" value="{{modal_animated_out_class}}">
-              {{>animation_options}}
-            </select>
+          <form class="mb-2">
+            <div class="row">
+              <div class="col form-group">
+                <label>Modal intro</label>
+                <select class="form-control" value="{{modal_animated_in_class}}">
+                  {{>animation_options}}
+                </select>
+              </div>
+              <div class="col form-group">
+                <label>Modal outro</label>
+                <select class="form-control" value="{{modal_animated_out_class}}">
+                  {{>animation_options}}
+                </select>
+              </div>
+              <div class="col form-group">
+                <label>Overlay intro</label>
+                <select class="form-control" value="{{overlay_animated_in_class}}">
+                  {{>animation_options}}
+                </select>
+              </div>
+              <div class="col form-group">
+                <label>Overlay outro</label>
+                <select class="form-control" value="{{overlay_animated_out_class}}">
+                  {{>animation_options}}
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col form-group">
+                <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_animated', true)">Open modal</button>
+              </div>
+            </div>
           </form>
-          <form class="form-inline">
-            <label class="mr-1">Overlay intro</label>
-            <select class="form-control mr-2" value="{{overlay_animated_in_class}}">
-              {{>animation_options}}
-            </select>
-            <label class="mr-1">Overlay outro</label>
-            <select class="form-control mr-2" value="{{overlay_animated_out_class}}">
-              {{>animation_options}}
-            </select>
-            <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_animated', true)">Open modal</button>
-          </form>          
+
           {{#partial animation_options}}
             <optgroup label="Attention Seekers">
               {{#each lovs.attention_seekers}}
@@ -457,28 +470,65 @@
                 </tr>
                 <tr>
                   <td>class</td>
-                  <td>Extra css classes for the modal popup</td>
+                  <td>Extra css classes for the modal element</td>
                   <td>String</td>
                   <td><em>Empty</em></td>
                 </tr>
                 <tr>
+                  <td>bg_class</td>
+                  <td>Extra css classes for the modal backdrop</td>
+                  <td>String</td>
+                  <td><em>Empty</em></td>
+                </tr>
+                <tr>
+                  <td>base_anim_class</td>
+                  <td>Your animation framework's base class e.g "animate". This applies to the modal and the modal backdrop elements.</td>
+                  <td>String</td>
+                  <td><em>Empty</em></td>
+                </tr>
+                <tr>
+                  <td>in_class</td>
+                  <td>Animation class for the modal intro</td>
+                  <td>String</td>
+                  <td><em>popup-fadeIn</em></td>
+                </tr>
+                <tr>
+                  <td>out_class</td>
+                  <td>Animation class for the modal outro</td>
+                  <td>String</td>
+                  <td>popup-fadeOut</td>
+                </tr>
+                <tr>
+                  <td>bg_in_class</td>
+                  <td>Animation class for the modal backdrop intro</td>
+                  <td>String</td>
+                  <td>popup-fadeIn</td>
+                </tr>
+                <tr>
+                  <td>bg_out_class</td>
+                  <td>Animation class for the modal backdrop outro</td>
+                  <td>String</td>
+                  <td>popup-fadeOut</td>
+                </tr>                
+                <tr>
                   <td>style</td>
-                  <td>Extra css styles for the modal popup</td>
+                  <td>Extra css styles for the modal element</td>
                   <td>String</td>
                   <td><em>Empty</em></td>
                 </tr>
                 <tr>
                   <td>title</td>
-                  <td>The title of the modal popup</td>
+                  <td>The title of the modal element</td>
                   <td>String</td>
                   <td><em>Empty</em></td>
                 </tr>
                 <tr>
                   <td>enableclose</td>
-                  <td>Controls whether the modal popup is closable or not</td>
+                  <td>Controls whether the modal element is closable or not</td>
                   <td>Boolean</td>
                   <td>true</td>
                 </tr>
+
               </tbody>
             </table>
 
@@ -517,6 +567,12 @@
       <div class="row mb-3">
         <div class="col-sm-12">
           <h2 class="pb-2">Changelog</h2>
+
+          <h5>version 0.3</h5>
+          <ul>
+            <li>Modal intro and outro is now handled by CSS animation classes for both the modal and modal backdrop elements.</li>
+            <li>Separate the modal and the modal backdrop into separate elements.</li>
+          </ul>
 
           <h5>version 0.2.1</h5>
           <ul>
