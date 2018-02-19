@@ -104,7 +104,6 @@ function getAnimationDuration(el){
             bg_out_class: 'popup-fadeOut',
             in_class: 'popup-fadeIn',
             out_class: 'popup-fadeOut',
-            anim_duration: '',
             style: '',
             title: '',
             popup_id: this._guid + '_popup',
