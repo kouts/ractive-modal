@@ -19,7 +19,7 @@
   },
   "scripts": {
     "build": "webpack",
-    "watch": "onchange 'src/*.*' -- npm run build"
+    "dev": "onchange 'src/*.*' -- npm run build"
   },
   "author": "kouts",
   "license": "ISC",
