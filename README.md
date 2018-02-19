@@ -1,5 +1,5 @@
 # ractive-modal
-A modal popup component for Ractive
+A modal window component for Ractive
 
 Features
 - Lightweight, minified version is &lt; **8kb**
