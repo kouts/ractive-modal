@@ -11,8 +11,8 @@
 </style>
 
 {{#if showpopup}}
-<div role="dialog" aria-label="{{title}}" tabindex="0" class="popup-wrapper {{popup_id}}" style="opacity: {{opacity}}; display: {{display}}; z-index: {{zindex}}; cursor: {{enableclose ? 'pointer' : 'default'}}" on-click="close" on-keydown="keydown">
-  <div class="popup {{class}}" style="{{style}}" on-click="@event.stopPropagation()">
+<div role="dialog" aria-label="{{title}}" tabindex="0" class="popup-wrapper {{popup_id}}" style="opacity: {{opacity}}; display: {{display}}; z-index: {{zindex}}; cursor: {{enableclose ? 'pointer' : 'default'}}" on-click="clickoutside" on-keydown="keydown">
+  <div class="popup {{class}}" style="{{style}}">
     <div class="popup-titlebar">
       <h3 class="popup-title">{{title}}</h3>
       {{#if enableclose}}<button type="button" class="popup-btn-close" on-click="close">×</button>{{/if}}
@@ -34,6 +34,11 @@ export default Ractive.extend({
             ctx.original.preventDefault();
             if(this.get('enableclose')){
                 this.set('basedon', false);
+            }
+        },
+        clickoutside: function(ctx){
+            if(ctx.original.target === ctx.node){
+                this.fire('close', ctx);
             }
         },
         keydown: function(ctx){
