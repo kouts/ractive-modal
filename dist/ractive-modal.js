@@ -79,8 +79,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-Ractive._modal_animating = false;
-Ractive._modal_delay = 0;
+Ractive.sharedSet({'rm.animating': undefined, 'rm.delay': 0});
 function getAnimationDuration(el){
     var duration = window.getComputedStyle(el, null)['animation-duration'];
     return (duration.indexOf('ms') !== -1) ? parseFloat(duration.replace('ms', '')) : parseFloat(duration.replace('s', '')) * 1000;
@@ -219,25 +218,28 @@ function getAnimationDuration(el){
         return new Promise(function(resolve, reject){
             var handler = function(e) {
                 this.find('.popup-wrapper').removeEventListener('animationend', handler);
-                this.set({'anim_class': '', 'bg_anim_class': ''});
-                Ractive._modal_animating = undefined;
-                Ractive._modal_delay = 0;
+                this.set({
+                    'anim_class': '',
+                    'bg_anim_class': '',
+                    '@shared.rm.animating': undefined,
+                    '@shared.rm.delay': 0
+                });
                 if(dir == 'out'){
                     this.set({showbackdrop: false, opacity: 0});
                 }
                 resolve();
             }.bind(this);
             this.find('.popup-wrapper').addEventListener('animationend', handler);
-            if(typeof Ractive._modal_animating === 'object'){
-                Ractive._modal_delay = Ractive._modal_delay + getAnimationDuration(Ractive._modal_animating.find('.popup-wrapper')) + 100;
+            if(typeof this.get('@shared.rm.animating') === 'object'){
+                this.set('@shared.rm.delay', this.get('@shared.rm.delay') + getAnimationDuration(this.get('@shared.rm.animating').find('.popup-wrapper')) + 100);
             }
-            Ractive._modal_animating = this;
+            this.set('@shared.rm.animating', this);
             setTimeout(function(){
                 if(dir == 'in'){
                     this.set({showbackdrop: true, opacity: 1});
                 }
                 this.set({'anim_class': this.get(dir+'_class'), 'bg_anim_class': this.get('bg_'+dir+'_class')});
-            }.bind(this), Ractive._modal_delay);
+            }.bind(this), this.get('@shared.rm.delay'));
         }.bind(this));
     },
     getTopZindex: function(){
