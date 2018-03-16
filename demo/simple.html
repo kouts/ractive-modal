@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+        <script src="../dist/ractive-modal.js"></script>
+    </head>
+    <body>
+        <div id="output"></div>
+        <script id="template" type="text/ractive">
+    		<button on-click="@.set('mymodal', true)"> click me to open modal </button>
+    		<modal basedon="{{mymodal}}" enableclose="{{false}}">
+    		    <button on-click="close">Close!</button>
+      	        <p>this is my modal content2</p>
+    	  </modal>
+        </script>
+        <script>
+            Ractive.components.modal = RactiveModal.extend({delegate: false});
+            new Ractive({
+            	el: 'body',
+            	template: '#template'
+            })
+        </script>
+    </body>
+</html>
