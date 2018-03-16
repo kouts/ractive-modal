@@ -10,10 +10,11 @@
         <div id="output"></div>
         <script id="template" type="text/ractive">
     		<button on-click="@.set('mymodal', true)"> click me to open modal </button>
-    		<modal basedon="{{mymodal}}" enableclose="{{false}}">
+    	    <modal basedon="{{mymodal}}" enableclose="{{false}}">
     		    <button on-click="@.set('mymodal', false)">Close!</button>
       	        <p>this is my modal content2</p>
-    	  </modal>
+                <img src="http://via.placeholder.com/850x150" />
+    	    </modal>
         </script>
         <script>
             Ractive.components.modal = RactiveModal.extend({delegate: false});
