@@ -1,6 +1,6 @@
 <style>
   .popup-wrapper {position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 1050; overflow: auto; display: none; background-color: rgba(0, 0, 0, 0.5);}
-  .popup {display: inline-table; position: relative; color: #333333; float: left; background-color: #fff; top:30px; left: 50%; transform: translate(-50%,0); cursor: default; min-width: 110px; max-width: 500px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);}
+  .popup {margin-bottom: 4em; display: inline-table; position: relative; color: #333333; float: left; background-color: #fff; top:30px; left: 50%; transform: translate(-50%,0); cursor: default; min-width: 110px; max-width: 500px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);}
   .popup-titlebar {padding:15px; color: #333; overflow: auto; border-bottom: 1px solid #e5e5e5;}
   .popup-title {margin-top:2px; margin-bottom: 0px; display: inline-block; font-size:1.25rem;}
   .popup-btn-close {padding: 0px 4px 0px 4px; cursor: pointer; background: 0 0; border: 0; font-weight:700; float: right; font-size: 1.5rem; line-height: 1; margin-right: -5px; color:#ccc;}
@@ -29,7 +29,10 @@ export default Ractive.extend({
     template: $TEMPLATE,
     css: $CSS,
     data: function(){
-        return {showpopup: false, basedon: false, live: false, appendto: '', class: '', style:'', title: '', popup_id: this._guid+'_popup', enableclose: true, base_zindex: 1050, opacity: 0, display: 'none', zindex: 0}
+        return {
+            showpopup: false, basedon: false, live: false, appendto: '', class: '', style:'', title: '', popup_id: this._guid+'_popup', enableclose: true, base_zindex: 1050, opacity: 0, display: 'none', zindex: 0,
+            'prevent-bg-scroll': false
+        }
     },
     on: {
         close: function(ctx){
@@ -46,6 +49,7 @@ export default Ractive.extend({
         keydown: function(ctx){
             var e = ctx.original;
             if(e.which === 27){
+                // ESC key
                 this.fire('close', ctx);
             }
             if(e.which === 9){
@@ -80,6 +84,11 @@ export default Ractive.extend({
                 if(document.querySelector('.'+popup_id) && document.querySelector('.'+popup_id).style.display === 'block'){
                     return;
                 }
+                if (this.get('prevent-bg-scroll')){
+                    //$('body').css('overflow', 'hidden');
+                    document.body.style.overflow = "hidden"
+
+                }
                 this.elToFocus = document.activeElement;
                 this.fire('beforeOpen');
                 var lastZindex = this.getTopZindex();
@@ -96,6 +105,10 @@ export default Ractive.extend({
             }else{
                 if(!document.querySelector('.'+popup_id) || document.querySelector('.'+popup_id).style.display !== 'block'){
                     return;
+                }
+                if(this.get('prevent-bg-scroll')){
+                    //$('body').css('overflow', 'auto');
+                    document.body.style.overflow = "auto"
                 }
                 this.fire('beforeClose');
                 this.animate('opacity', 0, {duration: 250}).then(function(){
