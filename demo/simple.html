@@ -11,7 +11,7 @@
         <script id="template" type="text/ractive">
     		<button on-click="@.set('mymodal', true)"> click me to open modal </button>
     		<modal basedon="{{mymodal}}" enableclose="{{false}}">
-    		    <button on-click="close">Close!</button>
+    		    <button on-click="@.set('mymodal', false)">Close!</button>
       	        <p>this is my modal content2</p>
     	  </modal>
         </script>
