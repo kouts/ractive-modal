@@ -114,6 +114,7 @@ function getAnimationDuration(el){
             body_style: null
         }
     },
+    delegate: false,
     body_scroll: false,
     on: {
         close: function(ctx){
