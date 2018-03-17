@@ -19,6 +19,9 @@
 	    body {
 		    padding-top: 5rem;
 		  }
+      .code-comment {
+        padding-left:20px;
+      }
   		.jumbotron {
   		  padding: 3rem 1.5rem;
   		  text-align: center;
@@ -255,10 +258,12 @@
           <h5>then in your template</h5>
           <pre class="highlight">
             <code as-code>
-  <button type="button" class="btn btn-primary" on--click="@this.set('open_modal_1', true)">Open modal</button>
-  <modal title="My first modal" basedon="\{{open_modal_1}}">
-    <p>Hello World!</p>
-  </modal>
+            <!--
+<button type="button" class="btn btn-primary" on-click="@this.set('open_modal_1', true)">Open modal</button>
+<modal title="My first modal" basedon="{{open_modal_1}}">
+  <p>Hello World!</p>
+</modal>
+            -->
             </code>
           </pre>
 
@@ -278,9 +283,11 @@
           <p>ractive-modal exposes 4 component events - beforeOpen, afterOpen, beforeClose, afterClose</p>
           <pre class="highlight">
             <code as-code>
-  <modal title="Events modal" basedon="\{{open_modal}}" on--beforeOpen="@global.alert('beforeOpen event fired')">
-    <p>A modal with "beforeopen" component event attached</p>
-  </modal>
+            <!--
+<modal title="Events modal" basedon="{{open_modal}}" on-beforeOpen="@global.alert('beforeOpen event fired')">
+  <p>A modal with "beforeopen" component event attached</p>
+</modal>
+            -->
             </code>
           </pre>
           <h5>Example</h5>
@@ -488,25 +495,25 @@
                   <td>in_class</td>
                   <td>Animation class for the modal intro</td>
                   <td>String</td>
-                  <td><em>popup-fadeIn</em></td>
+                  <td>rm-fadeIn</td>
                 </tr>
                 <tr>
                   <td>out_class</td>
                   <td>Animation class for the modal outro</td>
                   <td>String</td>
-                  <td>popup-fadeOut</td>
+                  <td>rm-fadeOut</td>
                 </tr>
                 <tr>
                   <td>bg_in_class</td>
                   <td>Animation class for the modal backdrop intro</td>
                   <td>String</td>
-                  <td>popup-fadeIn</td>
+                  <td>rm-fadeIn</td>
                 </tr>
                 <tr>
                   <td>bg_out_class</td>
                   <td>Animation class for the modal backdrop outro</td>
                   <td>String</td>
-                  <td>popup-fadeOut</td>
+                  <td>rm-fadeOut</td>
                 </tr>                
                 <tr>
                   <td>style</td>
@@ -574,7 +581,7 @@
 
           <h5>version 0.2.2</h5>
           <ul>
-            <li>event.stopPropagation on popup element caused click events not propagating up to the document.<br />This is now fixed with a clickoutside handler method</li>
+            <li>event.stopPropagation on modal element caused click events not propagating up to the document.<br />This is now fixed with a clickoutside handler method</li>
           </ul>
 
           <h5>version 0.2.1</h5>
@@ -605,15 +612,35 @@
     <script src="https://cdn.jsdelivr.net/npm/ractive"></script>
     <script src="../dist/ractive-modal.js"></script>
     <script type="text/javascript">
-      Ractive.decorators.code = function(el){
-        function esc(string){
-          var entityMap = {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': '&quot;', "'": '&#39;', "/": '&#x2F;'};
-          return String(string).replace(/[&<>"'\/]/g, function(s){
-            return entityMap[s];
-          });
+
+      function findComments(el) {
+        var arr = [];
+        for(var i = 0; i < el.childNodes.length; i++) {
+          var node = el.childNodes[i];
+          if(node.nodeType === 8) {
+            arr.push(node);
+          } else {
+            arr.push.apply(arr, findComments(node));
+          }
         }
-        var html = el.innerHTML;
-        el.innerHTML = esc(html.replace(/on--/g, 'on-'));
+        return arr;
+      };
+
+      function esc(string){
+        var entityMap = {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': '&quot;', "'": '&#39;', "/": '&#x2F;'};
+        return String(string).replace(/[&<>"'\/]/g, function(s){
+          return entityMap[s];
+        });
+      }
+
+      Ractive.decorators.code = function(node){
+        var comments = findComments(node);
+        for (var i = 0; i < comments.length; i++) {
+          var temp = document.createElement('div');
+          temp.classList.add('code-comment');
+          temp.innerHTML = esc(comments[i].nodeValue).replace(/^\s+|\s+$/g, '');
+          node.replaceChild(temp, comments[i]);
+        };
         return {
           teardown: function(){
           }
@@ -621,6 +648,7 @@
       }
 
       var ractive = new Ractive({
+        stripComments: false,
         target: '#app',
         template: '#app-template',
         data: {
