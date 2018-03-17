@@ -79,11 +79,39 @@ return /******/ (function(modules) { // webpackBootstrap
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+Ractive.sharedSet({'rm.animating': undefined, 'rm.delay': 0});
+function getAnimationDuration(el){
+    var duration = window.getComputedStyle(el, null)['animation-duration'];
+    return (duration.indexOf('ms') !== -1) ? parseFloat(duration.replace('ms', '')) : parseFloat(duration.replace('s', '')) * 1000;
+}
 /* harmony default export */ __webpack_exports__["default"] = (Ractive.extend({
-    template: {v:4,t:[{t:4,f:[{t:7,e:"div",m:[{n:"role",f:"dialog",t:13},{n:"aria-label",f:[{t:2,r:"title"}],t:13},{n:"tabindex",f:"0",t:13},{n:"class",f:["popup-wrapper ",{t:2,r:"popup_id"}],t:13},{n:"style",f:["opacity: ",{t:2,r:"opacity"},"; display: ",{t:2,r:"display"},"; z-index: ",{t:2,r:"zindex"},"; cursor: ",{t:2,x:{r:["enableclose"],s:"_0?\"pointer\":\"default\""}}],t:13},{n:["click"],t:70,f:"clickoutside"},{n:["keydown"],t:70,f:"keydown"}],f:[{t:7,e:"div",m:[{n:"class",f:["popup ",{t:2,r:"class"}],t:13},{n:"style",f:[{t:2,r:"style"}],t:13}],f:[{t:4,f:[{t:7,e:"div",m:[{n:"class",f:"popup-titlebar",t:13}],f:[{t:7,e:"h3",m:[{n:"class",f:"popup-title",t:13}],f:[{t:2,r:"title"}]}," ",{t:4,f:[{t:7,e:"button",m:[{n:"type",f:"button",t:13},{n:"class",f:"popup-btn-close",t:13},{n:["click"],t:70,f:"close"}],f:["×"]}],n:50,r:"enableclose"}]}],n:50,x:{r:["title","enableclose"],s:"_0||_1"}}," ",{t:7,e:"div",m:[{n:"class",f:"popup-content",t:13}],f:[{t:16}]}]}]}],n:50,r:"showpopup"}],e:{"_0?\"pointer\":\"default\"":function (_0){return(_0?"pointer":"default");},"_0||_1":function (_0,_1){return(_0||_1);}}},
-    css: ".popup-wrapper {position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 1050; overflow: auto; display: none; background-color: rgba(0, 0, 0, 0.5);} .popup {position: relative; color: #333333; float: left; background-color: #fff; top:30px; left: 50%; transform: translate(-50%,0); cursor: default; min-width: 110px; max-width: 500px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);} .popup-titlebar {padding:15px; color: #333; overflow: auto; border-bottom: 1px solid #e5e5e5;} .popup-title {margin-top:2px; margin-bottom: 0px; display: inline-block; font-size:1.25rem;} .popup-btn-close {padding: 0px 4px 0px 4px; cursor: pointer; background: 0 0; border: 0; font-weight:700; float: right; font-size: 1.5rem; line-height: 1; margin-right: -5px; color:#ccc;} .popup-btn-close:hover, .popup-btn-close:focus:hover{color:#6f6f6f; border-color: transparent; background-color: transparent;} .popup-btn-close:focus {color:#939393; border-color: transparent; background-color: transparent;} .popup-content {padding:15px 15px 15px 15px;} .popup-content .full-hr {width: auto; border: 0; border-top: 1px solid #e0e0e0; margin-top:15px; margin-bottom:15px; margin-left:-14px; margin-right:-14px;}",
-    data: function(){
-        return {showpopup: false, basedon: false, live: false, appendto: '', class: '', style:'', title: '', popup_id: this._guid+'_popup', enableclose: true, base_zindex: 1050, opacity: 0, display: 'none', zindex: 0}
+    template: {v:4,t:[{t:4,f:[{t:7,e:"div",m:[{n:"class",f:["rm-backdrop ",{t:2,r:"bg_class"}," ",{t:2,r:"base_anim_class"}," ",{t:2,r:"bg_anim_class"}," backdrop-",{t:2,r:"modal_id"}],t:13},{n:"style",f:["z-index: ",{t:2,x:{r:["zindex"],s:"_0-1"}},";"],t:13}]}],n:50,r:"showbackdrop"},{t:4,f:[{t:7,e:"div",m:[{n:"class",f:["rm-wrapper ",{t:2,r:"base_anim_class"}," ",{t:2,r:"anim_class"}," ",{t:2,r:"modal_id"}],t:13},{n:"role",f:"dialog",t:13},{n:"aria-label",f:[{t:2,r:"title"}],t:13},{n:"tabindex",f:"0",t:13},{n:"style",f:["opacity: ",{t:2,r:"opacity"},"; display: ",{t:2,r:"display"},"; z-index: ",{t:2,r:"zindex"},"; cursor: ",{t:2,x:{r:["enableclose"],s:"_0?\"pointer\":\"default\""}}],t:13},{n:["click"],t:70,f:"clickoutside"},{n:["keydown"],t:70,f:"keydown"}],f:[{t:7,e:"div",m:[{n:"class",f:["rm ",{t:2,r:"class"}],t:13},{n:"style",f:[{t:2,r:"style"}],t:13}],f:[{t:4,f:[{t:7,e:"div",m:[{n:"class",f:"rm-titlebar",t:13}],f:[{t:7,e:"h3",m:[{n:"class",f:"rm-title",t:13}],f:[{t:2,r:"title"}]}," ",{t:4,f:[{t:7,e:"button",m:[{n:"type",f:"button",t:13},{n:"class",f:"rm-btn-close",t:13},{n:["click"],t:70,f:"close"}],f:["×"]}],n:50,r:"enableclose"}]}],n:50,x:{r:["title","enableclose"],s:"_0||_1"}}," ",{t:7,e:"div",m:[{n:"class",f:"rm-content",t:13}],f:[{t:16}]}]}]}],n:50,r:"showmodal"}],e:{"_0-1":function (_0){return(_0-1);},"_0?\"pointer\":\"default\"":function (_0){return(_0?"pointer":"default");},"_0||_1":function (_0,_1){return(_0||_1);}}},
+    css: ".rm-backdrop {position: fixed; top: 0; right: 0; bottom: 0; left: 0; background-color: rgba(0, 0, 0, 0.5);} .rm-wrapper {position: fixed; text-align: center; top: 0; right: 0; bottom: 0; left: 0; overflow-x: hidden; overflow-y: auto; display: none; outline: 0;} .rm {position: relative; display: inline-block; width:100%; text-align: left; color: #333333; background-color: #fff; top:30px; cursor: default; min-width: 110px; max-width: 500px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);} .rm-titlebar {padding:15px; color: #333; overflow: auto; border-bottom: 1px solid #e5e5e5;} .rm-title {margin-top:2px; margin-bottom: 0px; display: inline-block; font-size:1.25rem;} .rm-btn-close {padding: 0px 4px 0px 4px; cursor: pointer; background: 0 0; border: 0; font-weight:700; float: right; font-size: 1.5rem; line-height: 1; margin-right: -5px; color:#ccc;} .rm-btn-close:hover, .rm-btn-close:focus:hover{color:#6f6f6f; border-color: transparent; background-color: transparent;} .rm-btn-close:focus {color:#939393; border-color: transparent; background-color: transparent;} .rm-content {padding:15px 15px 15px 15px;} .rm-content .full-hr {width: auto; border: 0; border-top: 1px solid #e0e0e0; margin-top:15px; margin-bottom:15px; margin-left:-14px; margin-right:-14px;} .rm-fadeIn {-webkit-animation-name: rm-fadeIn; animation-name: rm-fadeIn;} @-webkit-keyframes rm-fadeIn {0% {opacity: 0} 100% {opacity: 1}} @keyframes rm-fadeIn {0% {opacity: 0} 100% {opacity: 1}} .rm-fadeOut {-webkit-animation-name: rm-fadeOut; animation-name: rm-fadeOut;} @-webkit-keyframes rm-fadeOut {0% {opacity: 1} 100% {opacity: 0}} @keyframes rm-fadeOut {0% {opacity: 1} 100% {opacity: 0}} .rm-fadeIn, .rm-fadeOut {-webkit-animation-duration: .25s; animation-duration: .25s; -webkit-animation-fill-mode: both; animation-fill-mode: both;}",
+    data: function() {
+        return {
+            showmodal: false,
+            showbackdrop: false,
+            basedon: false,
+            live: false,
+            appendto: '',
+            class: '',
+            bg_class: '',
+            base_anim_class: '',
+            anim_class: '',
+            bg_anim_class: '',
+            bg_in_class: 'rm-fadeIn',
+            bg_out_class: 'rm-fadeOut',
+            in_class: 'rm-fadeIn',
+            out_class: 'rm-fadeOut',
+            style: '',
+            title: '',
+            modal_id: this._guid + '_rm',
+            enableclose: true,
+            base_zindex: 1051,
+            opacity: 0,
+            display: 'none',
+            zindex: 0
+        }
     },
     on: {
         close: function(ctx){
@@ -108,7 +136,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     return !!( el.offsetWidth || el.offsetHeight || el.getClientRects().length );
                 });
                 if(e.shiftKey){
-                    if(e.target === all[0] || e.target === this.find('.popup-wrapper')){
+                    if(e.target === all[0] || e.target === this.find('.rm-wrapper')){
                         e.preventDefault();
                         all[all.length-1].focus();
                     }
@@ -123,51 +151,51 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     onconfig: function(){
         if(this.get('live')){
-            this.set('showpopup', true);
+            this.set('showmodal', true);
         }
     },
     onrender: function(){
-        var popup_id = this.get('popup_id');
+        var modal_id = this.get('modal_id');
         this.observe_basedon = this.observe('basedon', function(newValue, oldValue, keypath){
             var live = this.get('live');
             if(newValue === true){
-                if(document.querySelector('.'+popup_id) && document.querySelector('.'+popup_id).style.display === 'block'){
+                if(document.querySelector('.'+modal_id) && document.querySelector('.'+modal_id).style.display === 'block'){
                     return;
                 }
                 this.elToFocus = document.activeElement;
                 this.fire('beforeOpen');
                 var lastZindex = this.getTopZindex();
-                var zindex = (lastZindex == 0) ? this.get('base_zindex') : lastZindex+1;
+                var zindex = (lastZindex == 0) ? this.get('base_zindex') : lastZindex+2;
                 if(!live){
-                    this.set('showpopup', true);
+                    this.set('showmodal', true);
                 }
                 this.insert(this.get('appendto') ? document.querySelector(this.get('appendto')) : this.root.el);
                 this.set({'display': 'block', 'zindex': zindex});
-                this.animate('opacity', 1, {duration: 250}).then(function(){
-                    this.find('[autofocus]') ? this.find('[autofocus]').focus() : this.find('.popup-wrapper').focus();
+                this.animateModal('in').then(function(){
+                    this.find('[autofocus]') ? this.find('[autofocus]').focus() : this.find('.rm-wrapper').focus();
                     this.fire('afterOpen');
                 }.bind(this));
             }else{
-                if(!document.querySelector('.'+popup_id) || document.querySelector('.'+popup_id).style.display !== 'block'){
+                if(!document.querySelector('.'+modal_id) || document.querySelector('.'+modal_id).style.display !== 'block'){
                     return;
                 }
                 this.fire('beforeClose');
-                this.animate('opacity', 0, {duration: 250}).then(function(){
+                this.animateModal('out').then(function(){
                     this.set({'display': 'none', 'zindex': 0});
                     if(!live){
-                        this.set('showpopup', false);
+                        this.set('showmodal', false);
                     }
                     this.fire('afterClose');
                     var lastZindex = this.getTopZindex();
                     if(lastZindex > 0){
-                        var all = document.querySelectorAll('.popup-wrapper');
+                        var all = document.querySelectorAll('.rm-wrapper');
                         for (var i = 0; i < all.length; i++) {
                             if(all[i].style.zIndex == lastZindex){
                                 var r = Ractive.getContext(all[i]).ractive;
                                 if(r.find('div').contains(this.elToFocus)){
                                     this.elToFocus.focus();
                                 }else{
-                                    r.find('[autofocus]') ? r.find('[autofocus]').focus() : r.find('.popup-wrapper').focus();
+                                    r.find('[autofocus]') ? r.find('[autofocus]').focus() : r.find('.rm-wrapper').focus();
                                 }
                                 break;
                             }
@@ -186,9 +214,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     onunrender: function(){
         this.observe_basedon.cancel();
     },
+    animateModal: function(dir){
+        return new Promise(function(resolve, reject){
+            var handler = function(e) {
+                this.find('.rm-wrapper').removeEventListener('animationend', handler);
+                this.set({
+                    'anim_class': '',
+                    'bg_anim_class': '',
+                    '@shared.rm.animating': undefined,
+                    '@shared.rm.delay': 0
+                });
+                if(dir == 'out'){
+                    this.set({showbackdrop: false, opacity: 0});
+                }
+                resolve();
+            }.bind(this);
+            this.find('.rm-wrapper').addEventListener('animationend', handler);
+            if(typeof this.get('@shared.rm.animating') === 'object'){
+                this.set('@shared.rm.delay', this.get('@shared.rm.delay') + getAnimationDuration(this.get('@shared.rm.animating').find('.rm-wrapper')) + 100);
+            }
+            this.set('@shared.rm.animating', this);
+            setTimeout(function(){
+                if(dir == 'in'){
+                    this.set({showbackdrop: true, opacity: 1});
+                }
+                this.set({'anim_class': this.get(dir+'_class'), 'bg_anim_class': this.get('bg_'+dir+'_class')});
+            }.bind(this), this.get('@shared.rm.delay'));
+        }.bind(this));
+    },
     getTopZindex: function(){
         var toret = 0;
-        var all = document.querySelectorAll('.popup-wrapper');
+        var all = document.querySelectorAll('.rm-wrapper');
         for (var i = 0; i < all.length; i++) {
             toret = parseInt(all[i].style.zIndex) > toret ? parseInt(all[i].style.zIndex) : toret;
         };
