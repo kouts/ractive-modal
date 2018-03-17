@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+        <script src="../dist/ractive-modal.js"></script>
+    </head>
+    <body>
+        <div id="output"></div>
+        <script id="template" type="text/ractive">
+            {{#each Array(20)}}
+                <p>Some content that causes page to scroll (line {{@index + 1}}) </p>
+            {{/each}}
+
+            <div style="border: 2px dashed red; padding: 2em">
+    		    <button on-click="@.set('mymodal', true)"> click me to open modal </button>
+            </div>
+
+            {{#each Array(20)}}
+                <p>Some content that causes page to scroll (line {{@index + 21}}) </p>
+            {{/each}}
+
+    	    <modal basedon="{{mymodal}}" enableclose="false" prevent-bg-scroll="true">
+        		<button on-click="@.set('mymodal', false)">My custom close button</button>
+      	        <p>this is my modal content2</p>
+                <img src="http://via.placeholder.com/850x150" />
+
+                {{#each Array(20)}}
+                    <p> Some content to cause modal to scroll </p>
+                {{/each}}
+    	    </modal>
+        </script>
+        <script>
+            Ractive.components.modal = RactiveModal.extend({delegate: false});
+            new Ractive({
+            	el: 'body',
+            	template: '#template'
+            })
+        </script>
+    </body>
+</html>
