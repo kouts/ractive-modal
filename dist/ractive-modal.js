@@ -110,9 +110,11 @@ function getAnimationDuration(el){
             base_zindex: 1051,
             opacity: 0,
             display: 'none',
-            zindex: 0
+            zindex: 0,
+            body_style: null
         }
     },
+    body_scroll: false,
     on: {
         close: function(ctx){
             ctx.original.preventDefault();
@@ -147,6 +149,16 @@ function getAnimationDuration(el){
                     }
                 }
             }
+        },
+        beforeOpen: function(){
+            if(!this.scroll_body){
+                this.lockBodyScroll();
+            }
+        },
+        afterClose: function(ctx){
+            if(!this.scroll_body && ctx.ractive.getTopZindex() === 0){
+                this.unlockBodyScroll();
+            }
         }
     },
     onconfig: function(){
@@ -165,7 +177,7 @@ function getAnimationDuration(el){
                 this.elToFocus = document.activeElement;
                 this.fire('beforeOpen');
                 var lastZindex = this.getTopZindex();
-                var zindex = (lastZindex == 0) ? this.get('base_zindex') : lastZindex+2;
+                var zindex = (lastZindex === 0) ? this.get('base_zindex') : lastZindex+2;
                 if(!live){
                     this.set('showmodal', true);
                 }
@@ -249,6 +261,17 @@ function getAnimationDuration(el){
             toret = parseInt(all[i].style.zIndex) > toret ? parseInt(all[i].style.zIndex) : toret;
         };
         return toret;
+    },
+    lockBodyScroll: function(){
+        this.set('body_style', document.body.getAttribute('style'));
+        document.body.style.overflow = 'hidden';
+    },
+    unlockBodyScroll: function(){
+        if(this.get('body_style')){
+            document.body.style = this.get('body_style');
+        }else{
+            document.body.removeAttribute('style');
+        }
     }
 }));
 

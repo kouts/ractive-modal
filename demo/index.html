@@ -18,6 +18,7 @@
     <style>
 	    body {
 		    padding-top: 5rem;
+        padding-right: 200px;
 		  }
       .code-comment {
         padding-left:20px;
@@ -1018,15 +1019,6 @@
           },
           'callbacks-modal.afterClose': function(){
             alert('afterClose event fired');
-          },
-          'modal.beforeOpen callbacks-modal.beforeOpen': function(){
-            document.querySelector('body').style.overflow = 'hidden';
-          },
-          'modal.afterClose callbacks-modal.afterClose': function(ctx){
-            var lastZindex = ctx.ractive.getTopZindex();
-            if(lastZindex == 0){
-              document.querySelector('body').style.overflow = 'auto';
-            }
           }
         }
       });
