@@ -113,6 +113,7 @@ function getAnimationDuration(el){
             zindex: 0
         }
     },
+    delegate: false,
     on: {
         close: function(ctx){
             ctx.original.preventDefault();
