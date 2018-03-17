@@ -1,5 +1,5 @@
 {
-  "//": "To use type: npm run watch",
+  "//": "To use type: npm run dev",
   "name": "ractive-modal",
   "version": "0.3.0",
   "description": "A modal popup component for ractive",

@@ -19,3 +19,12 @@ Features
 
 Click here for documentation and examples
 https://kouts.github.io/ractive-modal/demo/
+
+# Development
+
+In order to start development:
+
+```sh
+npm i
+npm run dev
+```
