@@ -24,10 +24,12 @@
 {{#if showpopup}}
     <div class="popup-wrapper {{base_anim_class}} {{anim_class}} {{popup_id}}" role="dialog" aria-label="{{title}}" tabindex="0" style="opacity: {{opacity}}; display: {{display}}; z-index: {{zindex}}; cursor: {{enableclose ? 'pointer' : 'default'}}" on-click="clickoutside" on-keydown="keydown">
         <div class="popup {{class}}" style="{{style}}">
-            <div class="popup-titlebar">
-                <h3 class="popup-title">{{title}}</h3>
-                {{#if enableclose}}<button type="button" class="popup-btn-close" on-click="close">×</button>{{/if}}
-            </div>
+            {{#if title || enableclose}}
+                <div class="popup-titlebar">
+                    <h3 class="popup-title">{{title}}</h3>
+                    {{#if enableclose}}<button type="button" class="popup-btn-close" on-click="close">×</button>{{/if}}
+                </div>
+            {{/if}}
             <div class="popup-content">{{yield}}</div>
         </div>
     </div>
