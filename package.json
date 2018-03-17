@@ -1,5 +1,5 @@
 {
-  "//": "To use type: npm run watch",
+  "//": "To use type: npm run dev",
   "name": "ractive-modal",
   "version": "0.2.2",
   "description": "A modal popup component for ractive",
@@ -19,7 +19,7 @@
   },
   "scripts": {
     "build": "webpack",
-    "watch": "onchange 'src/*.*' -- npm run build"
+    "dev": "onchange 'src/*.*' -- npm run build"
   },
   "author": "kouts",
   "license": "ISC",
