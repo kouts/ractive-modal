@@ -91,7 +91,7 @@
         </div>
       </div>
 
-      <modal title="First modal window" class="" style="max-width:700px;" basedon="{{uind.popmd_1_show}}" live="true">
+      <modal title="First modal window" class="" style="max-width:700px;" basedon="{{uind.popmd_1_show}}" live="true" body_lock_scroll="true">
         <div class="row">
             <div class="col-md-4 form-group">
               <label>Field 1</label>
@@ -276,6 +276,28 @@
 
         </div>
       </div>
+
+
+      <div class="row mb-3"></div>
+      <div class="row mb-3"></div>
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <h2 class="pb-2">Prevent &lt;body&gt; from scrolling</h2>
+          <p>A common need when a modal window is open, is to prevent the &lt;body&gt; of the underlying page from scrolling.<br />
+          ractive-modal does not impose any specific scroll behavior on the &lt;body&gt; by default. This functionality is provided as a separate <a href="../plugins/ractive-modal-scroll-lock.js" target="_blank">plugin</a>.</p>
+          <h5>Include <a href="../plugins/ractive-modal-scroll-lock.js" target="_blank">ractive-modal-scroll-lock.js</a> plugin, to prevent &lt;body&gt; from scrolling when a modal is open</h5>
+          <ol>
+            <li>When <a href="../plugins/ractive-modal-scroll-lock.js" target="_blank">ractive-modal-scroll-lock.js</a> is included, all modals when opened prevent &lt;body&gt; from scrolling <strong>by default</strong>.</li>
+            <li>When the modal is closed, the &lt;body&gt; scrolling behavior is restored.</li>
+            <li>To override the "scroll locking" behavior for any modal, you can set <span class="badge badge-light font-weight-normal" style="font-size: 1rem;">body_lock_scroll="false"</span></li>
+          </ol>
+
+          <div class="alert alert-info" role="alert">
+            <strong>Info: </strong>This demo page includes the <a href="../plugins/ractive-modal-scroll-lock.js" target="_blank">ractive-modal-scroll-lock.js</a> plugin.
+          </div>
+
+        </div>
+      </div>      
 
       <div class="row mb-3"></div>
       <div class="row mb-3">
@@ -612,6 +634,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/ractive"></script>
     <script src="../dist/ractive-modal.js"></script>
+    <script src="../plugins/ractive-modal-scroll-lock.js"></script>
+
     <script type="text/javascript">
 
       function findComments(el) {

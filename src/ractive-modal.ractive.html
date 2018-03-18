@@ -37,10 +37,6 @@
 
 <script>
     Ractive.sharedSet({'rm.animating': undefined, 'rm.delay': 0});
-    function getAnimationDuration(el){
-        var duration = window.getComputedStyle(el, null)['animation-duration'];
-        return (duration.indexOf('ms') !== -1) ? parseFloat(duration.replace('ms', '')) : parseFloat(duration.replace('s', '')) * 1000;
-    }
     export default Ractive.extend({
         template: $TEMPLATE,
         css: $CSS,
@@ -67,12 +63,10 @@
                 base_zindex: 1051,
                 opacity: 0,
                 display: 'none',
-                zindex: 0,
-                body_style: null
+                zindex: 0
             }
         },
         delegate: false,
-        body_scroll: false,
         on: {
             close: function(ctx){
                 ctx.original.preventDefault();
@@ -106,16 +100,6 @@
                             all[0].focus();
                         }
                     }
-                }
-            },
-            beforeOpen: function(){
-                if(!this.scroll_body){
-                    this.lockBodyScroll();
-                }
-            },
-            afterClose: function(ctx){
-                if(!this.scroll_body && ctx.ractive.getTopZindex() === 0){
-                    this.unlockBodyScroll();
                 }
             }
         },
@@ -201,7 +185,7 @@
                 }.bind(this);
                 this.find('.rm-wrapper').addEventListener('animationend', handler);
                 if(typeof this.get('@shared.rm.animating') === 'object'){
-                    this.set('@shared.rm.delay', this.get('@shared.rm.delay') + getAnimationDuration(this.get('@shared.rm.animating').find('.rm-wrapper')) + 100);
+                    this.set('@shared.rm.delay', this.get('@shared.rm.delay') + this.getAnimationDuration(this.get('@shared.rm.animating').find('.rm-wrapper')) + 100);
                 }
                 this.set('@shared.rm.animating', this);
                 setTimeout(function(){
@@ -220,16 +204,9 @@
             };
             return toret;
         },
-        lockBodyScroll: function(){
-            this.set('body_style', document.body.getAttribute('style'));
-            document.body.style.overflow = 'hidden';
-        },
-        unlockBodyScroll: function(){
-            if(this.get('body_style')){
-                document.body.style = this.get('body_style');
-            }else{
-                document.body.removeAttribute('style');
-            }
+        getAnimationDuration: function(el){
+            var duration = window.getComputedStyle(el, null)['animation-duration'];
+            return (duration.indexOf('ms') !== -1) ? parseFloat(duration.replace('ms', '')) : parseFloat(duration.replace('s', '')) * 1000;
         }
     });
 </script>
