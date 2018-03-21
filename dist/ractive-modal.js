@@ -110,6 +110,7 @@ Ractive.sharedSet({'rm.animating': undefined, 'rm.delay': 0});
         }
     },
     delegate: false,
+    elToFocus: null,
     on: {
         close: function(ctx){
             ctx.original.preventDefault();
