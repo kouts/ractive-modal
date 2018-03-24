@@ -110,6 +110,7 @@ Ractive.sharedSet({'rm.animating': undefined, 'rm.delay': 0});
         }
     },
     delegate: false,
+    elToFocus: null,
     on: {
         close: function(ctx){
             ctx.original.preventDefault();
@@ -189,7 +190,7 @@ Ractive.sharedSet({'rm.animating': undefined, 'rm.delay': 0});
                         for (var i = 0; i < all.length; i++) {
                             if(all[i].style.zIndex == lastZindex){
                                 var r = Ractive.getContext(all[i]).ractive;
-                                if(r.find('div').contains(this.elToFocus)){
+                                if(r.find('.rm-wrapper').contains(this.elToFocus)){
                                     this.elToFocus.focus();
                                 }else{
                                     r.find('[autofocus]') ? r.find('[autofocus]').focus() : r.find('.rm-wrapper').focus();
