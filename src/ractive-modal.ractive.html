@@ -126,6 +126,7 @@
                     }
                     this.insert(this.get('appendto') ? document.querySelector(this.get('appendto')) : this.root.el);
                     this.set({'display': 'block', 'zindex': zindex});
+                    this.fire('opening');
                     this.animateModal('in').then(function(){
                         this.find('[autofocus]') ? this.find('[autofocus]').focus() : this.find('.rm-wrapper').focus();
                         this.fire('afterOpen');

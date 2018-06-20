@@ -6,7 +6,7 @@ Features
 - Opens and closes with a data variable
 - Includes default styling but it's also highly customizable via user CSS classes and styles
 - Modal intro and outro effects using CSS animations
-- Exposes Component events - beforeOpen, afterOpen, beforeClose, afterClose
+- Exposes Component events - beforeOpen, opening, afterOpen, beforeClose, afterClose
 - Scrollable when it's contents exceed screen height
 - Closeable by clicking on the upper right "x", the overlay or the esc key
 - **Stackable** - Multiple modal windows on top of each other
