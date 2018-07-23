@@ -9,7 +9,7 @@
     <title>ractive-modal demo page</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
 
     <!-- Animate -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
@@ -198,7 +198,7 @@
             <li>Opens and closes with a data variable</li>
             <li>Includes default styling but it's also highly customizable via user CSS classes and styles</li>
             <li>Modal intro and outro effects using CSS animations</li>
-            <li>Exposes Component events - beforeOpen, afterOpen, beforeClose, afterClose</li>
+            <li>Exposes Component events - beforeOpen, opening, afterOpen, beforeClose, afterClose</li>
             <li>Scrollable when it's contents exceed screen height</li>
             <li>Closeable by clicking on the upper right "x", the overlay or the esc key</li>
             <li><strong>Stackable</strong> - Multiple modal windows on top of each other</li>
@@ -292,7 +292,7 @@
           </ol>
 
           <div class="alert alert-info" role="alert">
-            <strong>Info: </strong>This demo page includes the <a href="../plugins/ractive-modal-scroll-lock.js" target="_blank">ractive-modal-scroll-lock.js</a> plugin.
+            <strong>Info:</strong> This demo page includes the <a href="../plugins/ractive-modal-scroll-lock.js" target="_blank">ractive-modal-scroll-lock.js</a> plugin.
           </div>
 
         </div>
@@ -302,7 +302,7 @@
       <div class="row mb-3">
         <div class="col-sm-12">
           <h2 class="pb-2">Events</h2>
-          <p>ractive-modal exposes 4 component events - beforeOpen, afterOpen, beforeClose, afterClose</p>
+          <p>ractive-modal exposes 5 component events - beforeOpen, opening, afterOpen, beforeClose, afterClose</p>
           <pre class="highlight">
             <code as-code>
             <!--
@@ -594,6 +594,11 @@
       <div class="row mb-3">
         <div class="col-sm-12">
           <h2 class="pb-2">Changelog</h2>
+
+          <h5>version 0.3.1</h5>
+          <ul>
+            <li>Added opening event.</li>
+          </ul>
 
           <h5>version 0.3</h5>
           <ul>
@@ -1034,6 +1039,9 @@
           'callbacks-modal.beforeOpen': function(){
             alert('beforeOpen event fired');
           },
+          'callbacks-modal.opening': function(){
+            alert('opening event fired');
+          },          
           'callbacks-modal.afterOpen': function(){
             alert('afterOpen event fired');
           },
