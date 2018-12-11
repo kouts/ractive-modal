@@ -4,9 +4,11 @@ var webpack = require('webpack');
 var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common');
 
 // Lazymode so we don't have to require Ractive in every component / endpoint / etc
+/*
 var providerPlugin = new webpack.ProvidePlugin({
 	Ractive: 'ractive'
 });
+*/
 
 // Minify javascript
 var minifyPlugin = new webpack.optimize.UglifyJsPlugin({
