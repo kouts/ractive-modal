@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
+	node: false,
 	mode: 'development',
     target: 'web',
     context: path.resolve(__dirname, 'src'),
