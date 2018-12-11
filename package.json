@@ -4,6 +4,7 @@
   "version": "0.3.1",
   "description": "A modal popup component for ractive",
   "main": "dist/ractive-modal.js",
+  "module": "src/ractive-modal.ractive.html",
   "repository": "https://github.com/kouts/ractive-modal",
   "keywords": [
     "ractive",
@@ -12,14 +13,14 @@
     "popup"
   ],
   "devDependencies": {
+    "onchange": "*",
     "ractive": "*",
     "ractive-bin-loader": "^1.0.1",
-    "webpack": "^3.3.0",
-    "onchange": "*"
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2"
   },
   "scripts": {
-    "build": "webpack",
-    "dev": "onchange 'src/*.*' -- npm run build"
+    "start": "webpack --config webpack.config.js"
   },
   "author": "kouts",
   "license": "ISC",
