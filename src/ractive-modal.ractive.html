@@ -36,6 +36,9 @@
 {{/if}}
 
 <script>
+
+    import Ractive from 'ractive';
+    
     Ractive.sharedSet({'rm.animating': undefined, 'rm.delay': 0});
     export default Ractive.extend({
         template: $TEMPLATE,
