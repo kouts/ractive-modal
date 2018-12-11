@@ -19,10 +19,10 @@ module.exports = {
     },
     externals: {
     	ractive: {
-    		commonjs: 'Ractive',
-    		commonjs2: 'Ractive',
-    		amd: 'Ractive',
-    		root: 'Ractive'
+    		commonjs: 'ractive',
+    		commonjs2: 'ractive',
+    		amd: 'ractive',
+    		root: 'ractive'
     	}
     },
     module: {

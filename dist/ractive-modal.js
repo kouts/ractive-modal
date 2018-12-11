@@ -1,12 +1,12 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("Ractive"));
+		module.exports = factory(require("ractive"));
 	else if(typeof define === 'function' && define.amd)
-		define(["Ractive"], factory);
+		define(["ractive"], factory);
 	else if(typeof exports === 'object')
-		exports["RactiveModal"] = factory(require("Ractive"));
+		exports["RactiveModal"] = factory(require("ractive"));
 	else
-		root["RactiveModal"] = factory(root["Ractive"]);
+		root["RactiveModal"] = factory(root["ractive"]);
 })(window, function(__WEBPACK_EXTERNAL_MODULE_ractive__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -110,12 +110,12 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var ract
 
 /***/ "ractive":
 /*!**********************************************************************************************!*\
-  !*** external {"commonjs":"Ractive","commonjs2":"Ractive","amd":"Ractive","root":"Ractive"} ***!
+  !*** external {"commonjs":"ractive","commonjs2":"ractive","amd":"ractive","root":"ractive"} ***!
   \**********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("module.exports = __WEBPACK_EXTERNAL_MODULE_ractive__;\n\n//# sourceURL=webpack://RactiveModal/external_%7B%22commonjs%22:%22Ractive%22,%22commonjs2%22:%22Ractive%22,%22amd%22:%22Ractive%22,%22root%22:%22Ractive%22%7D?");
+eval("module.exports = __WEBPACK_EXTERNAL_MODULE_ractive__;\n\n//# sourceURL=webpack://RactiveModal/external_%7B%22commonjs%22:%22ractive%22,%22commonjs2%22:%22ractive%22,%22amd%22:%22ractive%22,%22root%22:%22ractive%22%7D?");
 
 /***/ })
 
