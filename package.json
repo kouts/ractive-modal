@@ -4,7 +4,6 @@
   "version": "0.3.1",
   "description": "A modal popup component for ractive",
   "main": "dist/ractive-modal.js",
-  "module": "src/ractive-modal.ractive.html",
   "repository": "https://github.com/kouts/ractive-modal",
   "keywords": [
     "ractive",
