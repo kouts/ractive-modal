@@ -9,7 +9,7 @@ module.exports = {
     plugins: [
     ],    
     entry: {
-        'ractive-modal': './ractive-modal.ractive.html'
+        'ractive-modal': path.resolve(__dirname, './src/ractive-modal.ractive.html')
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
