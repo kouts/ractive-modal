@@ -15,6 +15,7 @@
     "onchange": "*",
     "ractive": "*",
     "ractive-bin-loader": "^1.0.1",
+    "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2"
   },
