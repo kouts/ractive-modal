@@ -1,7 +1,7 @@
 {
-  "//": "To use type: npm run dev",
+  "//": "To use type: npm run watch",
   "name": "ractive-modal",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "A modal popup component for ractive",
   "main": "dist/ractive-modal.js",
   "repository": "https://github.com/kouts/ractive-modal",
@@ -12,15 +12,15 @@
     "popup"
   ],
   "devDependencies": {
-    "onchange": "*",
-    "ractive": "*",
+    "ractive": "^1.1.1",
     "ractive-bin-loader": "^1.0.1",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2"
   },
   "scripts": {
-    "start": "webpack --config webpack.config.js"
+    "build": "webpack --config webpack.config.js",
+    "watch": "webpack --config webpack.config.js --watch"
   },
   "author": "kouts",
   "license": "ISC",
