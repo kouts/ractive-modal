@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="ractive-modal demo page">
@@ -16,628 +16,634 @@
 
     <!-- Custom styles -->
     <style>
-	    body {
-		    padding-top: 5rem;
-		  }
-      .code-comment {
-        padding-left:20px;
-      }
-  		.jumbotron {
-  		  padding: 3rem 1.5rem;
-  		  text-align: center;
-  		}
-      .navbar-nav-svg {
-          display: inline-block;
-          width: 1.5rem;
-          height: 1.5rem;
-          vertical-align: text-top;
-      }
-      .highlight {
-        background-color: #f7f7f9;
-      }
-      .live-modal {
-        border-radius: 6px;
-        background: rgba(255,255,255,1);
-        background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
-        background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
-        background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
-        background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
-        background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
-        background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
-      }
+        body {
+            padding-top: 5rem;
+        }
+        .code-comment {
+            padding-left:20px;
+        }
+        .jumbotron {
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+        .navbar-nav-svg {
+            display: inline-block;
+            width: 1.5rem;
+            height: 1.5rem;
+            vertical-align: text-top;
+        }
+        .highlight {
+            background-color: #f7f7f9;
+            padding-bottom: 1.25rem;
+        }
+        .live-modal {
+            border-radius: 6px;
+            background: rgba(255,255,255,1);
+            background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
+            background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+            background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+            background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+            background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
+        }
     </style>
-  </head>
+</head>
 
-  <body>
+<body>
 
-  	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  		<a class="navbar-brand" href="javascript:;">ractive-modal</a>
-  		<div class="collapse navbar-collapse">
-  			<ul class="navbar-nav mr-auto">
-  				<!--
-          <li class="nav-item active">
-  					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-  				</li>
-          -->
-  			</ul>
-  			<form class="form-inline">
-          <a class="nav-link" style="color:#fff;" href="https://github.com/kouts/ractive-modal" target="_blank" rel="noopener" aria-label="ractive-modal GitHub">
-            <svg class="navbar-nav-svg" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 499.36" focusable="false"><title>ractive-modal at GitHub</title><path d="M256 0C114.64 0 0 114.61 0 256c0 113.09 73.34 209 175.08 242.9 12.8 2.35 17.47-5.56 17.47-12.34 0-6.08-.22-22.18-.35-43.54-71.2 15.49-86.2-34.34-86.2-34.34-11.64-29.57-28.42-37.45-28.42-37.45-23.27-15.84 1.73-15.55 1.73-15.55 25.69 1.81 39.21 26.38 39.21 26.38 22.84 39.12 59.92 27.82 74.5 21.27 2.33-16.54 8.94-27.82 16.25-34.22-56.84-6.43-116.6-28.43-116.6-126.49 0-27.95 10-50.8 26.35-68.69-2.63-6.48-11.42-32.5 2.51-67.75 0 0 21.49-6.88 70.4 26.24a242.65 242.65 0 0 1 128.18 0c48.87-33.13 70.33-26.24 70.33-26.24 14 35.25 5.18 61.27 2.55 67.75 16.41 17.9 26.31 40.75 26.31 68.69 0 98.35-59.85 120-116.88 126.32 9.19 7.9 17.38 23.53 17.38 47.41 0 34.22-.31 61.83-.31 70.23 0 6.85 4.61 14.81 17.6 12.31C438.72 464.97 512 369.08 512 256.02 512 114.62 397.37 0 256 0z" fill="currentColor" fill-rule="evenodd"/></svg>
-          </a>
-  				<a href="https://github.com/kouts/ractive-modal/archive/master.zip" class="btn btn-outline-success">Download</a>
-  			</form>
-  		</div>
-  	</nav>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="javascript:;">ractive-modal</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <!--
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                -->
+            </ul>
+            <form class="form-inline">
+                <a class="nav-link" style="color:#fff;" href="https://github.com/kouts/ractive-modal" target="_blank" rel="noopener" aria-label="ractive-modal GitHub">
+                    <svg class="navbar-nav-svg" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 499.36" focusable="false">
+                        <title>ractive-modal at GitHub</title>
+                        <path d="M256 0C114.64 0 0 114.61 0 256c0 113.09 73.34 209 175.08 242.9 12.8 2.35 17.47-5.56 17.47-12.34 0-6.08-.22-22.18-.35-43.54-71.2 15.49-86.2-34.34-86.2-34.34-11.64-29.57-28.42-37.45-28.42-37.45-23.27-15.84 1.73-15.55 1.73-15.55 25.69 1.81 39.21 26.38 39.21 26.38 22.84 39.12 59.92 27.82 74.5 21.27 2.33-16.54 8.94-27.82 16.25-34.22-56.84-6.43-116.6-28.43-116.6-126.49 0-27.95 10-50.8 26.35-68.69-2.63-6.48-11.42-32.5 2.51-67.75 0 0 21.49-6.88 70.4 26.24a242.65 242.65 0 0 1 128.18 0c48.87-33.13 70.33-26.24 70.33-26.24 14 35.25 5.18 61.27 2.55 67.75 16.41 17.9 26.31 40.75 26.31 68.69 0 98.35-59.85 120-116.88 126.32 9.19 7.9 17.38 23.53 17.38 47.41 0 34.22-.31 61.83-.31 70.23 0 6.85 4.61 14.81 17.6 12.31C438.72 464.97 512 369.08 512 256.02 512 114.62 397.37 0 256 0z" fill="currentColor" fill-rule="evenodd" />
+                    </svg>
+                </a>
+                <a href="https://github.com/kouts/ractive-modal/archive/master.zip" class="btn btn-outline-success">Download</a>
+            </form>
+        </div>
+    </nav>
 
-  	<div class="container" id="app"></div>
+    <div class="container" id="app"></div>
 
     <script type="text/template" id="app-template">
 
-      <div class="jumbotron">
-        <h1>ractive-modal</h1>
-        <p class="lead">A modal window component for Ractive</p>
-        <p>This page includes basic documentation and examples for the ractive-modal window component</p>
-      </div>
-
-      <div class="row mb-3">
-        <div class="col-sm-12">
-          <h2 class="pb-2">Quick demo</h2>
-          <p>
-            <button type="button" class="btn btn-primary" on-click="@this.set('uind.popmd_1_show', true)">Open first modal</button>
-            <button type="button" class="btn btn-secondary" on-click="@this.set({'uind.popmd_4_show': true, 'uind.popmd_3_show': true, 'uind.popmd_2_show': true, 'uind.popmd_1_show': true})">Open all modals!</button>
-          </p>
+        <div class="jumbotron">
+            <h1>ractive-modal</h1>
+            <p class="lead">A modal window component for Ractive</p>
+            <p>This page includes basic documentation and examples for the ractive-modal window component</p>
         </div>
-      </div>
 
-      <modal title="First modal window" class="" style="max-width:700px;" basedon="{{uind.popmd_1_show}}" live="true" body_lock_scroll="true">
-        <div class="row">
-            <div class="col-md-4 form-group">
-              <label>Field 1</label>
-              <input type="text" value="" class="form-control" autofocus />
-            </div>
-            <div class="col-md-4 form-group">
-              <label>Field 2</label>
-              <input type="text" value="" class="form-control" />
-            </div>
-            <div class="col-md-4 form-group">
-              <label>Field 3</label>
-              <input type="text" value="" class="form-control" />
+        <div class="row mb-3">
+            <div class="col-sm-12">
+                <h2 class="pb-2">Quick demo</h2>
+                <p>
+                    <button type="button" class="btn btn-primary" on-click="@this.set('uind.popmd_1_show', true)">Open first modal</button>
+                    <button type="button" class="btn btn-secondary" on-click="@this.set({'uind.popmd_4_show': true, 'uind.popmd_3_show': true, 'uind.popmd_2_show': true, 'uind.popmd_1_show': true})">Open all modals!</button>
+                </p>
             </div>
         </div>
-        <div class="row">
-          <div class="col col-sm-12">
-            <div class="alert alert-primary" role="alert">
-              You can set a field to take focus when the modal window opens by setting the <strong>autofocus</strong> property on the appropriate element.
-              Otherwise the focus goes to the modal window element itself.
+
+        <modal title="First modal window" class="" style="max-width:700px;" basedon="{{uind.popmd_1_show}}" live="true" body_lock_scroll="true">
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <label>Field 1</label>
+                    <input type="text" value="" class="form-control" autofocus />
+                </div>
+                <div class="col-md-4 form-group">
+                    <label>Field 2</label>
+                    <input type="text" value="" class="form-control" />
+                </div>
+                <div class="col-md-4 form-group">
+                    <label>Field 3</label>
+                    <input type="text" value="" class="form-control" />
+                </div>
             </div>
-            <div class="alert alert-info" role="alert">
-              Also notice that the tab key stays trapped inside the modal window
+            <div class="row">
+                <div class="col col-sm-12">
+                    <div class="alert alert-primary" role="alert">
+                        You can set a field to take focus when the modal window opens by setting the <strong>autofocus</strong> property on the appropriate element.
+                        Otherwise the focus goes to the modal window element itself.
+                    </div>
+                    <div class="alert alert-info" role="alert">
+                        Also notice that the tab key stays trapped inside the modal window
+                    </div>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a lorem suscipit orci vehicula aliquam. Sed varius urna nec nisl placerat convallis. Nunc pretium porta commodo.
+                    </p>
+                    <p>
+                        Vestibulum sed dui accumsan, rhoncus enim eget, suscipit mi. Sed egestas non arcu at ultricies. Aenean tristique mauris eu ligula feugiat, eu condimentum erat pharetra. Maecenas bibendum ante mi, in mattis nisl fringilla vitae. Duis sollicitudin est id purus venenatis tincidunt. Donec vitae nulla ac lorem tristique varius et in mauris. Aenean molestie dui eu mauris pretium iaculis. Phasellus varius mi in molestie congue. Nullam non ultrices libero.
+                    </p>
+                </div>
             </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a lorem suscipit orci vehicula aliquam. Sed varius urna nec nisl placerat convallis. Nunc pretium porta commodo.
-            </p>
-            <p>
-              Vestibulum sed dui accumsan, rhoncus enim eget, suscipit mi. Sed egestas non arcu at ultricies. Aenean tristique mauris eu ligula feugiat, eu condimentum erat pharetra. Maecenas bibendum ante mi, in mattis nisl fringilla vitae. Duis sollicitudin est id purus venenatis tincidunt. Donec vitae nulla ac lorem tristique varius et in mauris. Aenean molestie dui eu mauris pretium iaculis. Phasellus varius mi in molestie congue. Nullam non ultrices libero.
-            </p>
-          </div>
-        </div>
-        <hr class="full-hr" />
-        <div class="row">
-          <div class="col col-sm-12">
-            <button type="button" class="btn btn-primary" on-click="@this.set('uind.popmd_2_show', true)">Open second modal window</button>
-            <button type="button" class="btn btn btn-danger float-right" on-click="@this.set('uind.popmd_1_show', false)">Close</button>        
-          </div>
-        </div>
-      </modal>
-
-      <modal title="Second modal window" class="" style="max-width:600px;" basedon="{{uind.popmd_2_show}}" enableclose="false" live="false">
-        <div class="row">
-          <div class="col col-sm-12">
-            <div class="alert alert-info" role="alert">
-              This modal window cannot be closed by any of the standard ways.<br />
-              Hit the close button on the bottom right in order to close this modal window
+            <hr class="full-hr" />
+            <div class="row">
+                <div class="col col-sm-12">
+                    <button type="button" class="btn btn-primary" on-click="@this.set('uind.popmd_2_show', true)">Open second modal window</button>
+                    <button type="button" class="btn btn btn-danger float-right" on-click="@this.set('uind.popmd_1_show', false)">Close</button>        
+                </div>
             </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a lorem suscipit orci vehicula aliquam. <button class="btn btn-primary" on-click="@this.set('uind.popmd_3_show', true)">Open a third modal window</button> Sed varius urna nec nisl placerat convallis. Nunc pretium porta commodo. Vestibulum sed dui accumsan, rhoncus enim eget, suscipit mi. Sed egestas non arcu at ultricies. Aenean tristique mauris eu ligula feugiat, eu condimentum erat pharetra. Maecenas bibendum ante mi, in mattis nisl fringilla vitae. Duis sollicitudin est id purus venenatis tincidunt. Donec vitae nulla ac lorem tristique varius et in mauris. Aenean molestie dui eu mauris pretium iaculis. Phasellus varius mi in molestie congue. Nullam non ultrices libero.
-            </p>
-          </div>
-        </div>
-        <hr class="full-hr" />
-        <div class="row">
-          <div class="col col-sm-12">
-            <button type="button" class="btn btn-danger float-right" on-click="@this.set('uind.popmd_2_show', false)">Close</button>
-          </div>
-        </div>
-      </modal>
+        </modal>
 
-      <modal title="Third modal window" class="" style="max-width:500px;" basedon="{{uind.popmd_3_show}}" live="true">
-        <div class="row">
-          <div class="col col-sm-12">
-            <div class="alert alert-info" role="alert">
-              When you close this modal window, the previously active element will take focus.
+        <modal title="Second modal window" class="" style="max-width:600px;" basedon="{{uind.popmd_2_show}}" enableclose="false" live="false">
+            <div class="row">
+                <div class="col col-sm-12">
+                    <div class="alert alert-info" role="alert">
+                        This modal window cannot be closed by any of the standard ways.<br />
+                        Hit the close button on the bottom right in order to close this modal window
+                    </div>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a lorem suscipit orci vehicula aliquam. <button class="btn btn-primary" on-click="@this.set('uind.popmd_3_show', true)">Open a third modal window</button> Sed varius urna nec nisl placerat convallis. Nunc pretium porta commodo. Vestibulum sed dui accumsan, rhoncus enim eget, suscipit mi. Sed egestas non arcu at ultricies. Aenean tristique mauris eu ligula feugiat, eu condimentum erat pharetra. Maecenas bibendum ante mi, in mattis nisl fringilla vitae. Duis sollicitudin est id purus venenatis tincidunt. Donec vitae nulla ac lorem tristique varius et in mauris. Aenean molestie dui eu mauris pretium iaculis. Phasellus varius mi in molestie congue. Nullam non ultrices libero.
+                    </p>
+                </div>
             </div>
-            <p>
-              <button autofocus class="btn btn-primary" on-click="@this.set('uind.popmd_4_show', true)">Open a fourth modal window</button> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a lorem suscipit orci vehicula aliquam. Sed varius urna nec nisl placerat convallis. Nunc pretium porta commodo. Vestibulum sed dui accumsan, rhoncus enim eget, suscipit mi. Sed egestas non arcu at ultricies. Aenean tristique mauris eu ligula feugiat, eu condimentum erat pharetra. Maecenas bibendum ante mi, in mattis nisl fringilla vitae. Duis sollicitudin est id purus venenatis tincidunt. Donec vitae nulla ac lorem tristique varius et in mauris. Aenean molestie dui eu mauris pretium iaculis. Phasellus varius mi in molestie congue. Nullam non ultrices libero.
-            </p>
-          </div>
-        </div>
-        <hr class="full-hr" />
-        <div class="row">
-          <div class="col col-sm-12">
-            <button type="button" class="btn btn-danger float-right" on-click="@this.set('uind.popmd_3_show', false)">Close</button>
-          </div>
-        </div>
-      </modal>
-
-      <modal title="Fourth modal window" class="" style="max-width:300px;" basedon="{{uind.popmd_4_show}}" live="false">
-        <div class="row">
-          <div class="col col-sm-12">
-            <div class="alert alert-info" role="alert">
-              You can always close the modal windows with the esc key or by clicking the surrounding overlay
+            <hr class="full-hr" />
+            <div class="row">
+                <div class="col col-sm-12">
+                    <button type="button" class="btn btn-danger float-right" on-click="@this.set('uind.popmd_2_show', false)">Close</button>
+                </div>
             </div>
-            <p>
-              This is the last one, I promise!
-            </p>
-          </div>
+        </modal>
+
+        <modal title="Third modal window" class="" style="max-width:500px;" basedon="{{uind.popmd_3_show}}" live="true">
+            <div class="row">
+                <div class="col col-sm-12">
+                    <div class="alert alert-info" role="alert">
+                        When you close this modal window, the previously active element will take focus.
+                    </div>
+                    <p>
+                        <button autofocus class="btn btn-primary" on-click="@this.set('uind.popmd_4_show', true)">Open a fourth modal window</button> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a lorem suscipit orci vehicula aliquam. Sed varius urna nec nisl placerat convallis. Nunc pretium porta commodo. Vestibulum sed dui accumsan, rhoncus enim eget, suscipit mi. Sed egestas non arcu at ultricies. Aenean tristique mauris eu ligula feugiat, eu condimentum erat pharetra. Maecenas bibendum ante mi, in mattis nisl fringilla vitae. Duis sollicitudin est id purus venenatis tincidunt. Donec vitae nulla ac lorem tristique varius et in mauris. Aenean molestie dui eu mauris pretium iaculis. Phasellus varius mi in molestie congue. Nullam non ultrices libero.
+                    </p>
+                </div>
+            </div>
+            <hr class="full-hr" />
+            <div class="row">
+                <div class="col col-sm-12">
+                    <button type="button" class="btn btn-danger float-right" on-click="@this.set('uind.popmd_3_show', false)">Close</button>
+                </div>
+            </div>
+        </modal>
+
+        <modal title="Fourth modal window" class="" style="max-width:300px;" basedon="{{uind.popmd_4_show}}" live="false">
+            <div class="row">
+                <div class="col col-sm-12">
+                    <div class="alert alert-info" role="alert">
+                        You can always close the modal windows with the esc key or by clicking the surrounding overlay
+                    </div>
+                    <p>
+                        This is the last one, I promise!
+                    </p>
+                </div>
+            </div>
+            <hr class="full-hr" />
+            <div class="row">
+                <div class="col col-sm-12">
+                    <button type="button" class="btn btn-secondary" on-click="@this.set({'uind.popmd_1_show': false, 'uind.popmd_2_show': false, 'uind.popmd_3_show': false, 'uind.popmd_4_show': false})">Close all modals!</button>
+                    <button type="button" class="btn btn-danger float-right" on-click="@this.set('uind.popmd_4_show', false)">Close</button>
+                </div>
+            </div>
+        </modal>
+
+        <div class="row mb-3">
+            <div class="col-sm-12">
+                <h2 class="pb-2">Features at a glance</h2>
+                <ul>
+                    <li>Lightweight, minified version is &lt; <strong>8kb</strong></li>
+                    <li>Opens and closes with a data variable</li>
+                    <li>Includes default styling but it's also highly customizable via user CSS classes and styles</li>
+                    <li>Modal intro and outro effects using CSS animations</li>
+                    <li>Exposes Component events - beforeOpen, opening, afterOpen, beforeClose, afterClose</li>
+                    <li>Scrollable when it's contents exceed screen height</li>
+                    <li>Closeable by clicking on the upper right "x", the overlay or the esc key</li>
+                    <li><strong>Stackable</strong> - Multiple modal windows on top of each other</li>
+                    <li>Ability to set initial focus on an element when the modal window opens, just set the <strong>autofocus</strong> attribute on an element inside the modal</li>
+                    <li>Focus management trapps keyboard focus - navigation inside the modal window</li>
+                    <li>Ability to have unclosable modal windows</li>
+                    <li>Render on demand or stay always in DOM with "live" mode</li>
+                    <li>Ability to append to an element</li>
+                </ul>
+            </div>
         </div>
-        <hr class="full-hr" />
-        <div class="row">
-          <div class="col col-sm-12">
-            <button type="button" class="btn btn-secondary" on-click="@this.set({'uind.popmd_1_show': false, 'uind.popmd_2_show': false, 'uind.popmd_3_show': false, 'uind.popmd_4_show': false})">Close all modals!</button>
-            <button type="button" class="btn btn-danger float-right" on-click="@this.set('uind.popmd_4_show', false)">Close</button>
-          </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-12">
+                <h2>Install</h2>
+                <h4 class="pb-2">ractive-modal is a UMD module so you can use it as an ES2015, AMD, CommonJS module or a global (RactiveModal)</h4>
+                <h5>ES2015</h5>
+<pre class="highlight">
+<code as-code>
+    npm install ractive-modal --save
+    import RactiveModal from 'ractive-modal';
+</code>
+</pre>
+                <h5>Global - download the repo, extract dist/ractive-modal.min.js and include it in your page</h5>
+<pre class="highlight">
+<code>
+    &lt;script type="text/javascript" src="ractive-modal.min.js"&gt;&lt;/script&gt;
+</code>
+</pre>
+            </div>
         </div>
-      </modal>
 
-      <div class="row mb-3">
-        <div class="col-sm-12">
-          <h2 class="pb-2">Features at a glance</h2>
-          <ul>
-            <li>Lightweight, minified version is &lt; <strong>8kb</strong></li>
-            <li>Opens and closes with a data variable</li>
-            <li>Includes default styling but it's also highly customizable via user CSS classes and styles</li>
-            <li>Modal intro and outro effects using CSS animations</li>
-            <li>Exposes Component events - beforeOpen, opening, afterOpen, beforeClose, afterClose</li>
-            <li>Scrollable when it's contents exceed screen height</li>
-            <li>Closeable by clicking on the upper right "x", the overlay or the esc key</li>
-            <li><strong>Stackable</strong> - Multiple modal windows on top of each other</li>
-            <li>Ability to set initial focus on an element when the modal window opens, just set the <strong>autofocus</strong> attribute on an element inside the modal</li>
-            <li>Focus management trapps keyboard focus - navigation inside the modal window</li>
-            <li>Ability to have unclosable modal windows</li>
-            <li>Render on demand or stay always in DOM with "live" mode</li>
-            <li>Ability to append to an element</li>
-          </ul>
-        </div>
-      </div>
+        <div class="row mb-3">
+            <div class="col-sm-12">
+                <h2>Basic usage</h2>
+                <h5>Make ractive-modal available to all Ractive instances</h5>
+<pre class="highlight">
+<code as-code>
+    Ractive.components.modal = RactiveModal;
+</code>
+</pre>
 
-      <div class="row mb-3">
-        <div class="col-sm-12">
-          <h2>Install</h2>
-          <h4 class="pb-2">ractive-modal is a UMD module so you can use it as an ES2015, AMD, CommonJS module or a global (RactiveModal)</h4>
-          <h5>ES2015</h5>
-          <pre class="highlight">
-            <code as-code>
-  npm install ractive-modal --save
-  import RactiveModal from 'ractive-modal';
-            </code>
-          </pre>
-          <h5>Global - download the repo, extract dist/ractive-modal.min.js and include it in your page</h5>
-          <pre class="highlight">
-            <code>
-  &lt;script type="text/javascript" src="ractive-modal.min.js"&gt;&lt;/script&gt;</code>
-          </pre>
-        </div>
-      </div>
+                <h5>or add the ractive-modal to your Ractive instance</h5>
+<pre class="highlight">
+<code as-code>
+    var ractive = new Ractive({
+        ...
+        components: {
+            modal: RactiveModal
+        },
+        data: {
+            open_modal_1: false
+        }
+    });
+</code>
+</pre>
 
-      <div class="row mb-3">
-        <div class="col-sm-12">
-          <h2>Basic usage</h2>
-          <h5>Make ractive-modal available to all Ractive instances</h5>
-          <pre class="highlight">
-            <code as-code>
-  Ractive.components.modal = RactiveModal;
-            </code>
-          </pre>
-
-          <h5>or add the ractive-modal to your Ractive instance</h5>
-          <pre class="highlight">
-            <code as-code>
-  var ractive = new Ractive({
-    ...
-    components: {
-      modal: RactiveModal
-    },
-    data: {
-      open_modal_1: false
-    }
-  });
-            </code>
-          </pre>
-
-          <h5>then in your template</h5>
-          <pre class="highlight">
-            <code as-code>
-            <!--
+                <h5>then in your template</h5>
+<pre class="highlight">
+<code as-code>
+<!--
 <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_1', true)">Open modal</button>
 <modal title="My first modal" basedon="{{open_modal_1}}">
-  <p>Hello World!</p>
+    <p>Hello World!</p>
 </modal>
-            -->
-            </code>
-          </pre>
+-->
+</code>
+</pre>
 
-          <h5>Example</h5>
-          <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_1', true)">Open modal</button>
-          <modal title="My first modal" basedon="{{open_modal_1}}">
-            <p>Hello World!</p>
-          </modal>
+                <h5>Example</h5>
+                <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_1', true)">Open modal</button>
+                <modal title="My first modal" basedon="{{open_modal_1}}">
+                    <p>Hello World!</p>
+                </modal>
 
-        </div>
-      </div>
-
-
-      <div class="row mb-3"></div>
-      <div class="row mb-3"></div>
-      <div class="row mb-3">
-        <div class="col-sm-12">
-          <h2 class="pb-2">Prevent &lt;body&gt; from scrolling</h2>
-          <p>A common need when a modal window is open, is to prevent the &lt;body&gt; of the underlying page from scrolling.<br />
-          ractive-modal does not impose any specific scroll behavior on the &lt;body&gt; by default. This functionality is provided as a separate <a href="../plugins/ractive-modal-scroll-lock.js" target="_blank">plugin</a>.</p>
-          <h5>Include <a href="../plugins/ractive-modal-scroll-lock.js" target="_blank">ractive-modal-scroll-lock.js</a> plugin, to prevent &lt;body&gt; from scrolling when a modal is open</h5>
-          <ol>
-            <li>When <a href="../plugins/ractive-modal-scroll-lock.js" target="_blank">ractive-modal-scroll-lock.js</a> is included, all modals when opened prevent &lt;body&gt; from scrolling <strong>by default</strong>.</li>
-            <li>When the modal is closed, the &lt;body&gt; scrolling behavior is restored.</li>
-            <li>To override the "scroll locking" behavior for any modal, you can set <span class="badge badge-light font-weight-normal" style="font-size: 1rem;">body_lock_scroll="false"</span></li>
-          </ol>
-
-          <div class="alert alert-info" role="alert">
-            <strong>Info:</strong> This demo page includes the <a href="../plugins/ractive-modal-scroll-lock.js" target="_blank">ractive-modal-scroll-lock.js</a> plugin.
-          </div>
-
-        </div>
-      </div>      
-
-      <div class="row mb-3"></div>
-      <div class="row mb-3">
-        <div class="col-sm-12">
-          <h2 class="pb-2">Events</h2>
-          <p>ractive-modal exposes 5 component events - beforeOpen, opening, afterOpen, beforeClose, afterClose</p>
-          <pre class="highlight">
-            <code as-code>
-            <!--
-<modal title="Events modal" basedon="{{open_modal}}" on-beforeOpen="@global.alert('beforeOpen event fired')">
-  <p>A modal with "beforeopen" component event attached</p>
-</modal>
-            -->
-            </code>
-          </pre>
-          <h5>Example</h5>
-          <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_2', true)">Open modal</button>
-          <callbacks-modal title="Events modal" basedon="{{open_modal_2}}">
-            <p>This is a modal that has all events attached</p>
-          </callbacks-modal>
-        </div>
-      </div>
-      <div class="row mb-3"></div>
-
-      <div class="row mb-3">
-        <div class="col-sm-12">
-          <h2 class="pb-2">CSS animations</h2>
-          <p>
-            ractive-modal comes with a fade-in / fade-out animation (250ms duration by default) for the modal and the modal backdrop.<br />
-            It is also designed so that you can put you favorite animations using any CSS animation framework like <a href="https://daneden.github.io/animate.css/" target="_blank">Animate.css</a>, <a href="http://anicollection.github.io" target="_blank">Anicollection</a> etc
-          </p>
-          <p>
-            You can define your base animation class (usually this is the "animated" class) by setting the "base_anim_class" variable.<br />
-            Then define your intro and outro animation classes for the modal, by defining "in_class" and "out_class" variables accordingly.
-          </p>
-          <p>
-            You can also set the intro and outro animation class for the modal backdrop, by defining "bg_in_class" and "bg_out_class" variables accordingly.<br />
-          </p>
-
-          <h5>Example using Animate.css</h5>
-          <form class="mb-2">
-            <div class="row">
-              <div class="col form-group">
-                <label>Modal intro</label>
-                <select class="form-control" value="{{modal_animated_in_class}}">
-                  {{>animation_options}}
-                </select>
-              </div>
-              <div class="col form-group">
-                <label>Modal outro</label>
-                <select class="form-control" value="{{modal_animated_out_class}}">
-                  {{>animation_options}}
-                </select>
-              </div>
-              <div class="col form-group">
-                <label>Overlay intro</label>
-                <select class="form-control" value="{{overlay_animated_in_class}}">
-                  {{>animation_options}}
-                </select>
-              </div>
-              <div class="col form-group">
-                <label>Overlay outro</label>
-                <select class="form-control" value="{{overlay_animated_out_class}}">
-                  {{>animation_options}}
-                </select>
-              </div>
             </div>
-            <div class="row">
-              <div class="col form-group">
-                <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_animated', true)">Open modal</button>
-              </div>
-            </div>
-          </form>
-
-          {{#partial animation_options}}
-            <optgroup label="Attention Seekers">
-              {{#each lovs.attention_seekers}}
-                <option value="{{value}}">{{text}}</option>
-              {{/each}}
-            </optgroup>
-            <optgroup label="Bouncing Entrances">
-              {{#each lovs.bouncing_entrances}}
-                <option value="{{value}}">{{text}}</option>
-              {{/each}}
-            </optgroup>
-            <optgroup label="Bouncing Exits">
-              {{#each lovs.bouncing_exits}}
-                <option value="{{value}}">{{text}}</option>
-              {{/each}}
-            </optgroup>
-            <optgroup label="Fading Entrances">
-              {{#each lovs.fading_entrances}}
-                <option value="{{value}}">{{text}}</option>
-              {{/each}}
-            </optgroup>
-            <optgroup label="Fading Exits">
-              {{#each lovs.fading_exits}}
-                <option value="{{value}}">{{text}}</option>
-              {{/each}}
-            </optgroup>
-            <optgroup label="Flippers">
-              {{#each lovs.flippers}}
-                <option value="{{value}}">{{text}}</option>
-              {{/each}}
-            </optgroup>
-            <optgroup label="Lightspeed">
-              {{#each lovs.lightspeed}}
-                <option value="{{value}}">{{text}}</option>
-              {{/each}}
-            </optgroup>
-            <optgroup label="Rotating Entrances">
-              {{#each lovs.rotating_entrances}}
-                <option value="{{value}}">{{text}}</option>
-              {{/each}}
-            </optgroup>
-            <optgroup label="Rotating Exits">
-              {{#each lovs.rotating_exits}}
-                <option value="{{value}}">{{text}}</option>
-              {{/each}}
-            </optgroup>
-            <optgroup label="Sliding Entrances">
-              {{#each lovs.sliding_entrances}}
-                <option value="{{value}}">{{text}}</option>
-              {{/each}}
-            </optgroup>
-            <optgroup label="Sliding Exits">
-              {{#each lovs.sliding_exits}}
-                <option value="{{value}}">{{text}}</option>
-              {{/each}}
-            </optgroup>
-            <optgroup label="Zoom Entrances">
-              {{#each lovs.zoom_entrances}}
-                <option value="{{value}}">{{text}}</option>
-              {{/each}}
-            </optgroup>
-            <optgroup label="Zoom Exits">
-              {{#each lovs.zoom_exits}}
-                <option value="{{value}}">{{text}}</option>
-              {{/each}}
-            </optgroup>
-            <optgroup label="Specials">
-              {{#each lovs.specials}}
-                <option value="{{value}}">{{text}}</option>
-              {{/each}}
-            </optgroup>
-          {{/partial}}
-          <modal title="Modal with custom CSS animation" base_anim_class="animated" in_class="{{modal_animated_in_class}}" out_class="{{modal_animated_out_class}}" bg_in_class="{{overlay_animated_in_class}}" bg_out_class="{{overlay_animated_out_class}}" basedon="{{open_modal_animated}}">
-            <p>
-              CSS Animation Libraries help you create stunning animations. Animations give life to the web, the meaningful movement escalates the UX to the next level.
-            </p>
-            <p>
-              CSS animation makes it really easy to animate the web elements on your websites without using any Javascript. As it is pure CSS, it is very easy to master the CSS animation. Yes, there is some new syntax involved in CSS animation, but once you get used to that, you will find it’s easy.
-            </p>
-            <p>
-              CSS animation libraries make life further easier with the pre-made set of styles to animate elements on your website.
-            </p>
-          </modal>
-
         </div>
-      </div>
-      <div class="row mb-3"></div>
 
-      <div class="row mb-3">
-        <div class="col-sm-12">
-          <h2 class="pb-2">Options</h2>
 
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>Option</th>
-                  <th>Description</th>
-                  <th>Type</th>
-                  <th>Default</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>basedon</td>
-                  <td>Opens and closes the modal window</td>
-                  <td>Boolean</td>
-                  <td>false</td>
-                </tr>
-                <tr>
-                  <td>live</td>
-                  <td>Controls whether the modal renders dynamically or stays hidden in the DOM<br />
-                    <strong>This option should not be changed at runtime</strong>
-                  </td>
-                  <td>Boolean</td>
-                  <td>false</td>
-                </tr>
-                <tr>
-                  <td>appendto</td>
-                  <td>Element (selector) in which the modal is to be inserted to, e.g 'body'<br />
-                    <strong>This option should not be changed at runtime</strong>
-                  </td>
-                  <td>String</td>
-                  <td>Ractive root instance el</td>
-                </tr>
-                <tr>
-                  <td>class</td>
-                  <td>Extra css classes for the modal element</td>
-                  <td>String</td>
-                  <td><em>Empty</em></td>
-                </tr>
-                <tr>
-                  <td>bg_class</td>
-                  <td>Extra css classes for the modal backdrop</td>
-                  <td>String</td>
-                  <td><em>Empty</em></td>
-                </tr>
-                <tr>
-                  <td>base_anim_class</td>
-                  <td>Your animation framework's base class e.g "animate". This applies to the modal and the modal backdrop elements.</td>
-                  <td>String</td>
-                  <td><em>Empty</em></td>
-                </tr>
-                <tr>
-                  <td>in_class</td>
-                  <td>Animation class for the modal intro</td>
-                  <td>String</td>
-                  <td>rm-fadeIn</td>
-                </tr>
-                <tr>
-                  <td>out_class</td>
-                  <td>Animation class for the modal outro</td>
-                  <td>String</td>
-                  <td>rm-fadeOut</td>
-                </tr>
-                <tr>
-                  <td>bg_in_class</td>
-                  <td>Animation class for the modal backdrop intro</td>
-                  <td>String</td>
-                  <td>rm-fadeIn</td>
-                </tr>
-                <tr>
-                  <td>bg_out_class</td>
-                  <td>Animation class for the modal backdrop outro</td>
-                  <td>String</td>
-                  <td>rm-fadeOut</td>
-                </tr>                
-                <tr>
-                  <td>style</td>
-                  <td>Extra css styles for the modal element</td>
-                  <td>String</td>
-                  <td><em>Empty</em></td>
-                </tr>
-                <tr>
-                  <td>title</td>
-                  <td>The title of the modal element</td>
-                  <td>String</td>
-                  <td><em>Empty</em></td>
-                </tr>
-                <tr>
-                  <td>enableclose</td>
-                  <td>Controls whether the modal window is closable or not</td>
-                  <td>Boolean</td>
-                  <td>true</td>
-                </tr>
-
-              </tbody>
-            </table>
-
-          <h5>Example</h5>
-          <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_3', true)">Open modal</button>
-          <modal title="Live modal" basedon="{{open_modal_3}}" live="true" appendto="body" class="live-modal" style="width:650px;" enableclose="{{modal_3_closable}}">
-              <ul>
-                <li>This is a "live" modal that once rendered it gets appended to document body and never gets removed from DOM</li>
-                <li>It also has a custom class "live-modal" and a fixed width of 650px</li>
-                <li>You can enable and disable closing of this modal by clicking on the button below</li>
-              </ul>
-              {{#if modal_3_closable == false}}
-                <div class="alert alert-warning" role="alert">
-                  <strong>Warning!</strong> You now cannot close this modal!
+        <div class="row mb-3"></div>
+        <div class="row mb-3"></div>
+        <div class="row mb-3">
+            <div class="col-sm-12">
+                <h2 class="pb-2">Prevent &lt;body&gt; from scrolling</h2>
+                <p>
+                    A common need when a modal window is open, is to prevent the &lt;body&gt; of the underlying page from scrolling.<br />
+                    ractive-modal does not impose any specific scroll behavior on the &lt;body&gt; by default. This functionality is provided as a separate <a href="../plugins/ractive-modal-scroll-lock.js" target="_blank">plugin</a>.
+                </p>
+                <h5>Include <a href="../plugins/ractive-modal-scroll-lock.js" target="_blank">ractive-modal-scroll-lock.js</a> plugin, to prevent &lt;body&gt; from scrolling when a modal is open</h5>
+                <ol>
+                    <li>When <a href="../plugins/ractive-modal-scroll-lock.js" target="_blank">ractive-modal-scroll-lock.js</a> is included, all modals when opened prevent &lt;body&gt; from scrolling <strong>by default</strong>.</li>
+                    <li>When the modal is closed, the &lt;body&gt; scrolling behavior is restored.</li>
+                    <li>To override the "scroll locking" behavior for any modal, you can set <span class="badge badge-light font-weight-normal" style="font-size: 1rem;">body_lock_scroll="false"</span></li>
+                </ol>
+                <div class="alert alert-info" role="alert">
+                    <strong>Info:</strong> This demo page includes the <a href="../plugins/ractive-modal-scroll-lock.js" target="_blank">ractive-modal-scroll-lock.js</a> plugin.
                 </div>
-              {{/if}}
-                <button class="btn btn-secondary" type="button" on-click="@this.toggle('modal_3_closable')">{{#if modal_3_closable}}Disable close{{else}}Enable close{{/if}}</button>
-          </modal>
+
+            </div>
+        </div>      
+
+        <div class="row mb-3"></div>
+        <div class="row mb-3">
+            <div class="col-sm-12">
+                <h2 class="pb-2">Events</h2>
+                <p>ractive-modal exposes 5 component events - beforeOpen, opening, afterOpen, beforeClose, afterClose</p>
+<pre class="highlight">
+<code as-code>
+<!--
+<modal title="Events modal" basedon="{{open_modal}}" on-beforeOpen="@global.alert('beforeOpen event fired')">
+    <p>A modal with "beforeopen" component event attached</p>
+</modal>
+-->
+</code>
+</pre>
+                <h5>Example</h5>
+                <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_2', true)">Open modal</button>
+                <callbacks-modal title="Events modal" basedon="{{open_modal_2}}">
+                    <p>This is a modal that has all events attached</p>
+                </callbacks-modal>
+            </div>
         </div>
-      </div>
+        <div class="row mb-3"></div>
 
-      <div class="row mb-3"></div>
-      <div class="row mb-3">
-        <div class="col-sm-12">
-          <h2 class="pb-2">Focus management</h2>
-          <h5>ractive-modal comes with integrated focus management - How it works</h5>
-          <ol>
-            <li>When the modal opens it moves the keyboard focus from the triggering element (link or button) to the modal window (or an element with an autofocus attribute within it)</li>
-            <li>It keeps the keyboard focus within the modal dialog until the dialog is closed</li>
-            <li>It moves the focus back to the triggering element when the user closes the dialog.</li>
-          </ol>
+        <div class="row mb-3">
+            <div class="col-sm-12">
+                <h2 class="pb-2">CSS animations</h2>
+                <p>
+                    ractive-modal comes with a fade-in / fade-out animation (250ms duration by default) for the modal and the modal backdrop.<br />
+                    It is also designed so that you can put you favorite animations using any CSS animation framework like <a href="https://daneden.github.io/animate.css/" target="_blank">Animate.css</a>, <a href="http://anicollection.github.io" target="_blank">Anicollection</a> etc
+                </p>
+                <p>
+                    You can define your base animation class (usually this is the "animated" class) by setting the "base_anim_class" variable.<br />
+                    Then define your intro and outro animation classes for the modal, by defining "in_class" and "out_class" variables accordingly.
+                </p>
+                <p>
+                    You can also set the intro and outro animation class for the modal backdrop, by defining "bg_in_class" and "bg_out_class" variables accordingly.<br />
+                </p>
+
+                <h5>Example using Animate.css</h5>
+                <form class="mb-2">
+                    <div class="row">
+                        <div class="col form-group">
+                            <label>Modal intro</label>
+                            <select class="form-control" value="{{modal_animated_in_class}}">
+                                {{>animation_options}}
+                            </select>
+                        </div>
+                        <div class="col form-group">
+                            <label>Modal outro</label>
+                            <select class="form-control" value="{{modal_animated_out_class}}">
+                                {{>animation_options}}
+                            </select>
+                        </div>
+                        <div class="col form-group">
+                            <label>Overlay intro</label>
+                            <select class="form-control" value="{{overlay_animated_in_class}}">
+                                {{>animation_options}}
+                            </select>
+                        </div>
+                        <div class="col form-group">
+                            <label>Overlay outro</label>
+                            <select class="form-control" value="{{overlay_animated_out_class}}">
+                                {{>animation_options}}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col form-group">
+                            <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_animated', true)">Open modal</button>
+                        </div>
+                    </div>
+                </form>
+
+                {{#partial animation_options}}
+                    <optgroup label="Attention Seekers">
+                        {{#each lovs.attention_seekers}}
+                        <option value="{{value}}">{{text}}</option>
+                        {{/each}}
+                    </optgroup>
+                    <optgroup label="Bouncing Entrances">
+                        {{#each lovs.bouncing_entrances}}
+                        <option value="{{value}}">{{text}}</option>
+                        {{/each}}
+                    </optgroup>
+                    <optgroup label="Bouncing Exits">
+                        {{#each lovs.bouncing_exits}}
+                        <option value="{{value}}">{{text}}</option>
+                        {{/each}}
+                    </optgroup>
+                    <optgroup label="Fading Entrances">
+                        {{#each lovs.fading_entrances}}
+                        <option value="{{value}}">{{text}}</option>
+                        {{/each}}
+                    </optgroup>
+                    <optgroup label="Fading Exits">
+                        {{#each lovs.fading_exits}}
+                        <option value="{{value}}">{{text}}</option>
+                        {{/each}}
+                    </optgroup>
+                    <optgroup label="Flippers">
+                        {{#each lovs.flippers}}
+                        <option value="{{value}}">{{text}}</option>
+                        {{/each}}
+                    </optgroup>
+                    <optgroup label="Lightspeed">
+                        {{#each lovs.lightspeed}}
+                        <option value="{{value}}">{{text}}</option>
+                        {{/each}}
+                    </optgroup>
+                    <optgroup label="Rotating Entrances">
+                        {{#each lovs.rotating_entrances}}
+                        <option value="{{value}}">{{text}}</option>
+                        {{/each}}
+                    </optgroup>
+                    <optgroup label="Rotating Exits">
+                        {{#each lovs.rotating_exits}}
+                        <option value="{{value}}">{{text}}</option>
+                        {{/each}}
+                    </optgroup>
+                    <optgroup label="Sliding Entrances">
+                        {{#each lovs.sliding_entrances}}
+                        <option value="{{value}}">{{text}}</option>
+                        {{/each}}
+                    </optgroup>
+                    <optgroup label="Sliding Exits">
+                        {{#each lovs.sliding_exits}}
+                        <option value="{{value}}">{{text}}</option>
+                        {{/each}}
+                    </optgroup>
+                    <optgroup label="Zoom Entrances">
+                        {{#each lovs.zoom_entrances}}
+                        <option value="{{value}}">{{text}}</option>
+                        {{/each}}
+                    </optgroup>
+                    <optgroup label="Zoom Exits">
+                        {{#each lovs.zoom_exits}}
+                        <option value="{{value}}">{{text}}</option>
+                        {{/each}}
+                    </optgroup>
+                    <optgroup label="Specials">
+                        {{#each lovs.specials}}
+                        <option value="{{value}}">{{text}}</option>
+                        {{/each}}
+                    </optgroup>
+                {{/partial}}
+                <modal title="Modal with custom CSS animation" base_anim_class="animated" in_class="{{modal_animated_in_class}}" out_class="{{modal_animated_out_class}}" bg_in_class="{{overlay_animated_in_class}}" bg_out_class="{{overlay_animated_out_class}}" basedon="{{open_modal_animated}}">
+                    <p>
+                        CSS Animation Libraries help you create stunning animations. Animations give life to the web, the meaningful movement escalates the UX to the next level.
+                    </p>
+                    <p>
+                        CSS animation makes it really easy to animate the web elements on your websites without using any Javascript. As it is pure CSS, it is very easy to master the CSS animation. Yes, there is some new syntax involved in CSS animation, but once you get used to that, you will find it’s easy.
+                    </p>
+                    <p>
+                        CSS animation libraries make life further easier with the pre-made set of styles to animate elements on your website.
+                    </p>
+                </modal>
+
+            </div>
         </div>
-      </div>
+        <div class="row mb-3"></div>
 
-      <div class="row mb-3"></div>
-      <div class="row mb-3">
-        <div class="col-sm-12">
-          <h2 class="pb-2">Changelog</h2>
+        <div class="row mb-3">
+            <div class="col-sm-12">
+                <h2 class="pb-2">Options</h2>
 
-          <h5>version 0.3.2</h5>
-          <ul>
-            <li>Fixed build when used in module environment via import.</li>
-          </ul>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>basedon</td>
+                            <td>Opens and closes the modal window</td>
+                            <td>Boolean</td>
+                            <td>false</td>
+                        </tr>
+                        <tr>
+                            <td>live</td>
+                            <td>Controls whether the modal renders dynamically or stays hidden in the DOM<br />
+                                <strong>This option should not be changed at runtime</strong>
+                            </td>
+                            <td>Boolean</td>
+                            <td>false</td>
+                        </tr>
+                        <tr>
+                            <td>appendto</td>
+                            <td>Element (selector) in which the modal is to be inserted to, e.g 'body'<br />
+                                <strong>This option should not be changed at runtime</strong>
+                            </td>
+                            <td>String</td>
+                            <td>Ractive root instance el</td>
+                        </tr>
+                        <tr>
+                            <td>class</td>
+                            <td>Extra css classes for the modal element</td>
+                            <td>String</td>
+                            <td><em>Empty</em></td>
+                        </tr>
+                        <tr>
+                            <td>bg_class</td>
+                            <td>Extra css classes for the modal backdrop</td>
+                            <td>String</td>
+                            <td><em>Empty</em></td>
+                        </tr>
+                        <tr>
+                            <td>base_anim_class</td>
+                            <td>Your animation framework's base class e.g "animate". This applies to the modal and the modal backdrop elements.</td>
+                            <td>String</td>
+                            <td><em>Empty</em></td>
+                        </tr>
+                        <tr>
+                            <td>in_class</td>
+                            <td>Animation class for the modal intro</td>
+                            <td>String</td>
+                            <td>rm-fadeIn</td>
+                        </tr>
+                        <tr>
+                            <td>out_class</td>
+                            <td>Animation class for the modal outro</td>
+                            <td>String</td>
+                            <td>rm-fadeOut</td>
+                        </tr>
+                        <tr>
+                            <td>bg_in_class</td>
+                            <td>Animation class for the modal backdrop intro</td>
+                            <td>String</td>
+                            <td>rm-fadeIn</td>
+                        </tr>
+                        <tr>
+                            <td>bg_out_class</td>
+                            <td>Animation class for the modal backdrop outro</td>
+                            <td>String</td>
+                            <td>rm-fadeOut</td>
+                        </tr>                
+                        <tr>
+                            <td>style</td>
+                            <td>Extra css styles for the modal element</td>
+                            <td>String</td>
+                            <td><em>Empty</em></td>
+                        </tr>
+                        <tr>
+                            <td>title</td>
+                            <td>The title of the modal element</td>
+                            <td>String</td>
+                            <td><em>Empty</em></td>
+                        </tr>
+                        <tr>
+                            <td>enableclose</td>
+                            <td>Controls whether the modal window is closable or not</td>
+                            <td>Boolean</td>
+                            <td>true</td>
+                        </tr>
 
-          <h5>version 0.3.1</h5>
-          <ul>
-            <li>Added opening event.</li>
-          </ul>
+                    </tbody>
+                </table>
 
-          <h5>version 0.3</h5>
-          <ul>
-            <li>Modal intro and outro is now handled by CSS animation classes for both the modal window and modal backdrop elements.</li>
-            <li>Separate the modal window and the modal backdrop into different elements.</li>
-          </ul>
-
-          <h5>version 0.2.2</h5>
-          <ul>
-            <li>event.stopPropagation on modal element caused click events not propagating up to the document.<br />This is now fixed with a clickoutside handler method</li>
-          </ul>
-
-          <h5>version 0.2.1</h5>
-          <ul>
-            <li>Fixed a bug in trapped keyboard navigation logic that would take in to account hidden elements</li>
-            <li>Fixed a bug so that the modal is now correctly inserted in the element of the appendto option</li>
-          </ul>
-
-          <h5>version 0.2</h5>
-          <ul>
-            <li>Added "live" option</li>
-            <li>Added autofocus logic</li>
-            <li>Added trapped keyboard navigation logic</li>
-            <li>Added appendto element logic</li>
-            <li>Removed basedon as String option</li>
-          </ul>
-
-          <h5>version 0.1</h5>
-          <ul>
-            <li>Initial release</li>
-          </ul>
-          
+                <h5>Example</h5>
+                <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_3', true)">Open modal</button>
+                <modal title="Live modal" basedon="{{open_modal_3}}" live="true" appendto="body" class="live-modal" style="width:650px;" enableclose="{{modal_3_closable}}">
+                    <ul>
+                        <li>This is a "live" modal that once rendered it gets appended to document body and never gets removed from DOM</li>
+                        <li>It also has a custom class "live-modal" and a fixed width of 650px</li>
+                        <li>You can enable and disable closing of this modal by clicking on the button below</li>
+                    </ul>
+                    {{#if modal_3_closable == false}}
+                    <div class="alert alert-warning" role="alert">
+                        <strong>Warning!</strong> You now cannot close this modal!
+                    </div>
+                    {{/if}}
+                    <button class="btn btn-secondary" type="button" on-click="@this.toggle('modal_3_closable')">{{#if modal_3_closable}}Disable close{{else}}Enable close{{/if}}</button>
+                </modal>
+            </div>
         </div>
-      </div>
+
+        <div class="row mb-3"></div>
+        <div class="row mb-3">
+            <div class="col-sm-12">
+                <h2 class="pb-2">Focus management</h2>
+                <h5>ractive-modal comes with integrated focus management - How it works</h5>
+                <ol>
+                    <li>When the modal opens it moves the keyboard focus from the triggering element (link or button) to the modal window (or an element with an autofocus attribute within it)</li>
+                    <li>It keeps the keyboard focus within the modal dialog until the dialog is closed</li>
+                    <li>It moves the focus back to the triggering element when the user closes the dialog.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="row mb-3"></div>
+        <div class="row mb-3">
+            <div class="col-sm-12">
+                <h2 class="pb-2">Changelog</h2>
+
+                <h5>version 0.3.2</h5>
+                <ul>
+                    <li>Fixed build when used in module environment via import.</li>
+                </ul>
+
+                <h5>version 0.3.1</h5>
+                <ul>
+                    <li>Added opening event.</li>
+                </ul>
+
+                <h5>version 0.3</h5>
+                <ul>
+                    <li>Modal intro and outro is now handled by CSS animation classes for both the modal window and modal backdrop elements.</li>
+                    <li>Separate the modal window and the modal backdrop into different elements.</li>
+                </ul>
+
+                <h5>version 0.2.2</h5>
+                <ul>
+                    <li>event.stopPropagation on modal element caused click events not propagating up to the document.<br />This is now fixed with a clickoutside handler method</li>
+                </ul>
+
+                <h5>version 0.2.1</h5>
+                <ul>
+                    <li>Fixed a bug in trapped keyboard navigation logic that would take in to account hidden elements</li>
+                    <li>Fixed a bug so that the modal is now correctly inserted in the element of the appendto option</li>
+                </ul>
+
+                <h5>version 0.2</h5>
+                <ul>
+                    <li>Added "live" option</li>
+                    <li>Added autofocus logic</li>
+                    <li>Added trapped keyboard navigation logic</li>
+                    <li>Added appendto element logic</li>
+                    <li>Removed basedon as String option</li>
+                </ul>
+
+                <h5>version 0.1</h5>
+                <ul>
+                    <li>Initial release</li>
+                </ul>
+
+            </div>
+        </div>
 
     </script>
 
@@ -646,419 +652,424 @@
     <script src="../plugins/ractive-modal-scroll-lock.js"></script>
 
     <script type="text/javascript">
-
-      function findComments(el) {
-        var arr = [];
-        for(var i = 0; i < el.childNodes.length; i++) {
-          var node = el.childNodes[i];
-          if(node.nodeType === 8) {
-            arr.push(node);
-          } else {
-            arr.push.apply(arr, findComments(node));
-          }
-        }
-        return arr;
-      };
-
-      function esc(string){
-        var entityMap = {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': '&quot;', "'": '&#39;', "/": '&#x2F;'};
-        return String(string).replace(/[&<>"'\/]/g, function(s){
-          return entityMap[s];
-        });
-      }
-
-      Ractive.decorators.code = function(node){
-        var comments = findComments(node);
-        for (var i = 0; i < comments.length; i++) {
-          var temp = document.createElement('div');
-          temp.classList.add('code-comment');
-          temp.innerHTML = esc(comments[i].nodeValue).replace(/^\s+|\s+$/g, '');
-          node.replaceChild(temp, comments[i]);
+        function findComments(el) {
+            var arr = [];
+            for (var i = 0; i < el.childNodes.length; i++) {
+                var node = el.childNodes[i];
+                if (node.nodeType === 8) {
+                    arr.push(node);
+                } else {
+                    arr.push.apply(arr, findComments(node));
+                }
+            }
+            return arr;
         };
-        return {
-          teardown: function(){
-          }
-        }        
-      }
 
-      var ractive = new Ractive({
-        stripComments: false,
-        target: '#app',
-        template: '#app-template',
-        data: {
-          open_modal_1: false,
-          open_modal_2: false,
-          open_modal_3: false,
-          open_modal_animated: false,
-          modal_animated_in_class: "slideInDown",
-          overlay_animated_in_class: "fadeIn",
-          modal_animated_out_class: "slideOutUp",
-          overlay_animated_out_class: "fadeOut",
-          modal_3_closable: true,
-          uind: {
-            popmd_1_show: false,
-            popmd_2_show: false,
-            popmd_3_show: false,
-            popmd_4_show: false
-          },
-          lovs: {
-            attention_seekers: [
-              {
-                value: "bounce",
-                text: "bounce"
-              },
-              {
-                value: "flash",
-                text: "flash"
-              },
-              {
-                value: "pulse",
-                text: "pulse"
-              },
-              {
-                value: "rubberBand",
-                text: "rubberBand"
-              },
-              {
-                value: "shake",
-                text: "shake"
-              },
-              {
-                value: "swing",
-                text: "swing"
-              },
-              {
-                value: "tada",
-                text: "tada"
-              },
-              {
-                value: "wobble",
-                text: "wobble"
-              },
-              {
-                value: "jello",
-                text: "jello"
-              }
-            ],
-            bouncing_entrances: [
-              {
-                value: "bounceIn",
-                text: "bounceIn"
-              },
-              {
-                value: "bounceInDown",
-                text: "bounceInDown"
-              },
-              {
-                value: "bounceInLeft",
-                text: "bounceInLeft"
-              },
-              {
-                value: "bounceInRight",
-                text: "bounceInRight"
-              },
-              {
-                value: "bounceInUp",
-                text: "bounceInUp"
-              }
-            ],
-            bouncing_exits: [
-              {
-                value: "bounceOut",
-                text: "bounceOut"
-              },
-              {
-                value: "bounceOutDown",
-                text: "bounceOutDown"
-              },
-              {
-                value: "bounceOutLeft",
-                text: "bounceOutLeft"
-              },
-              {
-                value: "bounceOutRight",
-                text: "bounceOutRight"
-              },
-              {
-                value: "bounceOutUp",
-                text: "bounceOutUp"
-              }
-            ],
-            fading_entrances: [
-              {
-                value: "fadeIn",
-                text: "fadeIn"
-              },
-              {
-                value: "fadeInDown",
-                text: "fadeInDown"
-              },
-              {
-                value: "fadeInDownBig",
-                text: "fadeInDownBig"
-              },
-              {
-                value: "fadeInLeft",
-                text: "fadeInLeft"
-              },
-              {
-                value: "fadeInLeftBig",
-                text: "fadeInLeftBig"
-              },
-              {
-                value: "fadeInRight",
-                text: "fadeInRight"
-              },
-              {
-                value: "fadeInRightBig",
-                text: "fadeInRightBig"
-              },
-              {
-                value: "fadeInUp",
-                text: "fadeInUp"
-              },
-              {
-                value: "fadeInUpBig",
-                text: "fadeInUpBig"
-              }
-            ],
-            fading_exits: [
-              {
-                value: "fadeOut",
-                text: "fadeOut"
-              },
-              {
-                value: "fadeOutDown",
-                text: "fadeOutDown"
-              },
-              {
-                value: "fadeOutDownBig",
-                text: "fadeOutDownBig"
-              },
-              {
-                value: "fadeOutLeft",
-                text: "fadeOutLeft"
-              },
-              {
-                value: "fadeOutLeftBig",
-                text: "fadeOutLeftBig"
-              },
-              {
-                value: "fadeOutRight",
-                text: "fadeOutRight"
-              },
-              {
-                value: "fadeOutRightBig",
-                text: "fadeOutRightBig"
-              },
-              {
-                value: "fadeOutUp",
-                text: "fadeOutUp"
-              },
-              {
-                value: "fadeOutUpBig",
-                text: "fadeOutUpBig"
-              }
-            ],
-            flippers: [
-              {
-                value: "flip",
-                text: "flip"
-              },
-              {
-                value: "flipInX",
-                text: "flipInX"
-              },
-              {
-                value: "flipInY",
-                text: "flipInY"
-              },
-              {
-                value: "flipOutX",
-                text: "flipOutX"
-              },
-              {
-                value: "flipOutY",
-                text: "flipOutY"
-              }
-            ],
-            lightspeed: [
-              {
-                value: "lightSpeedIn",
-                text: "lightSpeedIn"
-              },
-              {
-                value: "lightSpeedOut",
-                text: "lightSpeedOut"
-              }
-            ],
-            rotating_entrances: [
-              {
-                value: "rotateIn",
-                text: "rotateIn"
-              },
-              {
-                value: "rotateInDownLeft",
-                text: "rotateInDownLeft"
-              },
-              {
-                value: "rotateInDownRight",
-                text: "rotateInDownRight"
-              },
-              {
-                value: "rotateInUpLeft",
-                text: "rotateInUpLeft"
-              },
-              {
-                value: "rotateInUpRight",
-                text: "rotateInUpRight"
-              }
-            ],
-            rotating_exits: [
-              {
-                value: "rotateOut",
-                text: "rotateOut"
-              },
-              {
-                value: "rotateOutDownLeft",
-                text: "rotateOutDownLeft"
-              },
-              {
-                value: "rotateOutDownRight",
-                text: "rotateOutDownRight"
-              },
-              {
-                value: "rotateOutUpLeft",
-                text: "rotateOutUpLeft"
-              },
-              {
-                value: "rotateOutUpRight",
-                text: "rotateOutUpRight"
-              }
-            ],
-            sliding_entrances: [
-              {
-                value: "slideInUp",
-                text: "slideInUp"
-              },
-              {
-                value: "slideInDown",
-                text: "slideInDown"
-              },
-              {
-                value: "slideInLeft",
-                text: "slideInLeft"
-              },
-              {
-                value: "slideInRight",
-                text: "slideInRight"
-              }
-            ],
-            sliding_exits: [
-              {
-                value: "slideOutUp",
-                text: "slideOutUp"
-              },
-              {
-                value: "slideOutDown",
-                text: "slideOutDown"
-              },
-              {
-                value: "slideOutLeft",
-                text: "slideOutLeft"
-              },
-              {
-                value: "slideOutRight",
-                text: "slideOutRight"
-              }
-            ],
-            zoom_entrances: [
-              {
-                value: "zoomIn",
-                text: "zoomIn"
-              },
-              {
-                value: "zoomInDown",
-                text: "zoomInDown"
-              },
-              {
-                value: "zoomInLeft",
-                text: "zoomInLeft"
-              },
-              {
-                value: "zoomInRight",
-                text: "zoomInRight"
-              },
-              {
-                value: "zoomInUp",
-                text: "zoomInUp"
-              }
-            ],
-            zoom_exits: [
-              {
-                value: "zoomOut",
-                text: "zoomOut"
-              },
-              {
-                value: "zoomOutDown",
-                text: "zoomOutDown"
-              },
-              {
-                value: "zoomOutLeft",
-                text: "zoomOutLeft"
-              },
-              {
-                value: "zoomOutRight",
-                text: "zoomOutRight"
-              },
-              {
-                value: "zoomOutUp",
-                text: "zoomOutUp"
-              }
-            ],
-            specials: [
-              {
-                value: "hinge",
-                text: "hinge"
-              },
-              {
-                value: "jackInTheBox",
-                text: "jackInTheBox"
-              },
-              {
-                value: "rollIn",
-                text: "rollIn"
-              },
-              {
-                value: "rollOut",
-                text: "rollOut"
-              }
-            ]
-          }
-        },
-        components: {
-          modal: RactiveModal,
-          'callbacks-modal': RactiveModal
-        },
-        on: {
-          'callbacks-modal.beforeOpen': function(){
-            alert('beforeOpen event fired');
-          },
-          'callbacks-modal.opening': function(){
-            alert('opening event fired');
-          },          
-          'callbacks-modal.afterOpen': function(){
-            alert('afterOpen event fired');
-          },
-          'callbacks-modal.beforeClose': function(){
-            alert('beforeClose event fired');
-          },
-          'callbacks-modal.afterClose': function(){
-            alert('afterClose event fired');
-          }
+        function esc(string) {
+            var entityMap = {
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': '&quot;',
+                "'": '&#39;',
+                "/": '&#x2F;'
+            };
+            return String(string).replace(/[&<>"'\/]/g, function(s) {
+                return entityMap[s];
+            });
         }
-      });
+
+        Ractive.decorators.code = function(node) {
+            var comments = findComments(node);
+            for (var i = 0; i < comments.length; i++) {
+                var temp = document.createElement('div');
+                temp.classList.add('code-comment');
+                temp.innerHTML = esc(comments[i].nodeValue).replace(/^\s+|\s+$/g, '');
+                node.replaceChild(temp, comments[i]);
+            };
+            return {
+                teardown: function() {}
+            }
+        }
+
+        var ractive = new Ractive({
+            stripComments: false,
+            target: '#app',
+            template: '#app-template',
+            data: {
+                open_modal_1: false,
+                open_modal_2: false,
+                open_modal_3: false,
+                open_modal_animated: false,
+                modal_animated_in_class: "slideInDown",
+                overlay_animated_in_class: "fadeIn",
+                modal_animated_out_class: "slideOutUp",
+                overlay_animated_out_class: "fadeOut",
+                modal_3_closable: true,
+                uind: {
+                    popmd_1_show: false,
+                    popmd_2_show: false,
+                    popmd_3_show: false,
+                    popmd_4_show: false
+                },
+                lovs: {
+                    attention_seekers: [
+                        {
+                            value: "bounce",
+                            text: "bounce"
+                        },
+                        {
+                            value: "flash",
+                            text: "flash"
+                        },
+                        {
+                            value: "pulse",
+                            text: "pulse"
+                        },
+                        {
+                            value: "rubberBand",
+                            text: "rubberBand"
+                        },
+                        {
+                            value: "shake",
+                            text: "shake"
+                        },
+                        {
+                            value: "swing",
+                            text: "swing"
+                        },
+                        {
+                            value: "tada",
+                            text: "tada"
+                        },
+                        {
+                            value: "wobble",
+                            text: "wobble"
+                        },
+                        {
+                            value: "jello",
+                            text: "jello"
+                        }
+                    ],
+                    bouncing_entrances: [
+                        {
+                            value: "bounceIn",
+                            text: "bounceIn"
+                        },
+                        {
+                            value: "bounceInDown",
+                            text: "bounceInDown"
+                        },
+                        {
+                            value: "bounceInLeft",
+                            text: "bounceInLeft"
+                        },
+                        {
+                            value: "bounceInRight",
+                            text: "bounceInRight"
+                        },
+                        {
+                            value: "bounceInUp",
+                            text: "bounceInUp"
+                        }
+                    ],
+                    bouncing_exits: [
+                        {
+                            value: "bounceOut",
+                            text: "bounceOut"
+                        },
+                        {
+                            value: "bounceOutDown",
+                            text: "bounceOutDown"
+                        },
+                        {
+                            value: "bounceOutLeft",
+                            text: "bounceOutLeft"
+                        },
+                        {
+                            value: "bounceOutRight",
+                            text: "bounceOutRight"
+                        },
+                        {
+                            value: "bounceOutUp",
+                            text: "bounceOutUp"
+                        }
+                    ],
+                    fading_entrances: [
+                        {
+                            value: "fadeIn",
+                            text: "fadeIn"
+                        },
+                        {
+                            value: "fadeInDown",
+                            text: "fadeInDown"
+                        },
+                        {
+                            value: "fadeInDownBig",
+                            text: "fadeInDownBig"
+                        },
+                        {
+                            value: "fadeInLeft",
+                            text: "fadeInLeft"
+                        },
+                        {
+                            value: "fadeInLeftBig",
+                            text: "fadeInLeftBig"
+                        },
+                        {
+                            value: "fadeInRight",
+                            text: "fadeInRight"
+                        },
+                        {
+                            value: "fadeInRightBig",
+                            text: "fadeInRightBig"
+                        },
+                        {
+                            value: "fadeInUp",
+                            text: "fadeInUp"
+                        },
+                        {
+                            value: "fadeInUpBig",
+                            text: "fadeInUpBig"
+                        }
+                    ],
+                    fading_exits: [
+                        {
+                            value: "fadeOut",
+                            text: "fadeOut"
+                        },
+                        {
+                            value: "fadeOutDown",
+                            text: "fadeOutDown"
+                        },
+                        {
+                            value: "fadeOutDownBig",
+                            text: "fadeOutDownBig"
+                        },
+                        {
+                            value: "fadeOutLeft",
+                            text: "fadeOutLeft"
+                        },
+                        {
+                            value: "fadeOutLeftBig",
+                            text: "fadeOutLeftBig"
+                        },
+                        {
+                            value: "fadeOutRight",
+                            text: "fadeOutRight"
+                        },
+                        {
+                            value: "fadeOutRightBig",
+                            text: "fadeOutRightBig"
+                        },
+                        {
+                            value: "fadeOutUp",
+                            text: "fadeOutUp"
+                        },
+                        {
+                            value: "fadeOutUpBig",
+                            text: "fadeOutUpBig"
+                        }
+                    ],
+                    flippers: [
+                        {
+                            value: "flip",
+                            text: "flip"
+                        },
+                        {
+                            value: "flipInX",
+                            text: "flipInX"
+                        },
+                        {
+                            value: "flipInY",
+                            text: "flipInY"
+                        },
+                        {
+                            value: "flipOutX",
+                            text: "flipOutX"
+                        },
+                        {
+                            value: "flipOutY",
+                            text: "flipOutY"
+                        }
+                    ],
+                    lightspeed: [
+                        {
+                            value: "lightSpeedIn",
+                            text: "lightSpeedIn"
+                        },
+                        {
+                            value: "lightSpeedOut",
+                            text: "lightSpeedOut"
+                        }
+                    ],
+                    rotating_entrances: [
+                        {
+                            value: "rotateIn",
+                            text: "rotateIn"
+                        },
+                        {
+                            value: "rotateInDownLeft",
+                            text: "rotateInDownLeft"
+                        },
+                        {
+                            value: "rotateInDownRight",
+                            text: "rotateInDownRight"
+                        },
+                        {
+                            value: "rotateInUpLeft",
+                            text: "rotateInUpLeft"
+                        },
+                        {
+                            value: "rotateInUpRight",
+                            text: "rotateInUpRight"
+                        }
+                    ],
+                    rotating_exits: [
+                        {
+                            value: "rotateOut",
+                            text: "rotateOut"
+                        },
+                        {
+                            value: "rotateOutDownLeft",
+                            text: "rotateOutDownLeft"
+                        },
+                        {
+                            value: "rotateOutDownRight",
+                            text: "rotateOutDownRight"
+                        },
+                        {
+                            value: "rotateOutUpLeft",
+                            text: "rotateOutUpLeft"
+                        },
+                        {
+                            value: "rotateOutUpRight",
+                            text: "rotateOutUpRight"
+                        }
+                    ],
+                    sliding_entrances: [
+                        {
+                            value: "slideInUp",
+                            text: "slideInUp"
+                        },
+                        {
+                            value: "slideInDown",
+                            text: "slideInDown"
+                        },
+                        {
+                            value: "slideInLeft",
+                            text: "slideInLeft"
+                        },
+                        {
+                            value: "slideInRight",
+                            text: "slideInRight"
+                        }
+                    ],
+                    sliding_exits: [
+                        {
+                            value: "slideOutUp",
+                            text: "slideOutUp"
+                        },
+                        {
+                            value: "slideOutDown",
+                            text: "slideOutDown"
+                        },
+                        {
+                            value: "slideOutLeft",
+                            text: "slideOutLeft"
+                        },
+                        {
+                            value: "slideOutRight",
+                            text: "slideOutRight"
+                        }
+                    ],
+                    zoom_entrances: [
+                        {
+                            value: "zoomIn",
+                            text: "zoomIn"
+                        },
+                        {
+                            value: "zoomInDown",
+                            text: "zoomInDown"
+                        },
+                        {
+                            value: "zoomInLeft",
+                            text: "zoomInLeft"
+                        },
+                        {
+                            value: "zoomInRight",
+                            text: "zoomInRight"
+                        },
+                        {
+                            value: "zoomInUp",
+                            text: "zoomInUp"
+                        }
+                    ],
+                    zoom_exits: [
+                        {
+                            value: "zoomOut",
+                            text: "zoomOut"
+                        },
+                        {
+                            value: "zoomOutDown",
+                            text: "zoomOutDown"
+                        },
+                        {
+                            value: "zoomOutLeft",
+                            text: "zoomOutLeft"
+                        },
+                        {
+                            value: "zoomOutRight",
+                            text: "zoomOutRight"
+                        },
+                        {
+                            value: "zoomOutUp",
+                            text: "zoomOutUp"
+                        }
+                    ],
+                    specials: [
+                        {
+                            value: "hinge",
+                            text: "hinge"
+                        },
+                        {
+                            value: "jackInTheBox",
+                            text: "jackInTheBox"
+                        },
+                        {
+                            value: "rollIn",
+                            text: "rollIn"
+                        },
+                        {
+                            value: "rollOut",
+                            text: "rollOut"
+                        }
+                    ]
+                }
+            },
+            components: {
+                modal: RactiveModal,
+                'callbacks-modal': RactiveModal
+            },
+            on: {
+                'callbacks-modal.beforeOpen': function() {
+                    alert('beforeOpen event fired');
+                },
+                'callbacks-modal.opening': function() {
+                    alert('opening event fired');
+                },
+                'callbacks-modal.afterOpen': function() {
+                    alert('afterOpen event fired');
+                },
+                'callbacks-modal.beforeClose': function() {
+                    alert('beforeClose event fired');
+                },
+                'callbacks-modal.afterClose': function() {
+                    alert('afterClose event fired');
+                }
+            }
+        });
     </script>
 
-  </body>
+</body>
 </html>
