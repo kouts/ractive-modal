@@ -162,8 +162,8 @@ ractive__WEBPACK_IMPORTED_MODULE_0___default.a.sharedSet({'rm.animating': undefi
             }
             if(e.which === 9){
                 // Get only visible elements
-                var all = this.findAll('input, select, textarea, button, a').filter(function(el){
-                    return !!( el.offsetWidth || el.offsetHeight || el.getClientRects().length );
+                var all = this.findAll('input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), a').filter(function(el){
+                    return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
                 });
                 if(e.shiftKey){
                     if(e.target === all[0] || e.target === this.find('.rm-wrapper')){
