@@ -23,6 +23,6 @@
     "watch": "webpack --config webpack.config.js --watch"
   },
   "author": "kouts",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {}
 }
