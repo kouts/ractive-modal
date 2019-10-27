@@ -22,8 +22,8 @@
     <div class="rm-backdrop {{bg_class}} {{base_anim_class}} {{bg_anim_class}} backdrop-{{modal_id}}" style="z-index: {{zindex-1}};"></div>
 {{/if}}
 {{#if showmodal}}
-    <div class="rm-wrapper {{base_anim_class}} {{anim_class}} {{modal_id}}" role="dialog" aria-label="{{title}}" tabindex="0" style="opacity: {{opacity}}; display: {{display}}; z-index: {{zindex}}; cursor: {{enableclose ? 'pointer' : 'default'}}" on-click="clickoutside" on-keydown="keydown">
-        <div class="rm {{class}}" style="{{style}}">
+    <div class="rm-wrapper {{base_anim_class}} {{anim_class}} {{modal_id}}" tabindex="0" style="opacity: {{opacity}}; display: {{display}}; z-index: {{zindex}}; cursor: {{enableclose ? 'pointer' : 'default'}}" on-click="clickoutside" on-keydown="keydown">
+        <div class="rm {{class}}" style="{{style}}" role="dialog" aria-label="{{title}}" aria-modal="true">
             {{#if title || enableclose}}
                 <div class="rm-titlebar">
                     <h3 class="rm-title">{{title}}</h3>
@@ -66,7 +66,8 @@
                 base_zindex: 1051,
                 opacity: 0,
                 display: 'none',
-                zindex: 0
+                zindex: 0,
+                unrender_with_parent: false
             }
         },
         delegate: false,
@@ -114,6 +115,7 @@
         },
         onrender: function(){
             var modal_id = this.get('modal_id');
+            this.elOrigin = this.el;
             this.observe_basedon = this.observe('basedon', function(newValue, oldValue, keypath){
                 var live = this.get('live');
                 if(newValue === true){
@@ -131,7 +133,7 @@
                     this.set({'display': 'block', 'zindex': zindex});
                     this.fire('opening');
                     this.animateModal('in').then(function(){
-                        this.find('[autofocus]') ? this.find('[autofocus]').focus() : this.find('.rm-wrapper').focus();
+                        this.handleFocus(this.find('.rm-wrapper'));
                         this.fire('afterOpen');
                     }.bind(this));
                 }else{
@@ -154,7 +156,7 @@
                                     if(r.find('.rm-wrapper').contains(this.elToFocus)){
                                         this.elToFocus.focus();
                                     }else{
-                                        r.find('[autofocus]') ? r.find('[autofocus]').focus() : r.find('.rm-wrapper').focus();
+                                        this.handleFocus(r.find('.rm-wrapper'));
                                     }
                                     break;
                                 }
@@ -173,6 +175,20 @@
         onunrender: function(){
             this.observe_basedon.cancel();
         },
+        onunrendering: function(){
+            if(this.get('unrender_with_parent')){
+                this.insert(this.elOrigin);
+            }
+        },        
+        handleFocus: function(mr){
+            var autofocus = mr.querySelector('[autofocus]');
+            if(autofocus){
+                autofocus.focus();
+            } else {
+                var focusable = mr.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                focusable.length ? focusable[0].focus() : mr.focus();
+            }
+        },        
         animateModal: function(dir){
             return new Promise(function(resolve, reject){
                 var handler = function(e) {
