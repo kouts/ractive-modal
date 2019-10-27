@@ -138,7 +138,8 @@ ractive__WEBPACK_IMPORTED_MODULE_0___default.a.sharedSet({'rm.animating': undefi
             base_zindex: 1051,
             opacity: 0,
             display: 'none',
-            zindex: 0
+            zindex: 0,
+            unrender_with_parent: false
         }
     },
     delegate: false,
@@ -186,6 +187,7 @@ ractive__WEBPACK_IMPORTED_MODULE_0___default.a.sharedSet({'rm.animating': undefi
     },
     onrender: function(){
         var modal_id = this.get('modal_id');
+        this.elOrigin = this.el;
         this.observe_basedon = this.observe('basedon', function(newValue, oldValue, keypath){
             var live = this.get('live');
             if(newValue === true){
@@ -245,6 +247,11 @@ ractive__WEBPACK_IMPORTED_MODULE_0___default.a.sharedSet({'rm.animating': undefi
     onunrender: function(){
         this.observe_basedon.cancel();
     },
+    onunrendering: function(){
+        if(this.get('unrender_with_parent')){
+            this.insert(this.elOrigin);
+        }
+    },        
     handleFocus: function(mr){
         var autofocus = mr.querySelector('[autofocus]');
         if(autofocus){
