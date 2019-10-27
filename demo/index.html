@@ -212,7 +212,7 @@
                     <li>Closeable by clicking on the upper right "x", the overlay or the esc key</li>
                     <li><strong>Stackable</strong> - Multiple modal windows on top of each other</li>
                     <li>Ability to set initial focus on an element when the modal window opens, just set the <strong>autofocus</strong> attribute on an element inside the modal</li>
-                    <li>Focus management trapps keyboard focus - navigation inside the modal window</li>
+                    <li>Focus management trapps keyboard focus - tabbed navigation inside the modal window</li>
                     <li>Ability to have unclosable modal windows</li>
                     <li>Render on demand or stay always in DOM with "live" mode</li>
                     <li>Ability to append to an element</li>
@@ -560,6 +560,15 @@
                             <td>Boolean</td>
                             <td>true</td>
                         </tr>
+                        <tr>
+                            <td>unrender_with_parent</td>
+                            <td>
+                                Controls whether to return modal to it's original position on unrender.<br />
+                                Usefull when the original parent component gets unrendered while the modal is open.
+                            </td>
+                            <td>Boolean</td>
+                            <td>false</td>
+                        </tr>                        
 
                     </tbody>
                 </table>
@@ -597,6 +606,14 @@
         <div class="row mb40">
             <div class="col-sm-12">
                 <h2>Changelog</h2>
+
+                <h5>version 1.0.0</h5>
+                <ul>
+                    <li>Moved aria attributes into the modal element.</li>
+                    <li>Added aria-modal attribute into the modal element.</li>
+                    <li>When a dialog opens, focus now moves to the first focusable element inside the dialog.</li>
+                    <li>Added unrender_with_parent option.</li>
+                </ul>                 
 
                 <h5>version 0.3.4</h5>
                 <ul>
