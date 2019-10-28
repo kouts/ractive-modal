@@ -139,7 +139,7 @@ ractive__WEBPACK_IMPORTED_MODULE_0___default.a.sharedSet({'rm.animating': undefi
             opacity: 0,
             display: 'none',
             zindex: 0,
-            unrender_with_parent: false
+            cleanup_on_remove: false
         }
     },
     delegate: false,
@@ -187,7 +187,6 @@ ractive__WEBPACK_IMPORTED_MODULE_0___default.a.sharedSet({'rm.animating': undefi
     },
     onrender: function(){
         var modal_id = this.get('modal_id');
-        this.elOrigin = this.el;
         this.observe_basedon = this.observe('basedon', function(newValue, oldValue, keypath){
             var live = this.get('live');
             if(newValue === true){
@@ -247,9 +246,12 @@ ractive__WEBPACK_IMPORTED_MODULE_0___default.a.sharedSet({'rm.animating': undefi
     onunrender: function(){
         this.observe_basedon.cancel();
     },
-    onunrendering: function(){
-        if(this.get('unrender_with_parent')){
-            this.insert(this.elOrigin);
+    onteardown: function(){
+        if(this.get('cleanup_on_remove')){
+            var id = this.get('modal_id');
+            [].slice.call(document.querySelectorAll('.backdrop-'+id+', .rm-wrapper.'+id+'')).forEach(function(el){
+                el.parentNode.removeChild(el);  
+            });
         }
     },        
     handleFocus: function(mr){

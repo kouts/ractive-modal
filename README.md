@@ -2,7 +2,7 @@
 A modal window component for Ractive
 
 Features
-- Lightweight, minified version is &lt; **8kb**
+- Lightweight, minified version is &lt; **9kb**
 - Opens and closes with a data variable
 - Includes default styling but it's also highly customizable via user CSS classes and styles
 - Modal intro and outro effects using CSS animations

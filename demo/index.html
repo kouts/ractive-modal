@@ -203,7 +203,7 @@
             <div class="col-sm-12">
                 <h2>Features at a glance</h2>
                 <ul>
-                    <li>Lightweight, minified version is &lt; <strong>8kb</strong></li>
+                    <li>Lightweight, minified version is &lt; <strong>9kb</strong></li>
                     <li>Opens and closes with a data variable</li>
                     <li>Includes default styling but it's also highly customizable via user CSS classes and styles</li>
                     <li>Modal intro and outro effects using CSS animations</li>
@@ -561,10 +561,10 @@
                             <td>true</td>
                         </tr>
                         <tr>
-                            <td>unrender_with_parent</td>
+                            <td>cleanup_on_remove</td>
                             <td>
-                                Controls whether to return modal to it's original position on unrender.<br />
-                                Usefull when the original parent component gets unrendered while the modal is open.
+                                Cleanups the DOM from backdrop and modal elements.<br />
+                                Usefull when the modal component gets unrendered while it's open.
                             </td>
                             <td>Boolean</td>
                             <td>false</td>
@@ -606,6 +606,12 @@
         <div class="row mb40">
             <div class="col-sm-12">
                 <h2>Changelog</h2>
+
+                <h5>version 2.0.0</h5>
+                <ul>
+                    <li>Added cleanup_on_remove option.</li>
+                    <li>Removed unrender_with_parent option</li>
+                </ul>                  
 
                 <h5>version 1.0.0</h5>
                 <ul>
