@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -102,26 +102,28 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-
-// EXTERNAL MODULE: external {"commonjs":"ractive","commonjs2":"ractive","amd":"ractive","root":"Ractive"}
-var external_commonjs_ractive_commonjs2_ractive_amd_ractive_root_Ractive_ = __webpack_require__(0);
-var external_commonjs_ractive_commonjs2_ractive_amd_ractive_root_Ractive_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_ractive_commonjs2_ractive_amd_ractive_root_Ractive_);
-
-// CONCATENATED MODULE: ./ractive-modal.css
-/* harmony default export */ var ractive_modal = (".rm-backdrop {position: fixed; top: 0; right: 0; bottom: 0; left: 0; background-color: rgba(0, 0, 0, 0.5);}\r\n.rm-wrapper {position: fixed; text-align: center; top: 0; right: 0; bottom: 0; left: 0; overflow-x: hidden; overflow-y: auto; display: none; outline: 0;}\r\n.rm {position: relative; display: inline-block; width:100%; text-align: left; color: #333333; background-color: #fff; top:30px; cursor: default; min-width: 110px; max-width: 500px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);}\r\n.rm-titlebar {padding:15px; color: #333; overflow: auto; border-bottom: 1px solid #e5e5e5;}\r\n.rm-title {margin-top:2px; margin-bottom: 0px; display: inline-block; font-size:1.25rem;}\r\n.rm-btn-close {padding: 0px 4px 0px 4px; cursor: pointer; background: 0 0; border: 0; font-weight:700; float: right; font-size: 1.5rem; line-height: 1; margin-right: -5px; color:#ccc;}\r\n.rm-btn-close:hover, .rm-btn-close:focus:hover{color:#6f6f6f; border-color: transparent; background-color: transparent;}\r\n.rm-btn-close:focus {color:#939393; border-color: transparent; background-color: transparent;}\r\n.rm-content {padding:15px 15px 15px 15px;}\r\n.rm-content .full-hr {width: auto; border: 0; border-top: 1px solid #e0e0e0; margin-top:15px; margin-bottom:15px; margin-left:-14px; margin-right:-14px;}\r\n.rm-fadeIn {-webkit-animation-name: rm-fadeIn; animation-name: rm-fadeIn;}\r\n@-webkit-keyframes rm-fadeIn {0% {opacity: 0} 100% {opacity: 1}}\r\n@keyframes rm-fadeIn {0% {opacity: 0} 100% {opacity: 1}}\r\n.rm-fadeOut {-webkit-animation-name: rm-fadeOut; animation-name: rm-fadeOut;}\r\n@-webkit-keyframes rm-fadeOut {0% {opacity: 1} 100% {opacity: 0}}\r\n@keyframes rm-fadeOut {0% {opacity: 1} 100% {opacity: 0}}\r\n.rm-fadeIn, .rm-fadeOut {-webkit-animation-duration: .25s; animation-duration: .25s; -webkit-animation-fill-mode: both; animation-fill-mode: both;}");
-// CONCATENATED MODULE: ./ractive-modal.ractive.html
+/* harmony import */ var ractive__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
+/* harmony import */ var ractive__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(ractive__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _ractive_modal_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1);
+/* harmony import */ var _ractive_modal_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_ractive_modal_css__WEBPACK_IMPORTED_MODULE_1__);
 
 
 
 
-external_commonjs_ractive_commonjs2_ractive_amd_ractive_root_Ractive_default.a.sharedSet({'rm.animating': undefined, 'rm.delay': 0});
-/* harmony default export */ var ractive_modal_ractive = __webpack_exports__["default"] = (external_commonjs_ractive_commonjs2_ractive_amd_ractive_root_Ractive_default.a.extend({
+ractive__WEBPACK_IMPORTED_MODULE_0___default.a.sharedSet({'rm.animating': undefined, 'rm.delay': 0});
+/* harmony default export */ __webpack_exports__["default"] = (ractive__WEBPACK_IMPORTED_MODULE_0___default.a.extend({
     template: {v:4,t:[{t:4,f:[{t:7,e:"div",m:[{n:"class",f:["rm-backdrop ",{t:2,r:"bg_class"}," ",{t:2,r:"base_anim_class"}," ",{t:2,r:"bg_anim_class"}," backdrop-",{t:2,r:"modal_id"}],t:13},{n:"style",f:["z-index: ",{t:2,x:{r:["zindex"],s:"_0-1"}},";"],t:13}]}],n:50,r:"showbackdrop"},{t:4,f:[{t:7,e:"div",m:[{n:"class",f:["rm-wrapper ",{t:2,r:"base_anim_class"}," ",{t:2,r:"anim_class"}," ",{t:2,r:"modal_id"}],t:13},{n:"tabindex",f:"0",t:13,g:1},{n:"style",f:["opacity: ",{t:2,r:"opacity"},"; display: ",{t:2,r:"display"},"; z-index: ",{t:2,r:"zindex"},"; cursor: ",{t:2,x:{r:["enableclose"],s:"_0?\"pointer\":\"default\""}}],t:13},{n:["click"],t:70,f:"clickoutside"},{n:["keydown"],t:70,f:"keydown"}],f:[{t:7,e:"div",m:[{n:"class",f:["rm ",{t:2,r:"class"}],t:13},{n:"style",f:[{t:2,r:"style"}],t:13},{n:"role",f:"dialog",t:13,g:1},{n:"aria-label",f:[{t:2,r:"title"}],t:13},{n:"aria-modal",f:"true",t:13,g:1}],f:[{t:4,f:[{t:7,e:"div",m:[{t:13,n:"class",f:"rm-titlebar",g:1}],f:[{t:7,e:"h3",m:[{t:13,n:"class",f:"rm-title",g:1}],f:[{t:2,r:"title"}]}," ",{t:4,f:[{t:7,e:"button",m:[{t:13,n:"class",f:"rm-btn-close",g:1},{n:"type",f:"button",t:13,g:1},{n:["click"],t:70,f:"close"}],f:["×"]}],n:50,r:"enableclose"}]}],n:50,x:{r:["title","enableclose"],s:"_0||_1"}}," ",{t:7,e:"div",m:[{t:13,n:"class",f:"rm-content",g:1}],f:[{t:16}]}]}]}],n:50,r:"showmodal"}],e:{"_0-1":function (_0){return(_0-1);},"_0?\"pointer\":\"default\"":function (_0){return(_0?"pointer":"default");},"_0||_1":function (_0,_1){return(_0||_1);}}},
-    css: Object.keys(ractive_modal).length !== 0 ? ractive_modal : null,
+    css: Object.keys(_ractive_modal_css__WEBPACK_IMPORTED_MODULE_1___default.a).length !== 0 ? _ractive_modal_css__WEBPACK_IMPORTED_MODULE_1___default.a : null,
     data: function() {
         return {
             showmodal: false,
@@ -230,7 +232,7 @@ external_commonjs_ractive_commonjs2_ractive_amd_ractive_root_Ractive_default.a.s
                         var all = document.querySelectorAll('.rm-wrapper');
                         for (var i = 0; i < all.length; i++) {
                             if(all[i].style.zIndex == lastZindex){
-                                var r = external_commonjs_ractive_commonjs2_ractive_amd_ractive_root_Ractive_default.a.getContext(all[i]).ractive;
+                                var r = ractive__WEBPACK_IMPORTED_MODULE_0___default.a.getContext(all[i]).ractive;
                                 if(r.find('.rm-wrapper').contains(this.elToFocus)){
                                     this.elToFocus.focus();
                                 }else{
