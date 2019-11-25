@@ -18,7 +18,7 @@ Ractive.components.counter = Ractive.extend({
 	}
 });
 
-function render(Component) {
+function render() {
 	const div = document.createElement('div');
 	div.id = 'app';
 	const r = new Ractive({
