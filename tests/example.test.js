@@ -1,6 +1,7 @@
 import { getByLabelText, getByText, getByTestId, queryByTestId, wait, getQueriesForElement, fireEvent } from '@testing-library/dom';
 import '@testing-library/jest-dom/extend-expect';
 import Ractive from 'ractive';
+Ractive.DEBUG = false;
 
 Ractive.components.counter = Ractive.extend({
 	template: `
