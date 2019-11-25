@@ -1,7 +1,7 @@
 import Ractive from 'ractive';
 Ractive.DEBUG = false;
 
-function render(componentOptions) {
+function setup(componentOptions) {
     const Component = (typeof componentOptions === 'function') ? componentOptions : Ractive.extend(componentOptions);
     const div = document.createElement('div');
     div.id = 'app';
@@ -15,4 +15,4 @@ function render(componentOptions) {
     return div;
 }
 
-export { render };
+export { setup };
