@@ -1,5 +1,8 @@
 import Ractive from 'ractive';
+import modal from '../../dist/ractive-modal.js';
+
 Ractive.DEBUG = false;
+Ractive.components.modal = modal;
 
 function setup(componentOptions) {
     const Component = (typeof componentOptions === 'function') ? componentOptions : Ractive.extend(componentOptions);
