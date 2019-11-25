@@ -12,6 +12,9 @@
     "popup"
   ],
   "devDependencies": {
+    "@babel/cli": "^7.7.4",
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
     "@testing-library/dom": "^6.10.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/user-event": "^7.1.2",
@@ -30,6 +33,17 @@
     "watch": "webpack --config webpack.config.js --watch",
     "test": "jest",
     "test:watch": "jest --watch"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(js|ts|tsx)$": "babel-jest"
+    },
+    "testMatch": [
+      "**/*.test.+(js|ts|tsx)"
+    ]
   },
   "author": "kouts",
   "license": "MIT",
